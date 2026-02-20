@@ -38,9 +38,9 @@ const Header = ({ onNavigate }) => {
   return (
     <header className="sticky top-0 z-50 bg-slate-900 border-b border-slate-800 shadow-md">
       {/* Banner superior */}
-      <div className="bg-black text-white text-xs py-2 px-4 text-center hidden md:block">
+      {/* <div className="bg-black text-white text-xs py-2 px-4 text-center hidden md:block">
         <span className="font-medium">¡Envío gratis por compras superiores a S/299!</span> - Ofertas exclusivas en herramientas de construcción.
-      </div>
+      </div> */}
 
       {/* Header principal */}
       <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-6">

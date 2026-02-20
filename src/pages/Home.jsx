@@ -28,7 +28,7 @@ const Home = () => {
         <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
           <div className="max-w-xl">
             <span className="inline-block py-1 px-3 rounded bg-orange-600/20 text-orange-500 border border-orange-600 text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-sm">
-              Nueva Colección 2024
+              Nueva Colección 2026
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Equipa tu obra con <br />

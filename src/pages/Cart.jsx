@@ -284,18 +284,7 @@ const Cart = () => {
                 </div>
               </div>
 
-              {/* Banner CMR */}
-              {cartTotal >= 100 && (
-                <div className="bg-emerald-900/20 border border-emerald-800 p-3 rounded-lg flex items-center gap-3 mb-6">
-                  <div className="bg-emerald-600 text-white text-[10px] font-bold px-1.5 py-1 rounded">
-                    CMR
-                  </div>
-                  <p className="text-[11px] text-emerald-300">
-                    ¡Paga con tu CMR y acumula{' '}
-                    <span className="font-bold">doble puntaje</span> en esta compra!
-                  </p>
-                </div>
-              )}
+              
 
               {/* Mensaje de envío gratis */}
               {cartTotal < 299 && (
