@@ -8,12 +8,14 @@ const ProductCard = ({ product, onViewDetails }) => {
     e.stopPropagation();
     addToCart(product);
     
-    // Animación de feedback
     e.target.closest('button').classList.add('scale-95');
     setTimeout(() => {
       e.target.closest('button')?.classList.remove('scale-95');
     }, 100);
   };
+
+  // Usar la primera imagen del array o fallback a image
+  const displayImage = product.images ? product.images[0] : product.image;
 
   return (
     <div
@@ -23,7 +25,7 @@ const ProductCard = ({ product, onViewDetails }) => {
       {/* Imagen del producto */}
       <div className="relative aspect-square bg-gray-50 dark:bg-gray-800 p-4 overflow-hidden">
         <img
-          src={product.image}
+          src={displayImage}
           alt={product.name}
           className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
         />
@@ -46,19 +48,14 @@ const ProductCard = ({ product, onViewDetails }) => {
         </button>
       </div>
 
-      {/* Contenido */}
+      {/* Resto del código igual... */}
       <div className="p-4">
-        {/* Marca */}
         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
           {product.brand}
         </p>
-
-        {/* Nombre del producto */}
         <h3 className="text-sm font-bold text-gray-800 dark:text-white mb-2 line-clamp-2 h-10">
           {product.name}
         </h3>
-
-        {/* Rating */}
         <div className="flex items-center gap-1 mb-3">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
@@ -78,8 +75,6 @@ const ProductCard = ({ product, onViewDetails }) => {
             ({product.reviews})
           </span>
         </div>
-
-        {/* Precio */}
         <div className="mb-4">
           {product.originalPrice && (
             <span className="text-xs text-gray-400 line-through block">
@@ -97,8 +92,6 @@ const ProductCard = ({ product, onViewDetails }) => {
             )}
           </div>
         </div>
-
-        {/* Stock */}
         <div className="flex items-center gap-1 mb-3 text-xs">
           <span className="material-symbols-outlined text-green-600 text-sm">
             check_circle
@@ -107,8 +100,6 @@ const ProductCard = ({ product, onViewDetails }) => {
             Stock: {product.stock} unidades
           </span>
         </div>
-
-        {/* Botón agregar al carrito */}
         <button
           onClick={handleAddToCart}
           className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 group/btn"

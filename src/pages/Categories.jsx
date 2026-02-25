@@ -8,6 +8,8 @@ const Categories = () => {
   const navigate = useNavigate();
   const { searchQuery } = useCart();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [expandedCategories, setExpandedCategories] = useState({}); // ← NUEVO
   const [sortBy, setSortBy] = useState('featured');
   const [priceRange, setPriceRange] = useState([0, 500]);
 
@@ -15,7 +17,36 @@ const Categories = () => {
     navigate(`/product/${product.id}`, { state: { product } });
   };
 
-  // Filtrar productos por búsqueda, categoría y precio
+  // Toggle expandir/colapsar categoría
+  const toggleCategory = (categoryName) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [categoryName]: !prev[categoryName]
+    }));
+  };
+
+  // Manejar selección de categoría
+  const handleCategoryClick = (categoryName) => {
+    setSelectedCategory(categoryName);
+    setSelectedSubcategory(null); // Resetear subcategoría
+    
+    // Auto-expandir si tiene subcategorías
+    const category = categories.find(c => c.name === categoryName);
+    if (category && category.subcategories && category.subcategories.length > 0) {
+      setExpandedCategories(prev => ({
+        ...prev,
+        [categoryName]: true
+      }));
+    }
+  };
+
+  // Manejar selección de subcategoría
+  const handleSubcategoryClick = (categoryName, subcategoryName) => {
+    setSelectedCategory(categoryName);
+    setSelectedSubcategory(subcategoryName);
+  };
+
+  // Filtrar productos
   const filteredProducts = products.filter(product => {
     // Filtro de búsqueda
     if (searchQuery.trim()) {
@@ -24,6 +55,7 @@ const Categories = () => {
         product.name.toLowerCase().includes(query) ||
         product.brand.toLowerCase().includes(query) ||
         product.category.toLowerCase().includes(query) ||
+        (product.subcategory && product.subcategory.toLowerCase().includes(query)) ||
         product.description.toLowerCase().includes(query);
       
       if (!matchesSearch) return false;
@@ -31,6 +63,11 @@ const Categories = () => {
 
     // Filtro de categoría
     if (selectedCategory !== 'all' && product.category !== selectedCategory) {
+      return false;
+    }
+
+    // Filtro de subcategoría
+    if (selectedSubcategory && product.subcategory !== selectedSubcategory) {
       return false;
     }
 
@@ -68,13 +105,32 @@ const Categories = () => {
           </button>
           <span className="material-symbols-outlined text-xs">chevron_right</span>
           <span className="text-white font-medium">Categorías</span>
+          {selectedCategory !== 'all' && (
+            <>
+              <span className="material-symbols-outlined text-xs">chevron_right</span>
+              <span className="text-white font-medium">{selectedCategory}</span>
+            </>
+          )}
+          {selectedSubcategory && (
+            <>
+              <span className="material-symbols-outlined text-xs">chevron_right</span>
+              <span className="text-orange-600 font-medium">{selectedSubcategory}</span>
+            </>
+          )}
         </div>
 
-        {/* Header con búsqueda activa */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">
-              {searchQuery ? `Resultados para "${searchQuery}"` : 'Todas las Herramientas'}
+              {searchQuery 
+                ? `Resultados para "${searchQuery}"` 
+                : selectedSubcategory 
+                  ? `${selectedCategory} - ${selectedSubcategory}`
+                  : selectedCategory !== 'all'
+                    ? selectedCategory
+                    : 'Todas las Herramientas'
+              }
             </h1>
             <p className="text-gray-400">
               {sortedProducts.length} {sortedProducts.length === 1 ? 'producto encontrado' : 'productos encontrados'}
@@ -107,7 +163,7 @@ const Categories = () => {
                 Filtros
               </h3>
 
-              {/* Mostrar búsqueda activa */}
+              {/* Búsqueda activa */}
               {searchQuery && (
                 <div className="mb-6 p-3 bg-orange-900/20 border border-orange-600 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
@@ -121,14 +177,18 @@ const Categories = () => {
                 </div>
               )}
 
-              {/* Categorías */}
+              {/* Categorías con Subcategorías */}
               <div className="mb-6">
                 <h4 className="text-sm font-semibold text-white mb-3">
                   Categorías
                 </h4>
-                <div className="space-y-2">
+                <div className="space-y-1">
+                  {/* Todas las categorías */}
                   <button
-                    onClick={() => setSelectedCategory('all')}
+                    onClick={() => {
+                      setSelectedCategory('all');
+                      setSelectedSubcategory(null);
+                    }}
                     className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                       selectedCategory === 'all'
                         ? 'bg-orange-900/30 text-orange-600 font-medium'
@@ -137,19 +197,59 @@ const Categories = () => {
                   >
                     Todas las categorías
                   </button>
+
+                  {/* Categorías individuales */}
                   {categories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => setSelectedCategory(category.name)}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between ${
-                        selectedCategory === category.name
-                          ? 'bg-orange-900/30 text-orange-600 font-medium'
-                          : 'text-gray-400 hover:bg-gray-800'
-                      }`}
-                    >
-                      <span>{category.name}</span>
-                      <span className="text-xs">({category.count})</span>
-                    </button>
+                    <div key={category.id}>
+                      {/* Categoría principal */}
+                      <div className="flex items-center">
+                        <button
+                          onClick={() => handleCategoryClick(category.name)}
+                          className={`flex-1 text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between ${
+                            selectedCategory === category.name && !selectedSubcategory
+                              ? 'bg-orange-900/30 text-orange-600 font-medium'
+                              : 'text-gray-400 hover:bg-gray-800'
+                          }`}
+                        >
+                          <span>{category.name}</span>
+                          <span className="text-xs">({category.count})</span>
+                        </button>
+
+                        {/* Botón expandir/colapsar si tiene subcategorías */}
+                        {category.subcategories && category.subcategories.length > 0 && (
+                          <button
+                            onClick={() => toggleCategory(category.name)}
+                            className="px-2 py-2 text-gray-400 hover:text-orange-600 transition-colors"
+                          >
+                            <span className="material-symbols-outlined text-sm">
+                              {expandedCategories[category.name] ? 'expand_less' : 'expand_more'}
+                            </span>
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Subcategorías (expandibles) */}
+                      {category.subcategories && 
+                       category.subcategories.length > 0 && 
+                       expandedCategories[category.name] && (
+                        <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-700 pl-2">
+                          {category.subcategories.map((subcategory) => (
+                            <button
+                              key={subcategory.id}
+                              onClick={() => handleSubcategoryClick(category.name, subcategory.name)}
+                              className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-colors flex items-center justify-between ${
+                                selectedSubcategory === subcategory.name
+                                  ? 'bg-orange-900/30 text-orange-600 font-medium'
+                                  : 'text-gray-400 hover:bg-gray-800'
+                              }`}
+                            >
+                              <span>{subcategory.name}</span>
+                              <span className="text-[10px]">({subcategory.count})</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -192,30 +292,14 @@ const Categories = () => {
                 </div>
               </div>
 
-              {/* Marcas */}
-              <div className="mb-6">
-                <h4 className="text-sm font-semibold text-white mb-3">
-                  Marcas
-                </h4>
-                <div className="space-y-2">
-                  {['TOTAL TOOLS', 'TRUPER', 'STANLEY', 'DEWALT'].map((brand) => (
-                    <label key={brand} className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        className="rounded border-gray-700 bg-gray-800 text-orange-600 focus:ring-orange-600"
-                      />
-                      <span className="text-sm text-gray-400">{brand}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Botón limpiar filtros */}
+              {/* Limpiar filtros */}
               <button
                 onClick={() => {
                   setSelectedCategory('all');
+                  setSelectedSubcategory(null);
                   setPriceRange([0, 500]);
                   setSortBy('featured');
+                  setExpandedCategories({});
                 }}
                 className="w-full bg-gray-800 text-gray-300 py-2 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
               >
@@ -247,13 +331,17 @@ const Categories = () => {
                 <p className="text-gray-400 mb-6">
                   {searchQuery 
                     ? `No hay resultados para "${searchQuery}"`
-                    : 'Intenta ajustar los filtros de búsqueda'
+                    : selectedSubcategory
+                      ? `No hay productos en ${selectedSubcategory}`
+                      : 'Intenta ajustar los filtros de búsqueda'
                   }
                 </p>
                 <button
                   onClick={() => {
                     setSelectedCategory('all');
+                    setSelectedSubcategory(null);
                     setPriceRange([0, 500]);
+                    setExpandedCategories({});
                   }}
                   className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
                 >

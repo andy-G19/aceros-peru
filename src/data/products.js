@@ -1,131 +1,30 @@
+// Importar categorías
+export { categories } from './categories';
+
+// Importar productos por categoría
+import { herramientasAcero } from './herramientas-acero';
+import { herramientasGanzo } from './herramientas-ganzo';
+import { rastrillos } from './rastrillos';
+import { construccion } from './construccion';
+import { tripodes } from './tripodes';
+import { otros } from './otros';
+
+// Exportar todos los productos combinados
 export const products = [
-  {
-    id: 1,
-    name: "Pala Cuadrada 1mt con mango madera Total",
-    brand: "TOTAL TOOLS",
-    price: 49.90,
-    originalPrice: 64.87,
-    discount: 23,
-    image: "",
-    category: "Herramientas Acero",
-    seller: "Corporacion Ferremax",
-    rating: 4.5,
-    reviews: 128,
-    stock: 15,
-    description: "Pala cuadrada profesional de 1 metro con mango de madera resistente. Ideal para movimiento de tierra, construcción y jardinería."
-  },
-  {
-    id: 2,
-    name: "Rastrillo para Jardín Mango de Madera 14 Dientes",
-    brand: "TRUPER",
-    price: 32.50,
-    originalPrice: null,
-    discount: 0,
-    image: "",
-    category: "Rastrillos",
-    seller: "Mega Constructor",
-    rating: 4.8,
-    reviews: 89,
-    stock: 23,
-    description: "Rastrillo profesional con 14 dientes de acero templado y mango ergonómico de madera. Perfecto para jardinería y limpieza de terrenos."
-  },
-  {
-    id: 3,
-    name: "Pico de Acero Forjado 5 libras",
-    brand: "TOTAL TOOLS",
-    price: 78.90,
-    originalPrice: 95.00,
-    discount: 17,
-    image: "",
-    category: "Herramientas Acero",
-    seller: "Corporacion Ferremax",
-    rating: 4.7,
-    reviews: 156,
-    stock: 8,
-    description: "Pico profesional de acero forjado de alta resistencia con mango de fibra de vidrio."
-  },
-  {
-    id: 4,
-    name: "Gancho para Construcción Profesional",
-    brand: "TRUPER",
-    price: 189.90,
-    originalPrice: 229.90,
-    discount: 17,
-    image: "",
-    category: "Herramientas Ganzo",
-    seller: "Mega Constructor",
-    rating: 4.6,
-    reviews: 203,
-    stock: 12,
-    description: "Gancho profesional de acero galvanizado para trabajos de construcción y albañilería."
-  },
-  {
-    id: 5,
-    name: "Trípode Metálico para Aspersor de Riego",
-    brand: "AGRICOLA PRO",
-    price: 145.00,
-    originalPrice: 180.00,
-    discount: 19,
-    image: "",
-    category: "Trípodes para Aspersor",
-    seller: "Corporacion Ferremax",
-    rating: 4.9,
-    reviews: 67,
-    stock: 18,
-    description: "Trípode ajustable de acero para aspersor de riego, ideal para agricultura y jardinería profesional."
-  },
-  {
-    id: 6,
-    name: "Nivel de Burbuja Profesional 60cm",
-    brand: "STANLEY",
-    price: 65.50,
-    originalPrice: null,
-    discount: 0,
-    image: "",
-    category: "Herramientas de Construccion",
-    seller: "Mega Constructor",
-    rating: 4.7,
-    reviews: 142,
-    stock: 25,
-    description: "Nivel de burbuja profesional de 60cm con cuerpo de aluminio reforzado y precisión garantizada."
-  },
-  {
-    id: 7,
-    name: "Carretilla de Mano Reforzada",
-    brand: "TRUPER",
-    price: 125.00,
-    originalPrice: 155.00,
-    discount: 19,
-    image: "",
-    category: "Otros",
-    seller: "Corporacion Ferremax",
-    rating: 4.5,
-    reviews: 98,
-    stock: 10,
-    description: "Carretilla de mano con estructura reforzada, ideal para transporte de materiales de construcción."
-  },
-  {
-    id: 8,
-    name: "Combo de Albañilería 5 Piezas",
-    brand: "TOTAL TOOLS",
-    price: 89.90,
-    originalPrice: 115.00,
-    discount: 22,
-    image: "",
-    category: "Herramientas de Construccion",
-    seller: "Mega Constructor",
-    rating: 4.8,
-    reviews: 175,
-    stock: 14,
-    description: "Set completo de herramientas para albañilería: paleta, llana, nivel, escuadra y espátula."
-  }
+  ...herramientasAcero,
+  ...herramientasGanzo,
+  ...rastrillos,
+  ...construccion,
+  ...tripodes,
+  ...otros
 ];
 
-export const categories = [
-  { id: 1, name: "Herramientas Acero", icon: "construction", count: 2,description: "Palas, picos y herramientas de acero forjado"},
-  { id: 2, name: "Herramientas Ganzo", icon: "handyman", count: 1,description: "Ganchos y herramientas especializadas"},
-  { id: 3, name: "Rastrillos", icon: "yard", count: 1,description: "Rastrillos para jardín y agricultura"},
-  { id: 4, name: "Herramientas de Construccion", icon: "home_repair_service", count: 2,description: "Herramientas para albañilería y construcción"},
-  { id: 5, name: "Trípodes para Aspersor", icon: "water_drop", count: 1,description: "Trípodes y sistemas de riego"},
-  { id: 6, name: "Otros", icon: "more_horiz", count: 1,description: "Otros productos y accesorios"}
-];
+// Exportar también por categoría (opcional, para uso específico)
+export {
+  herramientasAcero,
+  herramientasGanzo,
+  rastrillos,
+  construccion,
+  tripodes,
+  otros
+};

@@ -11,7 +11,6 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
-  // Obtener producto del estado de navegación o buscar en el array
   const product = location.state?.product || products.find(p => p.id === parseInt(id));
 
   useEffect(() => {
@@ -39,7 +38,8 @@ const ProductDetail = () => {
     alert(`¡${product.name} agregado al carrito!`);
   };
 
-  const images = [product.image, product.image, product.image];
+  // Usar las imágenes del producto o fallback a una imagen por defecto
+  const images = product.images || [product.image, product.image, product.image];
 
   return (
     <main className="min-h-screen bg-gray-900 py-8">
@@ -69,7 +69,7 @@ const ProductDetail = () => {
                 className="w-full h-96 object-contain"
               />
             </div>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {images.map((img, index) => (
                 <button
                   key={index}
@@ -243,47 +243,38 @@ const ProductDetail = () => {
           <h2 className="text-2xl font-bold text-white mb-4">
             Descripción del Producto
           </h2>
-          <p className="text-gray-300 leading-relaxed">
+          <p className="text-gray-300 leading-relaxed mb-8">
             {product.description}
           </p>
           
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Especificaciones */}
             <div>
-              <h3 className="font-bold text-white mb-3">
+              <h3 className="font-bold text-white mb-3 text-lg">
                 Especificaciones:
               </h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-orange-600 text-sm">check</span>
-                  <span>Material de alta resistencia</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-orange-600 text-sm">check</span>
-                  <span>Diseño ergonómico</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-orange-600 text-sm">check</span>
-                  <span>Garantía de fábrica 12 meses</span>
-                </li>
+                {product.specifications && product.specifications.map((spec, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="material-symbols-outlined text-orange-600 text-sm mt-0.5">check</span>
+                    <span>{spec}</span>
+                  </li>
+                ))}
               </ul>
             </div>
+
+            {/* Usos Recomendados */}
             <div>
-              <h3 className="font-bold text-white mb-3">
+              <h3 className="font-bold text-white mb-3 text-lg">
                 Usos Recomendados:
               </h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-orange-600 text-sm">check</span>
-                  <span>Construcción profesional</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-orange-600 text-sm">check</span>
-                  <span>Jardinería y paisajismo</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-orange-600 text-sm">check</span>
-                  <span>Trabajos de mantenimiento</span>
-                </li>
+                {product.recommendations && product.recommendations.map((rec, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="material-symbols-outlined text-orange-600 text-sm mt-0.5">check</span>
+                    <span>{rec}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
