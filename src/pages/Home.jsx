@@ -22,7 +22,7 @@ const Home = () => {
           <img
             alt="Construction site background"
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200"
+            src="https://res.cloudinary.com/daq3sbggo/image/upload/v1772022472/port_dliyng.png"
           />
         </div>
         <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
@@ -31,11 +31,11 @@ const Home = () => {
               Nueva Colección 2026
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Equipa tu obra con <br />
-              <span className="text-orange-500">Herramientas Profesionales</span>
+              Equipa tu campo con las <br />
+              <span className="text-orange-500">Mejores Herramientas Profesionales</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
-              Descubre nuestra selección premium de palas, picos y rastrillos diseñados para durar. 
+              Descubre nuestra selección de lampas, picos, aspersores y rastrillos diseñados para durar. 
               Resistencia y ergonomía al mejor precio.
             </p>
             <div className="flex gap-4">
