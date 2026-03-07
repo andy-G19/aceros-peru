@@ -53,10 +53,10 @@ const Categories = () => {
       const query = searchQuery.toLowerCase();
       const matchesSearch = 
         product.name.toLowerCase().includes(query) ||
-        product.brand.toLowerCase().includes(query) ||
+        (product.brand != null && product.brand.toLowerCase().includes(query)) ||
         product.category.toLowerCase().includes(query) ||
-        (product.subcategory && product.subcategory.toLowerCase().includes(query)) ||
-        product.description.toLowerCase().includes(query);
+        (product.subcategory != null && product.subcategory.toLowerCase().includes(query)) ||
+        (product.description != null && product.description.toLowerCase().includes(query));
       
       if (!matchesSearch) return false;
     }

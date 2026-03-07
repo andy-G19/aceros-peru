@@ -147,7 +147,7 @@ const Cart = () => {
                       <img
                         alt={item.name}
                         className="w-full h-full object-contain p-2"
-                        src={item.image}
+                        src={item.images ? item.images[0] : item.image}
                       />
                     </div>
 
