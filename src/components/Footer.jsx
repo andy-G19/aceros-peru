@@ -1,27 +1,23 @@
 import React from 'react';
-import logo from '../assets/logo.png'; // ← IMPORTAR EL LOGO
+import logo from '../assets/logo.png';
+import { RetroGrid } from './magicui/retro-grid';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 border-t border-gray-700 pt-12 pb-8 mt-20">
-      <div className="container mx-auto px-4">
+    <footer className="bg-slate-900 border-t border-gray-700 pt-12 pb-8 mt-20 relative overflow-hidden">
+      {/* RetroGrid background */}
+      <RetroGrid className="opacity-20" angle={65} cellSize={55} />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Grid principal */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Columna 1 - Logo y descripción */}
+          {/* Logo */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img 
-                src={logo} 
-                alt="Aceros Perú" 
-                className="h-12 w-12 object-contain"
-              />
+              <img src={logo} alt="Aceros Perú" className="h-12 w-12 object-contain" />
               <div className="flex flex-col">
-                <span className="font-bold text-lg text-white">
-                  ACEROS PERÚ
-                </span>
-                <span className="text-xs text-gray-400">
-                  Herramientas con Garantía
-                </span>
+                <span className="font-bold text-lg text-white">ACEROS PERÚ</span>
+                <span className="text-xs text-gray-400">Herramientas con Garantía</span>
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-4">
@@ -40,71 +36,34 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Columna 2 - Categorías */}
+          {/* Categorías */}
           <div>
             <h4 className="font-bold text-white mb-4">Categorías</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Herramientas Acero
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Herramientas Ganzo
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Rastrillos
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Herramientas de Construcción
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Trípodes para Aspersor
-                </a>
-              </li>
+              {["Herramientas Acero", "Herramientas Ganzo", "Rastrillos", "Herramientas de Construcción", "Trípodes para Aspersor"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="hover:text-orange-600 transition-colors">{item}</a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Columna 3 - Ayuda */}
+          {/* Ayuda */}
           <div>
             <h4 className="font-bold text-white mb-4">Ayuda</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Seguimiento de pedido
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Cambios y Devoluciones
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Términos y Condiciones
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-orange-600 transition-colors">
-                  Contacto
-                </a>
-              </li>
+              {["Seguimiento de pedido", "Cambios y Devoluciones", "Términos y Condiciones", "Contacto"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="hover:text-orange-600 transition-colors">{item}</a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Columna 4 - Newsletter */}
+          {/* Newsletter */}
           <div>
             <h4 className="font-bold text-white mb-4">Suscríbete</h4>
-            <p className="text-gray-400 text-sm mb-4">
-              Recibe las últimas ofertas y novedades.
-            </p>
+            <p className="text-gray-400 text-sm mb-4">Recibe las últimas ofertas y novedades.</p>
             <div className="flex flex-col gap-2">
               <input
                 className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-orange-600"
@@ -118,21 +77,17 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Línea divisoria */}
+        {/* Bottom */}
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500 text-center md:text-left">
             © 2026 Aceros Perú. Todos los derechos reservados.
           </p>
           <div className="flex gap-2">
-            <span className="text-xs text-gray-400 border border-gray-700 px-2 py-1 rounded">
-              VISA
-            </span>
-            <span className="text-xs text-gray-400 border border-gray-700 px-2 py-1 rounded">
-              Mastercard
-            </span>
-            <span className="text-xs text-gray-400 border border-gray-700 px-2 py-1 rounded">
-              Yape
-            </span>
+            {["VISA", "Mastercard", "Yape"].map((pay) => (
+              <span key={pay} className="text-xs text-gray-400 border border-gray-700 px-2 py-1 rounded">
+                {pay}
+              </span>
+            ))}
           </div>
         </div>
       </div>

@@ -55,10 +55,10 @@ const Header = ({ onNavigate }) => {
           <img 
             src={logo} 
             alt="Aceros Perú" 
-            className="h-16 w-16 object-contain transition-transform group-hover:scale-105"
+            className="h-10 w-10 md:h-16 md:w-16 object-contain transition-transform group-hover:scale-105"
           />
           <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tight text-white leading-none">
+            <span className="text-base md:text-xl font-bold tracking-tight text-white leading-none">
               ACEROS PERÚ
             </span>
             <span className="text-xs text-gray-400 font-medium">

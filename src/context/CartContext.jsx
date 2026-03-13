@@ -11,23 +11,25 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(''); // ← NUEVO
+  // CORRECCIÓN PRINCIPAL: Inicializamos leyendo directamente de localStorage
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const savedCart = localStorage.getItem('cart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error("Error leyendo el carrito:", error);
+      return [];
+    }
+  });
+  
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Forzar modo oscuro siempre
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
 
-  // Cargar carrito desde localStorage
-  useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
-    }
-  }, []);
-
-  // Guardar carrito en localStorage
+  // Solo guardamos cuando cartItems cambie
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
@@ -93,8 +95,8 @@ export const CartProvider = ({ children }) => {
     cartTotal,
     cartSubtotal,
     cartDiscount,
-    searchQuery,      // ← NUEVO
-    setSearchQuery,   // ← NUEVO
+    searchQuery,      
+    setSearchQuery,   
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
