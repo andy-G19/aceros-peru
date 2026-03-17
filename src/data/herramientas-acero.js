@@ -10,9 +10,9 @@ export const herramientasAcero = [
     originalPrice: 72.00,
     discount: 19,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1771987322/Captura_de_pantalla_2026-02-24_201757_iof2qt.png",
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1771987322/Captura_de_pantalla_2026-02-24_201757_iof2qt.png",
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1771987322/Captura_de_pantalla_2026-02-24_201757_iof2qt.png"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539602/unnamed_2_rlq04e.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539602/unnamed_2_rlq04e.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539602/unnamed_2_rlq04e.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -42,7 +42,7 @@ export const herramientasAcero = [
     originalPrice: 65.00,
     discount: 19,
     images: [
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539602/unnamed_2_rlq04e.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -72,7 +72,7 @@ export const herramientasAcero = [
     originalPrice: 58.00,
     discount: 22,
     images: [
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539523/unnamed_kxv5dr.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -102,7 +102,7 @@ export const herramientasAcero = [
     originalPrice: 48.00,
     discount: 21,
     images: [
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539523/unnamed_kxv5dr.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -131,7 +131,7 @@ export const herramientasAcero = [
     originalPrice: 38.00,
     discount: 21,
     images: [
-      "https://images.unsplash.com/photo-1581092918484-8313e1f7e8c6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539523/unnamed_kxv5dr.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -160,7 +160,7 @@ export const herramientasAcero = [
     originalPrice: 20.00,
     discount: 23,
     images: [
-      "https://images.unsplash.com/photo-1416870230247-d04b39a3c9a6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539523/unnamed_kxv5dr.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -193,7 +193,7 @@ export const herramientasAcero = [
     originalPrice: 80.00,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539523/unnamed_kxv5dr.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",
@@ -223,7 +223,7 @@ export const herramientasAcero = [
     originalPrice: 82.50,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1592150621344-79838b169521?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1773539523/unnamed_kxv5dr.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",
