@@ -10,8 +10,7 @@ export const herramientasGanzo = [
     originalPrice: 85.00,
     discount: 22,
     images: [
-      "https://images.unsplash.com/photo-1599632319083-d965e69f8c09?w=800",
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800"
+      ""
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas",
@@ -42,7 +41,7 @@ export const herramientasGanzo = [
     originalPrice: 72.00,
     discount: 19,
     images: [
-      "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304308/Ganzo_Grande_wbunqf.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas",
@@ -72,7 +71,7 @@ export const herramientasGanzo = [
     originalPrice: 64.87,
     discount: 23,
     images: [
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304306/Ganzo_Estandar_eabkfs.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas",
@@ -96,13 +95,13 @@ export const herramientasGanzo = [
   },
   {
     id: 104,
-    name: "Lampa Ganzo Medianos",
+    name: "Lampa Ganzo Mediano",
     brand: "HERRAMIENTAS GANZO",
     price: 42.00,
     originalPrice: 52.00,
     discount: 19,
     images: [
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304310/Ganzo_Mediano_gh5qe4.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas",
@@ -131,7 +130,7 @@ export const herramientasGanzo = [
     originalPrice: 45.00,
     discount: 21,
     images: [
-      "https://images.unsplash.com/photo-1581092918484-8313e1f7e8c6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304314/Ganzo_Peque%C3%B1o_p5zy2d.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas",
@@ -160,7 +159,7 @@ export const herramientasGanzo = [
     originalPrice: 32.00,
     discount: 22,
     images: [
-      "https://images.unsplash.com/photo-1617576621019-ac52274185ee?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304303/Ganzo_Chiquit_hp7yhj.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas",
@@ -189,7 +188,7 @@ export const herramientasGanzo = [
     originalPrice: 24.00,
     discount: 21,
     images: [
-      "https://images.unsplash.com/photo-1416870230247-d04b39a3c9a6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304301/Ganzo_Bebito_d3bgkz.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas",
@@ -223,8 +222,7 @@ export const herramientasGanzo = [
     originalPrice: 78.00,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800",
-      "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304206/Cuchara_Grande_opcdra.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Cuchara",
@@ -254,7 +252,7 @@ export const herramientasGanzo = [
     originalPrice: 68.50,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304204/Cuchara_Estandar_uqn8wy.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Cuchara",
@@ -284,7 +282,7 @@ export const herramientasGanzo = [
     originalPrice: 55.00,
     discount: 16,
     images: [
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304223/Cuchara_Mediano_c8urec.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Cuchara",
@@ -313,7 +311,7 @@ export const herramientasGanzo = [
     originalPrice: 48.00,
     discount: 21,
     images: [
-      "https://drive.google.com/file/d/1JcNfyFdTEHv2KnnU_wVfc__noyYvgTxG/view?usp=drive_link"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304225/Cuchara_peque%C3%B1a_pszhr6.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Cuchara",
@@ -342,7 +340,7 @@ export const herramientasGanzo = [
     originalPrice: 35.00,
     discount: 19,
     images: [
-      "src/assets/logo.png"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304202/Cuchara_Chiquita_aoxqwo.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Cuchara",
@@ -375,8 +373,7 @@ export const herramientasGanzo = [
     originalPrice: 75.00,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1595131838585-314059c25b7b?w=800",
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304167/Pala_Grande_cqf5ga.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Pala",
@@ -406,7 +403,7 @@ export const herramientasGanzo = [
     originalPrice: 65.00,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304169/Pala_Mediano_f20rcx.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Pala",
@@ -436,7 +433,7 @@ export const herramientasGanzo = [
     originalPrice: 55.00,
     discount: 19,
     images: [
-      "https://images.unsplash.com/photo-1581092918484-8313e1f7e8c6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304170/Pala_Peque%C3%B1o_sl3khy.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Pala",
@@ -465,7 +462,7 @@ export const herramientasGanzo = [
     originalPrice: 40.00,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1617576621019-ac52274185ee?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304166/Pala_Chiquito_vcncvg.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Lampas Tipo Pala",
@@ -498,8 +495,7 @@ export const herramientasGanzo = [
     originalPrice: 85.00,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1592150621344-79838b169521?w=800",
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304266/Rejilla_Corazon_wjjkba.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Rejillas Ganzo",
@@ -529,7 +525,7 @@ export const herramientasGanzo = [
     originalPrice: 65.00,
     discount: 16,
     images: [
-      "https://images.unsplash.com/photo-1585435465945-bef5a93f8849?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304261/Rejilla_27_k0dih5.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Rejillas Ganzo",
@@ -554,12 +550,12 @@ export const herramientasGanzo = [
   {
     id: 119,
     name: "Rejilla Ganzo Estándar 24 cm",
-    brand: "HERRAMIENTASGANZO",
+    brand: "HERRAMIENTAS GANZO",
     price: 48.90,
     originalPrice: 58.00,
     discount: 15,
     images: [
-      "https://images.unsplash.com/photo-1598901847919-b95dd0fabbb6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304259/Rejilla_24_qsihdt.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Rejillas Ganzo",
@@ -588,7 +584,7 @@ export const herramientasGanzo = [
     originalPrice: 50.00,
     discount: 16,
     images: [
-      "https://images.unsplash.com/photo-1502086223501-7ea244394584?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304257/Rejilla_22_p3ytn0.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Rejillas Ganzo",
@@ -617,7 +613,7 @@ export const herramientasGanzo = [
     originalPrice: 40.00,
     discount: 19,
     images: [
-      "https://images.unsplash.com/photo-1617576621019-ac52274185ee?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304264/Rejilla_Chiquito_rlj99x.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Rejillas Ganzo",
@@ -646,7 +642,7 @@ export const herramientasGanzo = [
     originalPrice: 55.00,
     discount: 18,
     images: [
-      "https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304255/Cortado_22_yhjnp5.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Rejillas Ganzo",
@@ -675,7 +671,7 @@ export const herramientasGanzo = [
     originalPrice: 28.00,
     discount: 21,
     images: [
-      "https://images.unsplash.com/photo-1416870230247-d04b39a3c9a6?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304263/Rejilla_Bebito_jte8t5.jpg"
     ],
     category: "Herramientas Ganzo",
     subcategory: "Rejillas Ganzo",
