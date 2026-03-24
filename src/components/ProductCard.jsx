@@ -12,115 +12,92 @@ const ProductCard = ({ product, onViewDetails }) => {
     addToCart(product);
     const btn = e.currentTarget;
     btn.classList.add('scale-95');
-    setTimeout(() => btn.classList.remove('scale-95'), 100);
+    setTimeout(() => btn.classList.remove('scale-95'), 150);
   };
 
-  const displayImage = product.images ? product.images[0] : product.image;
+  const rawImage = product.images ? product.images[0] : product.image;
+  const displayImage = rawImage || null;
 
   return (
     <MagicCard
       onClick={() => onViewDetails(product)}
-      className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group"
+      className="bg-[#16161f] border border-white/5 rounded-xl overflow-hidden cursor-pointer group hover:border-orange-500/30 transition-all duration-300"
       gradientColor="#ea580c"
-      gradientOpacity={0.12}
-      gradientSize={220}
+      gradientOpacity={0.1}
+      gradientSize={200}
     >
-      {/* BorderBeam on featured products (discount > 20%) */}
       {product.discount > 20 && (
-        <BorderBeam
-          size={200}
-          duration={12}
-          colorFrom="#ea580c"
-          colorTo="#f97316"
-          borderWidth={1.5}
-        />
+        <BorderBeam size={180} duration={12} colorFrom="#ea580c" colorTo="#f97316" borderWidth={1.5} />
       )}
 
-      {/* Imagen del producto */}
-      <div className="relative aspect-square bg-gray-50 dark:bg-gray-800 p-4 overflow-hidden">
-        <img
-          src={displayImage}
-          alt={product.name}
-          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
-        />
-
-        {/* Badge de descuento con Meteors */}
-        {product.discount > 0 && (
-          <div className="absolute top-2 right-2 relative overflow-hidden bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-            <Meteors number={4} />
-            <span className="relative z-10">-{product.discount}%</span>
+      {/* Imagen */}
+      <div className="relative bg-[#1e1e2a] overflow-hidden" style={{ aspectRatio: '1/1' }}>
+        {displayImage ? (
+          <img
+            src={displayImage}
+            alt={product.name}
+            className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="material-symbols-outlined text-gray-600 text-4xl">image_not_supported</span>
           </div>
         )}
 
-        {/* Botón favoritos */}
-        <button
-          onClick={(e) => e.stopPropagation()}
-          className="absolute top-2 left-2 bg-white dark:bg-gray-800 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-100 dark:hover:bg-gray-700"
-        >
-          <span className="material-symbols-outlined text-gray-600 dark:text-gray-300 text-lg">
-            favorite_border
-          </span>
-        </button>
+        {/* Badge descuento */}
+        {product.discount > 0 && (
+          <div className="absolute top-2 right-2 overflow-hidden bg-red-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-md leading-tight">
+            <Meteors number={3} />
+            <span className="relative z-10">-{product.discount}%</span>
+          </div>
+        )}
       </div>
 
       {/* Info */}
-      <div className="p-4">
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
-          {product.brand}
-        </p>
-        <h3 className="text-sm font-bold text-gray-800 dark:text-white mb-2 line-clamp-2 h-10">
+      <div className="p-3">
+        {/* Marca */}
+        {product.brand && (
+          <p className="text-[9px] font-bold text-orange-500/70 uppercase tracking-widest mb-0.5 truncate">
+            {product.brand}
+          </p>
+        )}
+
+        {/* Nombre */}
+        <h3 className="text-xs font-bold text-white leading-tight mb-2 line-clamp-2" style={{ minHeight: '2.5rem' }}>
           {product.name}
         </h3>
 
-        {/* Rating */}
-        <div className="flex items-center gap-1 mb-3">
+        {/* Rating compacto */}
+        <div className="flex items-center gap-1 mb-2">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
-              <span
-                key={i}
-                className={`material-symbols-outlined text-sm ${
-                  i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'
-                }`}
-              >
+              <span key={i} className={`material-symbols-outlined text-[10px] ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-600'}`}>
                 star
               </span>
             ))}
           </div>
-          <span className="text-xs text-gray-500 dark:text-gray-400">({product.reviews})</span>
+          <span className="text-[9px] text-gray-600">({product.reviews})</span>
         </div>
 
         {/* Precio */}
-        <div className="mb-4">
+        <div className="mb-3">
           {product.originalPrice && (
-            <span className="text-xs text-gray-400 line-through block">
+            <span className="text-[10px] text-gray-600 line-through block">
               S/ {product.originalPrice.toFixed(2)}
             </span>
           )}
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-gray-900 dark:text-white">
-              S/ {product.price.toFixed(2)}
-            </span>
-            {product.discount > 0 && (
-              <span className="text-xs bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2 py-0.5 rounded font-bold">
-                AHORRA S/ {(product.originalPrice - product.price).toFixed(2)}
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Stock */}
-        <div className="flex items-center gap-1 mb-3 text-xs">
-          <span className="material-symbols-outlined text-green-600 text-sm">check_circle</span>
-          <span className="text-gray-600 dark:text-gray-400">Stock: {product.stock} unidades</span>
+          <span className="text-base font-black text-white">
+            S/ {product.price.toFixed(2)}
+          </span>
         </div>
 
         {/* Botón agregar */}
         <button
           onClick={handleAddToCart}
-          className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
+          className="w-full bg-orange-600 hover:bg-orange-500 active:scale-95 text-white py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition-all flex items-center justify-center gap-1.5"
         >
-          <span className="material-symbols-outlined text-lg">shopping_cart</span>
-          <span>Agregar al Carrito</span>
+          <span className="material-symbols-outlined text-sm">shopping_cart</span>
+          Agregar
         </button>
       </div>
     </MagicCard>

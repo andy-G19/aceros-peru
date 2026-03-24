@@ -1,13 +1,10 @@
-import { useRef } from "react";
-
 function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export function ShimmerButton({
   shimmerColor = "#ffffff",
-  shimmerSize = "0.05em",
-  shimmerDuration = "3s",
+  shimmerDuration = "2s",
   borderRadius = "8px",
   background = "rgba(234, 88, 12, 1)",
   className = "",
@@ -17,48 +14,48 @@ export function ShimmerButton({
 }) {
   return (
     <button
-      style={{
-        "--shimmer-color": shimmerColor,
-        "--shimmer-size": shimmerSize,
-        "--shimmer-duration": shimmerDuration,
-        "--border-radius": borderRadius,
-        "--background": background,
-        borderRadius,
-      }}
+      style={{ borderRadius }}
       className={cn(
-        "group relative z-0 flex cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap border border-white/10 px-6 py-3 text-white [background:var(--background)]",
-        "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px",
-        "hover:shadow-lg",
+        "relative overflow-hidden px-6 py-3 text-white font-medium border border-white/10 cursor-pointer",
+        "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px hover:shadow-lg",
         className,
       )}
       onClick={onClick}
       {...props}
     >
-      {/* Shimmer */}
-      <div
-        className="absolute inset-0 overflow-visible [container-type:size]"
+      {/* Solid background layer */}
+      <span
+        className="absolute inset-0"
+        style={{ background, borderRadius }}
+      />
+
+      {/* Shimmer sweep layer */}
+      <span
+        className="absolute inset-0 overflow-hidden"
+        style={{ borderRadius }}
+        aria-hidden="true"
       >
-        <div
-          className="animate-shimmer-slide absolute inset-0 h-[100cqh] rounded-full"
+        <span
+          className="absolute inset-0"
           style={{
-            background: `conic-gradient(from calc(270deg - (180deg * var(--shimmer-size))) at 50% 50%, transparent 0, var(--shimmer-color) 1deg, transparent calc(var(--shimmer-size) * 360deg * 1deg))`,
-            animationDuration: shimmerDuration,
+            background: `linear-gradient(105deg, transparent 40%, ${shimmerColor}40 50%, transparent 60%)`,
+            backgroundSize: "200% 100%",
+            animation: `shimmer-sweep ${shimmerDuration} linear infinite`,
           }}
         />
-      </div>
-
-      {/* Spark */}
-      <div
-        className="absolute inset-[1px] rounded-[inherit]"
-        style={{
-          background: background,
-        }}
-      />
+      </span>
 
       {/* Content */}
       <span className="relative z-10 flex items-center gap-2">
         {children}
       </span>
+
+      <style>{`
+        @keyframes shimmer-sweep {
+          0%   { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+      `}</style>
     </button>
   );
 }

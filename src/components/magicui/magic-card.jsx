@@ -12,6 +12,7 @@ export function MagicCard({
   gradientOpacity = 0.15,
   gradientFrom = "#ea580c",
   gradientTo = "#f97316",
+  onClick,
 }) {
   const cardRef = useRef(null);
   const [gradientPos, setGradientPos] = useState({ x: -999, y: -999 });
@@ -29,6 +30,7 @@ export function MagicCard({
   return (
     <div
       ref={cardRef}
+      onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
