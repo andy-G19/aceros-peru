@@ -10,7 +10,9 @@ export const herramientasAcero = [
     originalPrice: 72.00,
     discount: 19,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776478944/Acero_Extra_Grande_dv9jsy.jpg"
+      
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -40,14 +42,16 @@ export const herramientasAcero = [
     originalPrice: 65.00,
     discount: 19,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Grande_hi6ksf.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Grande_hi6ksf.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776478944/Acero_Grande_ucvqjr.jpg"
+
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
     seller: "Codimag",
     rating: 4.6,
     reviews: 28,
-    stock: 40,
+    stock: 30,
     description: "Lampa profesional para agricultura intensiva. Su estructura reforzada permite el apalancamiento en suelos duros.",
     specifications: [
       "Material: Acero estructural templado",
@@ -70,7 +74,8 @@ export const herramientasAcero = [
     originalPrice: 58.00,
     discount: 22,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304059/Lampa_Normal_mflx7o.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304059/Lampa_Normal_mflx7o.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776478945/Acero_Normal_t7mlpu.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -100,7 +105,8 @@ export const herramientasAcero = [
     originalPrice: 48.00,
     discount: 21,
     images: [
-      ""
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776475543/Lampa_Mediano_jxkwaa.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776478945/Acero_Mediano_xvlzbq.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -129,7 +135,8 @@ export const herramientasAcero = [
     originalPrice: 38.00,
     discount: 21,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304060/Lampa_Peque%C3%B1a_ehqqca.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304060/Lampa_Peque%C3%B1a_ehqqca.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776478945/Acero_Peque%C3%B1o_js7iqf.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -158,7 +165,8 @@ export const herramientasAcero = [
     originalPrice: 20.00,
     discount: 23,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304057/Lampa_Bebito_aykyri.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304057/Lampa_Bebito_aykyri.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776478944/Acero_Bebito_ynaxbr.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Lampas",
@@ -191,7 +199,8 @@ export const herramientasAcero = [
     originalPrice: 80.00,
     discount: 20,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304127/Rejilla_Triangulo_xzii78.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304127/Rejilla_Triangulo_xzii78.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776513788/Rejilla_Acero_Triangular_vdurw1.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",
@@ -221,7 +230,8 @@ export const herramientasAcero = [
     originalPrice: 82.50,
     discount: 20,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304126/Rejilla_Corazon_kartws.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304126/Rejilla_Corazon_kartws.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776513788/Rejilla_Acero_Corazon_ftorua.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",
@@ -251,7 +261,8 @@ export const herramientasAcero = [
     originalPrice: 68.00,
     discount: 19,
     images: [
-      ""
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304121/Rejilla_23_gtnmkw.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776513787/Rejilla_Acero_25cm_m9ryy8.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",
@@ -281,7 +292,8 @@ export const herramientasAcero = [
     originalPrice: 60.00,
     discount: 17,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304121/Rejilla_23_gtnmkw.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776475931/Rejilla_23_euqmye.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776513787/Rejilla_Acero_23cm_jmg5bn.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",
@@ -310,7 +322,8 @@ export const herramientasAcero = [
     originalPrice: 35.00,
     discount: 20,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304124/Rejilla_Chiquito_dqfwpj.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304124/Rejilla_Chiquito_dqfwpj.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776513787/Rejilla_Acero_Chiquito_qr1twd.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",
@@ -339,7 +352,8 @@ export const herramientasAcero = [
     originalPrice: 24.00,
     discount: 23,
     images: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304123/Rejilla_Bebito_q9opz2.jpg"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1774304123/Rejilla_Bebito_q9opz2.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1776513787/Rejilla_Acero_Bebito_yoaqf0.jpg"
     ],
     category: "Herramientas Acero",
     subcategory: "Rejillas",

@@ -130,13 +130,7 @@ const Header = ({ onNavigate }) => {
             <span className="hidden md:inline">Carrito</span>
           </button>
 
-          {/* Menú móvil */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-gray-300"
-          >
-            <span className="material-symbols-outlined">menu</span>
-          </button>
+          
         </div>
       </div>
 
