@@ -6,8 +6,10 @@ import { BlurFade } from '../components/magicui/blur-fade';
 import { NumberTicker } from '../components/magicui/number-ticker';
 import { Particles } from '../components/magicui/particles';
 import { ShimmerButton } from '../components/magicui/shimmer-button';
+import AboutUs from '../components/AboutUs';
+import LocationSection from '../components/LocationSection';
 
-// Mapa de imágenes destacadas por categoría (reemplazar con tus fotos)
+// Mapa de imágenes destacadas por categoría
 const CATEGORY_IMAGES = {
   'Herramientas Acero':
     'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg',
@@ -33,10 +35,10 @@ const CATEGORY_SUBTITLES = {
 };
 
 const stats = [
-  { value: 150, suffix: '+', label: 'Productos' },
-  { value: 2500, suffix: '+', label: 'Clientes' },
-  { value: 15, suffix: '', label: 'Años' },
-  { value: 12, suffix: 'm', label: 'Garantía' },
+  { value: 50, suffix: '+', label: 'Productos' },
+  { value: 100, suffix: '+', label: 'Clientes' },
+  { value: 15, suffix: '', label: 'Años en el mercado' },
+  { value: 12, suffix: ' meses', label: 'Garantía' },
 ];
 
 export default function Home() {
@@ -46,7 +48,6 @@ export default function Home() {
   const [heroH, setHeroH] = useState('100svh');
 
   useEffect(() => {
-    // Snap hero height to viewport
     const update = () => setHeroH(`${window.innerHeight}px`);
     update();
     window.addEventListener('resize', update);
@@ -57,8 +58,8 @@ export default function Home() {
   const goProduct = (product) =>
     navigate(`/product/${product.id}`, { state: { product } });
 
-  const featured = categories[0]; // Primera categoría como destacada
-  const rest = categories.slice(1); // El resto en grid
+  const featured = categories[0];
+  const rest = categories.slice(1);
 
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden">
@@ -71,19 +72,16 @@ export default function Home() {
         className="relative overflow-hidden flex flex-col justify-end"
         style={{ height: heroH, minHeight: '580px' }}
       >
-        {/* Imagen de fondo */}
         <div className="absolute inset-0">
           <img
             src="https://res.cloudinary.com/daq3sbggo/image/upload/v1772022472/port_dliyng.png"
             alt="Campo agrícola"
             className="w-full h-full object-cover"
           />
-          {/* Gradiente oscuro sobre la imagen */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/40 to-transparent" />
         </div>
 
-        {/* Partículas */}
         <Particles
           className="absolute inset-0 z-[1]"
           quantity={60}
@@ -93,63 +91,44 @@ export default function Home() {
           staticity={50}
         />
 
-        {/* Contenido del hero */}
         <div className="relative z-10 px-5 pb-10 md:pb-14 md:px-10 lg:px-16 max-w-2xl">
-          {/* Badge */}
           <BlurFade delay={0.1} duration={0.5}>
             <div className="flex items-center gap-2 mb-5">
               <div className="w-[3px] h-4 bg-orange-500 rounded-full" />
               <span className="text-orange-400 text-[11px] font-bold tracking-[0.25em] uppercase">
-                Coleccion 2026
+                Colección 2026
               </span>
             </div>
           </BlurFade>
 
-          {/* Título principal */}
           <h1 className="font-black leading-[0.9] mb-8 tracking-tight">
             <BlurFade delay={0.2} duration={0.5}>
-              <span
-                className="block text-white uppercase"
-                style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}
-              >
+              <span className="block text-white uppercase" style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}>
                 Equipa tu campo
               </span>
             </BlurFade>
             <BlurFade delay={0.35} duration={0.5}>
-              <span
-                className="block text-white uppercase"
-                style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}
-              >
+              <span className="block text-white uppercase" style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}>
                 con las
               </span>
             </BlurFade>
             <BlurFade delay={0.5} duration={0.5}>
-              <span
-                className="block text-orange-500 uppercase"
-                style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}
-              >
+              <span className="block text-orange-500 uppercase" style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}>
                 mejores
               </span>
             </BlurFade>
             <BlurFade delay={0.65} duration={0.5}>
-              <span
-                className="block text-orange-500 uppercase"
-                style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}
-              >
+              <span className="block text-orange-500 uppercase" style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}>
                 herramientas
               </span>
             </BlurFade>
             <BlurFade delay={0.8} duration={0.5}>
-              <span
-                className="block text-orange-500 uppercase"
-                style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}
-              >
+              <span className="block text-orange-500 uppercase" style={{ fontSize: 'clamp(2.6rem, 11vw, 5rem)' }}>
                 profesionales
               </span>
             </BlurFade>
           </h1>
 
-          {/* CTAs */}
           <BlurFade delay={1} duration={0.4}>
             <div className="flex flex-col sm:flex-row gap-3">
               <ShimmerButton
@@ -161,7 +140,6 @@ export default function Home() {
               >
                 Ver Ofertas &nbsp;→
               </ShimmerButton>
-
               <button
                 onClick={() => go('categories')}
                 className="flex-1 sm:flex-none px-6 py-3 border border-white/20 bg-white/5 backdrop-blur-sm text-white text-sm font-bold tracking-widest uppercase rounded-lg hover:bg-white/10 transition-colors"
@@ -191,170 +169,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════
-          CATEGORÍAS — estilo imagen de referencia
+       {/* ═══════════════════════════════════════
+          ¿QUIÉNES SOMOS? — nueva sección
       ═══════════════════════════════════════ */}
-      <section className="px-4 py-10 md:px-8 lg:px-12 max-w-screen-xl mx-auto">
-        {/* Header sección */}
-        <div className="flex items-end justify-between mb-6">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
-              Categorías
-            </h2>
-            <div className="mt-1.5 h-[3px] w-14 bg-orange-500 rounded-full" />
-          </div>
-          <button
-            onClick={() => go('categories')}
-            className="text-xs font-bold text-gray-400 hover:text-orange-500 uppercase tracking-widest flex items-center gap-1 transition-colors"
-          >
-            Ver Todo <span className="text-base">↗</span>
-          </button>
-        </div>
-
-        {/* Card DESTACADA (primera categoría) */}
-        <BlurFade inView delay={0.1} duration={0.5}>
-          <button
-            onClick={() => go('categories')}
-            className="w-full relative overflow-hidden rounded-2xl mb-4 group"
-            style={{ aspectRatio: '16/9' }}
-          >
-            <img
-              src={CATEGORY_IMAGES[featured?.name] || ''}
-              alt={featured?.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            {/* Overlay gradiente */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-            {/* Overlay sutil */}
-            <div className="absolute inset-0 bg-[#0a0a0f]/20" />
-
-            {/* Texto sobre la card */}
-            <div className="absolute bottom-0 left-0 p-5 text-left">
-              <p className="text-[10px] font-bold text-orange-400 uppercase tracking-[0.2em] mb-1">
-                {CATEGORY_SUBTITLES[featured?.name]}
-              </p>
-              <h3 className="text-2xl md:text-3xl font-black uppercase leading-tight text-white">
-                {featured?.name}
-              </h3>
-            </div>
-
-            {/* Flecha */}
-            <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-orange-500 transition-colors">
-              <span className="text-white text-sm font-bold">→</span>
-            </div>
-          </button>
-        </BlurFade>
-
-        {/* Grid 2 columnas — resto de categorías */}
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-4">
-          {rest.map((cat, i) => {
-            const isActive = activeCat === i + 1;
-            return (
-              <BlurFade key={cat.id} inView delay={0.1 + i * 0.07} duration={0.4}>
-                <button
-                  onClick={() => {
-                    setActiveCat(i + 1);
-                    go('categories');
-                  }}
-                  className={`
-                    w-full relative overflow-hidden rounded-xl p-4 text-left
-                    transition-all duration-300 group
-                    ${isActive
-                      ? 'bg-orange-500 shadow-lg shadow-orange-500/30'
-                      : 'bg-[#16161f] hover:bg-[#1e1e2a] border border-white/5'
-                    }
-                  `}
-                >
-                  {/* Imagen de fondo semitransparente si tiene */}
-                  {CATEGORY_IMAGES[cat.name] && !isActive && (
-                    <div
-                      className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity"
-                      style={{
-                        backgroundImage: `url(${CATEGORY_IMAGES[cat.name]})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
-                    />
-                  )}
-
-                  <div className="relative">
-                    {/* Icono */}
-                    <span
-                      className={`material-symbols-outlined text-3xl mb-3 block transition-colors ${
-                        isActive ? 'text-white' : 'text-orange-500'
-                      }`}
-                    >
-                      {cat.icon}
-                    </span>
-
-                    {/* Nombre */}
-                    <p
-                      className={`text-xs font-black uppercase leading-tight tracking-wide ${
-                        isActive ? 'text-white' : 'text-gray-200'
-                      }`}
-                    >
-                      {cat.name}
-                    </p>
-
-                    {/* Contador */}
-                    <p
-                      className={`text-[10px] mt-1 ${
-                        isActive ? 'text-white/70' : 'text-gray-500'
-                      }`}
-                    >
-                      {cat.count} productos
-                    </p>
-                  </div>
-                </button>
-              </BlurFade>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════
-          PRODUCTOS DESTACADOS
-      ═══════════════════════════════════════ */}
-      <section className="px-4 py-10 md:px-8 lg:px-12 max-w-screen-xl mx-auto">
-        {/* Header */}
-        <div className="flex items-end justify-between mb-6">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
-              Destacados
-            </h2>
-            <div className="mt-1.5 h-[3px] w-14 bg-orange-500 rounded-full" />
-          </div>
-          <button
-            onClick={() => go('categories')}
-            className="text-xs font-bold text-gray-400 hover:text-orange-500 uppercase tracking-widest flex items-center gap-1 transition-colors"
-          >
-            Ver Todo <span className="text-base">↗</span>
-          </button>
-        </div>
-
-        {/* Grid productos — 2 col mobile, 4 col desktop */}
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
-          {products.slice(0, 8).map((product, i) => (
-            <BlurFade key={product.id} inView delay={i * 0.05} yOffset={12} duration={0.4}>
-              <ProductCard product={product} onViewDetails={goProduct} />
-            </BlurFade>
-          ))}
-        </div>
-
-        {products.length > 8 && (
-          <BlurFade inView delay={0.3} className="mt-8 text-center">
-            <ShimmerButton
-              onClick={() => go('categories')}
-              background="rgba(234, 88, 12, 1)"
-              shimmerColor="#ffffff"
-              shimmerDuration="2s"
-              className="mx-auto text-sm font-bold tracking-widest uppercase"
-            >
-              Ver todos los productos &nbsp;→
-            </ShimmerButton>
-          </BlurFade>
-        )}
-      </section>
+      <AboutUs />
 
       {/* ═══════════════════════════════════════
           BENEFICIOS — strip horizontal
@@ -396,6 +214,133 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ═══════════════════════════════════════
+          CATEGORÍAS
+      ═══════════════════════════════════════ */}
+      <section className="px-4 py-10 md:px-8 lg:px-12 max-w-screen-xl mx-auto">
+        <div className="flex items-end justify-between mb-6">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Categorías</h2>
+            <div className="mt-1.5 h-[3px] w-14 bg-orange-500 rounded-full" />
+          </div>
+          <button
+            onClick={() => go('categories')}
+            className="text-xs font-bold text-gray-400 hover:text-orange-500 uppercase tracking-widest flex items-center gap-1 transition-colors"
+          >
+            Ver Todo <span className="text-base">↗</span>
+          </button>
+        </div>
+
+        {/* Card DESTACADA */}
+        <BlurFade inView delay={0.1} duration={0.5}>
+          <button
+            onClick={() => go('categories')}
+            className="w-full relative overflow-hidden rounded-2xl mb-4 group"
+            style={{ aspectRatio: '16/9' }}
+          >
+            <img
+              src={CATEGORY_IMAGES[featured?.name] || ''}
+              alt={featured?.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-[#0a0a0f]/20" />
+            <div className="absolute bottom-0 left-0 p-5 text-left">
+              <p className="text-[10px] font-bold text-orange-400 uppercase tracking-[0.2em] mb-1">
+                {CATEGORY_SUBTITLES[featured?.name]}
+              </p>
+              <h3 className="text-2xl md:text-3xl font-black uppercase leading-tight text-white">
+                {featured?.name}
+              </h3>
+            </div>
+            <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-orange-500 transition-colors">
+              <span className="text-white text-sm font-bold">→</span>
+            </div>
+          </button>
+        </BlurFade>
+
+        {/* Grid resto categorías */}
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-4">
+          {rest.map((cat, i) => {
+            const isActive = activeCat === i + 1;
+            return (
+              <BlurFade key={cat.id} inView delay={0.1 + i * 0.07} duration={0.4}>
+                <button
+                  onClick={() => { setActiveCat(i + 1); go('categories'); }}
+                  className={`w-full relative overflow-hidden rounded-xl p-4 text-left transition-all duration-300 group
+                    ${isActive ? 'bg-orange-500 shadow-lg shadow-orange-500/30' : 'bg-[#16161f] hover:bg-[#1e1e2a] border border-white/5'}`}
+                >
+                  {CATEGORY_IMAGES[cat.name] && !isActive && (
+                    <div
+                      className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity"
+                      style={{ backgroundImage: `url(${CATEGORY_IMAGES[cat.name]})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    />
+                  )}
+                  <div className="relative">
+                    <span className={`material-symbols-outlined text-3xl mb-3 block transition-colors ${isActive ? 'text-white' : 'text-orange-500'}`}>
+                      {cat.icon}
+                    </span>
+                    <p className={`text-xs font-black uppercase leading-tight tracking-wide ${isActive ? 'text-white' : 'text-gray-200'}`}>
+                      {cat.name}
+                    </p>
+                    <p className={`text-[10px] mt-1 ${isActive ? 'text-white/70' : 'text-gray-500'}`}>
+                      {cat.count} productos
+                    </p>
+                  </div>
+                </button>
+              </BlurFade>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          PRODUCTOS DESTACADOS
+      ═══════════════════════════════════════ */}
+      <section className="px-4 py-10 md:px-8 lg:px-12 max-w-screen-xl mx-auto">
+        <div className="flex items-end justify-between mb-6">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Destacados</h2>
+            <div className="mt-1.5 h-[3px] w-14 bg-orange-500 rounded-full" />
+          </div>
+          <button
+            onClick={() => go('categories')}
+            className="text-xs font-bold text-gray-400 hover:text-orange-500 uppercase tracking-widest flex items-center gap-1 transition-colors"
+          >
+            Ver Todo <span className="text-base">↗</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+          {products.slice(0, 8).map((product, i) => (
+            <BlurFade key={product.id} inView delay={i * 0.05} yOffset={12} duration={0.4}>
+              <ProductCard product={product} onViewDetails={goProduct} />
+            </BlurFade>
+          ))}
+        </div>
+
+        {products.length > 8 && (
+          <BlurFade inView delay={0.3} className="mt-8 text-center">
+            <ShimmerButton
+              onClick={() => go('categories')}
+              background="rgba(234, 88, 12, 1)"
+              shimmerColor="#ffffff"
+              shimmerDuration="2s"
+              className="mx-auto text-sm font-bold tracking-widest uppercase"
+            >
+              Ver todos los productos &nbsp;→
+            </ShimmerButton>
+          </BlurFade>
+        )}
+      </section>
+
+     
+      {/* ═══════════════════════════════════════
+          UBICACIÓN — nueva sección con mapa
+      ═══════════════════════════════════════ */}
+      <LocationSection />
+
       {/* WhatsApp flotante */}
       <a
         href="https://wa.me/51983955913"
@@ -409,7 +354,6 @@ export default function Home() {
         </svg>
         <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse" />
       </a>
-
     </main>
   );
 }
