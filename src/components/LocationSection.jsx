@@ -7,14 +7,14 @@ import { BlurFade } from '../components/magicui/blur-fade';
 ══════════════════════════════════════════════════════════ */
 const TALLER_INFO = {
   name: 'Industrias Aceros Perú S.A.C.',
-  address: 'Andahuaylailla, Apurímac',
+  address: 'Av. Confraternidad N° 988',
   city: 'Apurímac, Perú',
-  reference: 'Búscanos en Google Maps como "INDUSTRIAS ACEROS PERU SAC"',
+  reference: 'Al costado del salón de eventos Casa Linda',
   phone: '+51 983 955 913',
   email: 'ventas@acerosperucodimag.com',
   hours: [
     { days: 'Lun – Vie', time: '8:00 am – 6:00 pm' },
-    { days: 'Sábado',    time: '8:00 am – 2:00 pm' },
+    { days: 'Sábado',    time: '8:00 am – 6:00 pm' },
     { days: 'Domingo',   time: 'Cerrado' },
   ],
   lat: -13.6586937,
@@ -129,7 +129,7 @@ export default function LocationSection() {
                   src={MAP_EMBED_URL}
                   width="100%"
                   height="100%"
-                  style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.85) contrast(1.1)' }}
+                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
