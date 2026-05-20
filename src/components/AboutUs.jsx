@@ -5,24 +5,24 @@ import { BlurFade } from '../components/magicui/blur-fade';
 /* ── Seccion donde dice ¿Quienes somos? ── */
 const TALLER_PHOTOS = [
   {
-    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg',
-    alt: 'Herramientas Aceros Perú',
-    label: 'Línea Aceros Perú',
+    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/a0ddcf2e-6a99-42ed-bf2e-947614c2068c_sxy89q.jpg',
+    //alt: 'Herramientas Aceros Perú',
+    label: 'Taller Codimag',
   },
   {
-    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304308/Ganzo_Grande_wbunqf.jpg',
-    alt: 'Herramientas Ganzo',
-    label: 'Línea Ganzo',
+    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/04369818-d376-4df7-843a-f175d032f733_zsasut.jpg',
+    //alt: 'Herramientas Ganzo',
+    label: 'Estación de Pintura',
   },
   {
-    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304266/Rejilla_Corazon_wjjkba.jpg',
-    alt: 'Rejillas y bieldos',
-    label: 'Rejillas y Bieldos',
+    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319973/Gemini_Generated_Image_5ydhss5ydhss5ydh_uiapzo.png',
+    //alt: 'Rejillas y bieldos',
+    label: 'Estación de Forjado' ,
   },
   {
-    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304206/Cuchara_Grande_opcdra.jpg',
-    alt: 'Lampas tipo cuchara',
-    label: 'Lampas Tipo Cuchara',
+    src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/57539d80-49ae-4bd9-b023-4800e497a410_ji0yos.jpg',
+    //alt: 'Lampas tipo cuchara',
+    label: 'Empaquetado y Envíos',
   },
 ];
 
@@ -45,7 +45,7 @@ const VALUES = [
   {
     icon: 'timeline',
     title: '+15 Años de Experiencia',
-    desc: 'Desde Lima distribuimos a todo el Perú, con conocimiento profundo del sector agrícola y de construcción.',
+    desc: 'Desde Andahuaylas-Apurímac distribuimos a todo el Perú, con conocimiento profundo del sector agrícola y de construcción.',
   },
 ];
 
@@ -115,7 +115,7 @@ export default function AboutUs() {
                 <p>
                   Nacimos con la misión de llevar herramientas de calidad real al campo y a la obra.
                   Trabajamos directamente con fabricantes nacionales que dominan el arte del forjado
-                  en acero, garantizando que cada lampa, rejilla o barreta llegue con la resistencia
+                  en acero, garantizando que cada lampa, rejilla o rastrillo llegue con la resistencia
                   que el trabajo duro exige.
                 </p>
                 <p>
@@ -125,26 +125,14 @@ export default function AboutUs() {
                   control de calidad riguroso y un equipo dispuesto a responder.
                 </p>
                 <p>
-                  Distribuimos las líneas <span className="text-white font-semibold">Aceros Perú</span> y{' '}
-                  <span className="text-white font-semibold">Herramientas Ganzo</span>, referentes
-                  nacionales en lampas forjadas, rejillas agrícolas, rastrillos industriales y
+                  Distribuimos las líneas <span className="text-white font-semibold">Herramientas Aceros Perú</span> y{' '}
+                  <span className="text-white font-semibold">Herramientas El Ganzo</span>, referentes
+                  nacionales en lampas forjadas, rejillas agrícolas, rastrillos y
                   herramientas de construcción. Ofrecemos venta al por mayor con cotización inmediata
                   vía WhatsApp.
                 </p>
               </div>
 
-              {/* Badges */}
-              <div className="flex flex-wrap gap-2 mt-7">
-                {['Venta por mayor', 'Distribución nacional', 'Garantía de fábrica', 'Cotización directa'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full
-                      bg-[#1a1a24] border border-white/10 text-gray-400"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </BlurFade>
           </div>
 

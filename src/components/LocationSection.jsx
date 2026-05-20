@@ -246,10 +246,9 @@ export default function LocationSection() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
-                { region: 'Lima Metropolitana', icon: 'apartment',     detail: 'Entrega en 24h' },
                 { region: 'Sierra Sur',          icon: 'landscape',    detail: 'Arequipa, Cusco, Puno' },
                 { region: 'Sierra Norte',        icon: 'terrain',      detail: 'Cajamarca, Ancash' },
-                { region: 'Provincias Costa',    icon: 'waves',        detail: 'Piura, Trujillo, Ica' },
+                { region: 'Provincias Costa',    icon: 'waves',        detail: 'Lima,Piura, Trujillo, Ica' },
               ].map((z) => (
                 <div key={z.region} className="flex items-start gap-2.5 p-3 rounded-xl bg-[#0d0d14] border border-white/5">
                   <span className="material-symbols-outlined text-orange-500/60 text-sm flex-shrink-0 mt-0.5">{z.icon}</span>
