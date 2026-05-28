@@ -7,7 +7,7 @@ const TALLER_PHOTOS = [
   {
     src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/a0ddcf2e-6a99-42ed-bf2e-947614c2068c_sxy89q.jpg',
     //alt: 'Herramientas Aceros Perú',
-    label: 'Taller Codimag',
+    label: 'Taller Industrias Aceros Perú',
   },
   {
     src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/04369818-d376-4df7-843a-f175d032f733_zsasut.jpg',
@@ -108,7 +108,7 @@ export default function AboutUs() {
             <BlurFade inView delay={0.1} duration={0.5}>
               <div className="space-y-5 text-gray-400 leading-relaxed">
                 <p className="text-base md:text-lg text-gray-200 font-medium border-l-2 border-orange-500 pl-4">
-                  Somos <span className="text-orange-400 font-bold">Codimag</span>, empresa distribuidora
+                  Somos <span className="text-orange-400 font-bold">Industrias Aceros Perú</span>, empresa distribuidora
                   especializada en herramientas agrícolas y de construcción con más de{' '}
                   <span className="text-white font-bold">15 años</span> en el mercado peruano.
                 </p>

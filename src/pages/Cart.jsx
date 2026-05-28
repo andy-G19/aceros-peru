@@ -53,6 +53,13 @@ function CartItem({ item, onRemove, onUpdate }) {
                   <h3 className="text-xs font-black text-white uppercase leading-tight line-clamp-2">
                     {item.name}
                   </h3>
+                  {/* 👇 NUEVO: Mostrar el tamaño/modelo seleccionado 👇 */}
+                  {item.variantLabel && (
+                    <p className="text-[10px] font-bold text-orange-400 mt-0.5 uppercase tracking-widest">
+                      Modelo: {item.variantLabel}
+                    </p>
+                  )}
+                  {/* 👆 FIN DEL NUEVO BLOQUE 👆 */}
                 </div>
                 <button
                   onClick={() => onRemove(item.id)}
@@ -89,7 +96,7 @@ function CartItem({ item, onRemove, onUpdate }) {
                 <span className="w-8 text-center text-xs font-black text-white tabular-nums">{item.quantity}</span>
                 <button
                   onClick={() => onUpdate(item.id, item.quantity + 1)}
-                  disabled={item.quantity >= item.stock}
+                  disabled={item.quantity >= (item.stock || 99)}
                   className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-orange-500 transition-colors disabled:opacity-30"
                 >
                   <span className="material-symbols-outlined text-sm">add</span>
@@ -239,7 +246,7 @@ function CartSummary({ cartItems, cartTotal, cartSubtotal, cartDiscount, cartCou
         </div>
 
         <p className="text-[10px] text-gray-700 text-center leading-relaxed pt-1">
-          Un asesor de <span className="text-gray-500 font-bold">ACEROS PERÚ</span> validará tu pedido y te enviará la cotización por WhatsApp.
+          Un asesor de <span className="text-gray-500 font-bold">EL GANZO herramientas</span> validará tu pedido y te enviará la cotización por WhatsApp.
         </p>
       </div>
     </div>
@@ -282,12 +289,16 @@ const Cart = () => {
   /* ── Mensaje WhatsApp ── */
   function handleWhatsApp() {
     let msg = SHOW_PRICES
-      ? `🛒 *PEDIDO — ACEROS PERÚ*\n━━━━━━━━━━━━━━━━\n\n`
-      : `📋 *SOLICITUD DE COTIZACIÓN — ACEROS PERÚ*\n━━━━━━━━━━━━━━━━\n\n`;
+      ? `🛒 *PEDIDO — EL GANZO herramientas*\n━━━━━━━━━━━━━━━━\n\n`
+      : `📋 *SOLICITUD DE COTIZACIÓN — EL GANZO herramientas*\n━━━━━━━━━━━━━━━━\n\n`;
 
     cartItems.forEach((item, i) => {
       const volUnit = VOLUME_LABELS[item.category] || 'unidad';
-      msg += `${i + 1}. *${item.name}*\n`;
+      
+      // 👇 NUEVO: Inyectamos el modelo seleccionado si existe 👇
+      const variantText = item.variantLabel ? ` (${item.variantLabel})` : '';
+      
+      msg += `${i + 1}. *${item.name}*${variantText}\n`;
       msg += `   Categoría: ${item.category}\n`;
       msg += `   Cantidad: ${item.quantity} × ${volUnit}\n`;
       if (SHOW_PRICES) msg += `   Subtotal: ${fmt(item.price * item.quantity)}\n`;

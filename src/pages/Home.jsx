@@ -8,6 +8,7 @@ import { Particles } from '../components/magicui/particles';
 import { ShimmerButton } from '../components/magicui/shimmer-button';
 import AboutUs from '../components/AboutUs';
 import LocationSection from '../components/LocationSection';
+import SubcategoriesShowcase from '../components/SubcategoriesShowcase';
 
 // Mapa de imágenes destacadas por categoría
 const CATEGORY_IMAGES = {
@@ -65,7 +66,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden">
 
       {/* ═══════════════════════════════════════
-          HERO — full viewport, imagen de fondo
+          HERO
       ═══════════════════════════════════════ */}
       <section
         ref={heroRef}
@@ -152,7 +153,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
-          STATS STRIP
+          STATS
       ═══════════════════════════════════════ */}
       <section className="bg-[#111118] border-y border-white/5">
         <div className="grid grid-cols-4 divide-x divide-white/5">
@@ -169,13 +170,13 @@ export default function Home() {
         </div>
       </section>
 
-       {/* ═══════════════════════════════════════
-          ¿QUIÉNES SOMOS? — nueva sección
+      {/* ═══════════════════════════════════════
+          ¿QUIÉNES SOMOS?
       ═══════════════════════════════════════ */}
       <AboutUs />
 
       {/* ═══════════════════════════════════════
-          BENEFICIOS — strip horizontal
+          BENEFICIOS
       ═══════════════════════════════════════ */}
       <section className="border-t border-white/5 bg-[#111118] py-10 px-4 md:px-8">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -213,7 +214,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
 
       {/* ═══════════════════════════════════════
           CATEGORÍAS
@@ -296,6 +296,11 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
+          🆕 NUESTRAS LÍNEAS — Subcategorías
+      ═══════════════════════════════════════ */}
+      <SubcategoriesShowcase />
+
+      {/* ═══════════════════════════════════════
           PRODUCTOS DESTACADOS
       ═══════════════════════════════════════ */}
       <section className="px-4 py-10 md:px-8 lg:px-12 max-w-screen-xl mx-auto">
@@ -335,9 +340,8 @@ export default function Home() {
         )}
       </section>
 
-     
       {/* ═══════════════════════════════════════
-          UBICACIÓN — nueva sección con mapa
+          UBICACIÓN
       ═══════════════════════════════════════ */}
       <LocationSection />
 

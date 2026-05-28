@@ -6,8 +6,8 @@ export const categories = [
     count: 2,
     description: "Lampas y rejillas de acero forjado",
     subcategories: [
-      { id: 101, name: "Lampas", count: 1 },
-      { id: 102, name: "Rejillas", count: 1 }
+      { id: 101, name: "Lampas", count: 6 },
+      { id: 102, name: "Rejillas", count: 6 }
     ]
   },
   { 
@@ -17,10 +17,10 @@ export const categories = [
     count: 4,
     description: "Lampas de alta calidad para jardinería y agricultura",
     subcategories: [
-      { id: 201, name: "Lampas", count: 0 },
-      { id: 202, name: "Lampas Tipo Cuchara", count: 1 },
-      { id: 203, name: "Lampas Tipo Pala", count: 1 },
-      { id: 204, name: "Rejillas Ganzo", count: 1 }
+      { id: 201, name: "Lampas Ganzo", count: 7 },
+      { id: 202, name: "Lampas Tipo Cuchara", count: 5 },
+      { id: 203, name: "Lampas Tipo Pala", count: 4 },
+      { id: 204, name: "Rejillas Ganzo", count: 7 }
     ]
   },
   { 

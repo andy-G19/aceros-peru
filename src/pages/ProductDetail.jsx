@@ -14,10 +14,10 @@ const SHOW_PRICES = false;
 const VOLUME_CONFIG = {
   'Herramientas Acero':           { label: 'Venta por docena',   qty: 12, unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades)' },
   'Herramientas Ganzo':           { label: 'Venta por docena',   qty: 12, unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades)' },
-  'Rastrillos':                   { label: 'Venta por decena',   qty: 10, unit: 'decena',   minLabel: 'Mínimo 1 decena (10 unidades)' },
-  'Herramientas de Construccion': { label: 'Precio por volumen', qty: 1,  unit: 'unidad',   minLabel: 'Precio según cantidad solicitada' },
-  'Trípodes para Aspersor':       { label: 'Precio por volumen', qty: 1,  unit: 'unidad',   minLabel: 'Precio según cantidad solicitada' },
-  'Otros':                        { label: 'Precio por volumen', qty: 1,  unit: 'unidad',   minLabel: 'Precio según cantidad solicitada' },
+  'Rastrillos':                   { label: 'Venta por docena',   qty: 12, unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades)' },
+  'Herramientas de Construccion': { label: 'Venta por docena', qty: 12,  unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades) ' },
+  'Trípodes para Aspersor':       { label: 'Venta por docena', qty: 12,  unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades) ' },
+  'Otros':                        { label: 'Venta por docena', qty: 12,  unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades) ' },
 };
 const DEFAULT_VOL = { label: 'Precio por volumen', qty: 1, unit: 'unidad', minLabel: 'Precio según cantidad' };
 
@@ -37,15 +37,26 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
-  const product = location.state?.product || products.find((p) => p.id === parseInt(id));
+  const product = location.state?.product || products.find((p) => p.id === parseInt(id) || p.id === id);
 
   const [activeImg, setActiveImg]   = useState(0);
   const [qty, setQty]               = useState(1);
   const [liked, setLiked]           = useState(false);
   const [addedAnim, setAddedAnim]   = useState(false);
   const [zoomOpen, setZoomOpen]     = useState(false);
+  
+  // 1. NUEVO: Estado para manejar la variante seleccionada
+  const [selectedSize, setSelectedSize] = useState(product?.sizes ? product.sizes[0] : null);
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => { 
+    window.scrollTo(0, 0); 
+    // Resetear la variante si el producto cambia
+    if (product?.sizes) {
+      setSelectedSize(product.sizes[0]);
+    } else {
+      setSelectedSize(null);
+    }
+  }, [product?.id]);
 
   if (!product) {
     return (
@@ -70,18 +81,31 @@ export default function ProductDetail() {
   const quickSpecs  = specsParsed.slice(0, 4);
   const vol = VOLUME_CONFIG[product.category] || DEFAULT_VOL;
 
+  // 2. NUEVO: Lógica de precio dinámico basado en la variante seleccionada
+  const displayPrice = selectedSize?.price ?? product.price;
+  
+  const savings = product.originalPrice && product.discount > 0
+    ? (product.originalPrice - displayPrice).toFixed(2) : null;
+
+  // 3. NUEVO: Incluir la variante en el texto de WhatsApp
+  const variantText = selectedSize ? `\nModelo/Tamaño: ${selectedSize.label}` : '';
   const waText = encodeURIComponent(
-    `Hola, me interesa cotizar:\n*${product.name}*\nCategoría: ${product.category}\nCantidad: ${qty} ${vol.unit}(s)\n\n¿Cuál es el precio?`
+    `Hola, me interesa cotizar:\n*${product.name}*${variantText}\nCategoría: ${product.category}\nCantidad: ${qty} ${vol.unit}(s)\n\n¿Cuál es el precio?`
   );
 
+  // 4. NUEVO: Modificar el objeto a guardar en el carrito
   function handleAddToCart() {
-    addToCart(product, qty);
+    const itemToAdd = {
+      ...product,
+      id: selectedSize ? `${product.id}-${selectedSize.label}` : product.id,
+      price: displayPrice,
+      variantLabel: selectedSize ? selectedSize.label : null
+    };
+    
+    addToCart(itemToAdd, qty);
     setAddedAnim(true);
     setTimeout(() => setAddedAnim(false), 1600);
   }
-
-  const savings = product.originalPrice && product.discount > 0
-    ? (product.originalPrice - product.price).toFixed(2) : null;
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white pb-32 lg:pb-12">
@@ -204,6 +228,35 @@ export default function ProductDetail() {
                 {product.description}
               </p>
 
+              {/* 5. NUEVO: UI DE SELECCIÓN DE VARIANTES (Tamaños) */}
+              {product.sizes && product.sizes.length > 0 && (
+                <div className="mb-5">
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">
+                    Seleccionar Tamaño / Modelo
+                  </label>
+                  <div className="grid grid-cols-1 gap-2">
+                    {product.sizes.map((size) => (
+                      <button
+                        key={size.label}
+                        onClick={() => setSelectedSize(size)}
+                        className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
+                          selectedSize?.label === size.label
+                            ? 'bg-orange-500/10 border-orange-500 text-white shadow-sm shadow-orange-500/20'
+                            : 'bg-[#111118] border-white/5 text-gray-400 hover:border-white/20 hover:text-gray-200'
+                        }`}
+                      >
+                        <span>{size.label}</span>
+                        {SHOW_PRICES && size.price !== undefined && (
+                          <span className={selectedSize?.label === size.label ? 'text-orange-400 font-black' : 'text-gray-500'}>
+                            S/ {size.price.toFixed(2)}
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* ── BLOQUE PRECIO (controlado por SHOW_PRICES) ── */}
               {SHOW_PRICES ? (
                 <div className="mb-5 p-4 bg-[#111118] rounded-2xl border border-white/5">
@@ -214,7 +267,8 @@ export default function ProductDetail() {
                       </span>
                     )}
                     <span className="text-4xl font-black text-white">
-                      S/ {product.price.toFixed(2)}
+                      {/* Aquí se refleja el precio de la variante automáticamente */}
+                      S/ {displayPrice?.toFixed(2)}
                     </span>
                     {product.discount > 0 && (
                       <span className="mb-1 bg-orange-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-lg tracking-widest">
@@ -277,7 +331,7 @@ export default function ProductDetail() {
                     </button>
                     <span className="w-9 text-center text-sm font-black text-white tabular-nums">{qty}</span>
                     <button
-                      onClick={() => setQty(q => Math.min(product.stock, q + 1))}
+                      onClick={() => setQty(q => Math.min(product.stock || 99, q + 1))}
                       className="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-orange-500 transition-colors"
                     >
                       <span className="material-symbols-outlined text-base">add</span>
@@ -313,14 +367,7 @@ export default function ProductDetail() {
                 </a>
               </div>
 
-              {/* ── Vendedor ── */}
-              <div className="mt-4 flex items-center gap-3 px-4 py-3 bg-[#111118] border border-white/5 rounded-xl">
-                <span className="material-symbols-outlined text-orange-500 text-base">verified</span>
-                <div>
-                  <p className="text-[9px] text-gray-600 uppercase tracking-widest font-bold">Distribuidor oficial</p>
-                  <p className="text-xs font-bold text-white">{product.seller || 'Aceros Perú'}</p>
-                </div>
-              </div>
+              
             </BlurFade>
           </div>
         </div>

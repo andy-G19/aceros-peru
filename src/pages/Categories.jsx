@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import FilterDrawer from '../components/FilterDrawer';
 import { products, categories } from '../data/products';
@@ -22,6 +22,26 @@ const CATEGORY_IMAGES = {
     'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800',
 };
 
+/* ─── Mapa visual de SUBcategorías ───────────────────────────── */
+// 🔁 REEMPLAZA estas URLs con tus fotos reales en Cloudinary
+const SUBCATEGORY_IMAGES = {
+  // ── Herramientas Acero ──
+  'Lampas':
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg',
+  'Rejillas':
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304127/Rejilla_Triangulo_xzii78.jpg',
+
+  // ── Herramientas Ganzo ──
+  'Lampas Ganzo':
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507755/Lganzo_gusark.jpg',
+  'Lampas Tipo Cuchara':
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507755/Cganzo_rr45qe.jpg',
+  'Lampas Tipo Pala':
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507755/Pganzo_pdtipk.jpg',
+  'Rejillas Ganzo':
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507756/Rganzo_m4z4sy.jpg',
+};
+
 const SORT_OPTIONS = [
   { value: 'featured',   label: 'Destacados' },
   { value: 'price-asc',  label: 'Precio ↑' },
@@ -29,6 +49,72 @@ const SORT_OPTIONS = [
   { value: 'name',       label: 'Nombre A-Z' },
   { value: 'discount',   label: 'Mayor Descuento' },
 ];
+
+/* ─── SubcategoryBanner — solo imagen + título ────────────────── */
+function SubcategoryBanner({ subcategoryName }) {
+  const img = SUBCATEGORY_IMAGES[subcategoryName];
+  const [zoomed, setZoomed] = useState(false);
+
+  return (
+    <>
+      <BlurFade delay={0.05} duration={0.5}>
+        <div
+          className="relative overflow-hidden rounded-2xl mb-8 cursor-zoom-in"
+          style={{ aspectRatio: '8/3' }}
+          onClick={() => img && setZoomed(true)}
+        >
+          {/* Imagen completa sin recorte */}
+          {img ? (
+            <img
+              src={img}
+              alt={subcategoryName}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[#111118]" />
+          )}
+
+          {/* Overlay inferior para legibilidad del título */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+          {/* Ícono lupa */}
+          {img && (
+            <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
+              <span className="material-symbols-outlined text-white text-base">zoom_in</span>
+            </div>
+          )}
+
+          
+        </div>
+      </BlurFade>
+
+      {/* ── Modal de imagen ampliada ── */}
+      {zoomed && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
+          onClick={() => setZoomed(false)}
+        >
+          <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={img}
+              alt={subcategoryName}
+              className="w-full rounded-2xl shadow-2xl"
+            />
+            <button
+              onClick={() => setZoomed(false)}
+              className="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-colors"
+            >
+              <span className="material-symbols-outlined text-white text-xl">close</span>
+            </button>
+            <p className="text-center text-xs text-gray-500 uppercase tracking-widest font-bold mt-3">
+              Toca fuera para cerrar
+            </p>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
 /* ─── SectionHeader ───────────────────────────────────────────── */
 function SectionHeader({ title, action, onAction }) {
@@ -164,7 +250,7 @@ function Sidebar({
                         key={sub.id}
                         label={sub.name}
                         count={sub.count}
-                        active={selectedSubcategory === sub.name && !searchQuery}
+                        active={selectedSubcategory === sub.name && selectedCategory === cat.name && !searchQuery}
                         onClick={() => onSubcategoryClick(cat.name, sub.name)}
                       />
                     ))}
@@ -187,27 +273,6 @@ function Sidebar({
           />
           <div className="flex justify-between text-[10px] text-gray-600 mt-1">
             <span>S/ 0</span><span>S/ 5000</span>
-          </div>
-        </div>
-
-        {/* Ordenar (dentro del sidebar, solo en mobile) */}
-        <div className="lg:hidden">
-          <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-2">Ordenar</p>
-          <div className="grid grid-cols-2 gap-1.5">
-            {SORT_OPTIONS.map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => onSortChange(opt.value)}
-                className={`
-                  text-[10px] font-bold px-2 py-1.5 rounded-lg transition-all
-                  ${sortBy === opt.value
-                    ? 'bg-orange-500 text-white'
-                    : 'bg-[#1e1e2a] text-gray-400 hover:text-white'}
-                `}
-              >
-                {opt.label}
-              </button>
-            ))}
           </div>
         </div>
       </div>
@@ -248,6 +313,65 @@ function CategoryBar({ selected, onSelect, searchQuery }) {
   );
 }
 
+/* ─── SubcategoryGrid ─────────────────────────────────────────── */
+// Tarjetas con imagen para elegir subcategoría (antes de seleccionarla)
+function SubcategoryGrid({ category, onSelect }) {
+  const cat = categories.find((c) => c.name === category);
+  if (!cat?.subcategories?.length) return null;
+
+  return (
+    <BlurFade inView delay={0.05} duration={0.3}>
+      <div className="mb-10">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-[3px] h-5 bg-orange-500 rounded-full" />
+          <h3 className="text-lg font-black uppercase tracking-widest text-white">Subcategorías</h3>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {cat.subcategories.map((sub, i) => {
+            const img = SUBCATEGORY_IMAGES[sub.name];
+            return (
+              <BlurFade key={sub.id} inView delay={i * 0.06} duration={0.35}>
+                <button
+                  onClick={() => onSelect(category, sub.name)}
+                  className="relative overflow-hidden rounded-xl group border border-white/5 hover:border-orange-500/40 transition-all duration-300"
+                  style={{ aspectRatio: '4/3' }}
+                >
+                  {/* Imagen */}
+                  {img ? (
+                    <img
+                      src={img}
+                      alt={sub.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-[#1e1e2a]" />
+                  )}
+
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10 group-hover:from-black/70 transition-all duration-300" />
+
+                  {/* Texto */}
+                  <div className="relative h-full flex flex-col justify-end p-3.5 text-left">
+                    <p className="text-xs font-black uppercase tracking-wide text-white group-hover:text-orange-400 transition-colors leading-tight mb-1">
+                      {sub.name}
+                    </p>
+                    <p className="text-[10px] text-gray-400">{sub.count} productos</p>
+                  </div>
+
+                  {/* Flecha */}
+                  <div className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-orange-400 text-xs font-bold">→</span>
+                  </div>
+                </button>
+              </BlurFade>
+            );
+          })}
+        </div>
+      </div>
+    </BlurFade>
+  );
+}
+
 /* ─── EmptyState ──────────────────────────────────────────────── */
 function EmptyState({ searchQuery, selectedSubcategory, onClear }) {
   return (
@@ -280,16 +404,30 @@ const Categories = () => {
   const navigate = useNavigate();
   const { searchQuery, setSearchQuery } = useCart();
 
+  const location = useLocation();
+
   const [selectedCategory, setSelectedCategory]       = useState('all');
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [expandedCategories, setExpandedCategories]   = useState({});
   const [sortBy, setSortBy]                           = useState('featured');
   const [priceRange, setPriceRange]                   = useState([0, 5000]);
+  const [drawerOpen, setDrawerOpen]                   = useState(false);
 
-  /* ── Drawer (solo mobile) ──────────────────────────────────── */
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  /* ── Leer state de navegación (desde SubcategoriesShowcase en Home) ── */
+  useEffect(() => {
+    const state = location.state;
+    if (state?.category) {
+      setSelectedCategory(state.category);
+      if (state.subcategory) {
+        setSelectedSubcategory(state.subcategory);
+        setExpandedCategories((prev) => ({ ...prev, [state.category]: true }));
+      }
+      // Limpiar el state para no re-aplicar en navegaciones futuras
+      window.history.replaceState({}, '');
+    }
+  }, [location.state]);
 
-  /* ── Handlers ──────────────────────────────────────────────── */
+  /* ── Handlers ── */
   const handleCategoryClick = (name) => {
     if (name === 'all') {
       setSelectedCategory('all');
@@ -307,8 +445,13 @@ const Categories = () => {
   };
 
   const handleSubcategoryClick = (catName, subName) => {
-    setSelectedCategory(catName);
-    setSelectedSubcategory((prev) => (prev === subName ? null : subName));
+    // Si ya está activa exactamente esta combo cat+sub, la deselecciona
+    if (selectedCategory === catName && selectedSubcategory === subName) {
+      setSelectedSubcategory(null);
+    } else {
+      setSelectedCategory(catName);
+      setSelectedSubcategory(subName);
+    }
     setSearchQuery('');
   };
 
@@ -329,7 +472,6 @@ const Categories = () => {
     navigate(`/product/${product.id}`, { state: { product } });
   };
 
-  /* Callback del drawer: aplica los valores del draft */
   const handleDrawerApply = ({ category, subcategory, priceRange: pr }) => {
     setSelectedCategory(category);
     setSelectedSubcategory(subcategory);
@@ -337,7 +479,7 @@ const Categories = () => {
     setSearchQuery('');
   };
 
-  /* ── Filtrado ───────────────────────────────────────────────── */
+  /* ── Filtrado ── */
   const filtered = products.filter((p) => {
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
@@ -350,6 +492,7 @@ const Categories = () => {
       if (!match) return false;
     }
     if (selectedCategory !== 'all' && p.category !== selectedCategory) return false;
+    // Filtra subcategoría SOLO dentro de la categoría ya seleccionada
     if (selectedSubcategory && p.subcategory !== selectedSubcategory) return false;
     if (p.price < priceRange[0] || p.price > priceRange[1]) return false;
     return true;
@@ -365,14 +508,12 @@ const Categories = () => {
     }
   });
 
-  /* ── Active filter count (para badge del botón) ─────────────── */
   const activeFiltersCount =
     (selectedCategory !== 'all' ? 1 : 0) +
     (selectedSubcategory ? 1 : 0) +
     (priceRange[0] > 0 || priceRange[1] < 5000 ? 1 : 0) +
     (searchQuery.trim() ? 1 : 0);
 
-  /* ── Page title ─────────────────────────────────────────────── */
   const pageTitle = searchQuery
     ? `"${searchQuery}"`
     : selectedSubcategory
@@ -381,13 +522,15 @@ const Categories = () => {
         ? selectedCategory
         : 'Todas las Herramientas';
 
-  /* ═══════════════════════════════════════════════════════════ */
+  /* ── ¿La categoría activa tiene subcategorías? ── */
+  const activeCatObj = categories.find((c) => c.name === selectedCategory);
+  const hasSubs = activeCatObj?.subcategories?.length > 0;
+
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-white">
 
-      {/* ── HERO STRIP ───────────────────────────────────────── */}
+      {/* ── HERO STRIP ── */}
       <section className="relative overflow-hidden bg-[#111118] border-b border-white/5 py-8 md:py-10">
-        {/* Grid decorativo */}
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{
@@ -401,16 +544,10 @@ const Categories = () => {
 
           {/* Breadcrumb */}
           <div className="flex items-center gap-1.5 text-xs text-gray-600 mb-5 font-medium">
-            <button onClick={() => navigate('/')} className="hover:text-orange-500 transition-colors">
-              Inicio
-            </button>
+            <button onClick={() => navigate('/')} className="hover:text-orange-500 transition-colors">Inicio</button>
             <span className="material-symbols-outlined text-[10px]">chevron_right</span>
             <span
-              className={
-                selectedCategory !== 'all'
-                  ? 'hover:text-orange-500 cursor-pointer transition-colors'
-                  : 'text-gray-400'
-              }
+              className={selectedCategory !== 'all' ? 'hover:text-orange-500 cursor-pointer transition-colors' : 'text-gray-400'}
               onClick={() => selectedCategory !== 'all' && handleCategoryClick('all')}
             >
               Categorías
@@ -419,14 +556,8 @@ const Categories = () => {
               <>
                 <span className="material-symbols-outlined text-[10px]">chevron_right</span>
                 <span
-                  className={
-                    selectedSubcategory
-                      ? 'hover:text-orange-500 cursor-pointer transition-colors'
-                      : 'text-orange-500'
-                  }
-                  onClick={() =>
-                    selectedSubcategory && handleCategoryClick(selectedCategory)
-                  }
+                  className={selectedSubcategory ? 'hover:text-orange-500 cursor-pointer transition-colors' : 'text-orange-500'}
+                  onClick={() => selectedSubcategory && handleCategoryClick(selectedCategory)}
                 >
                   {selectedCategory}
                 </span>
@@ -440,14 +571,11 @@ const Categories = () => {
             )}
           </div>
 
-          {/* Título + sort (desktop) */}
+          {/* Título + sort */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
               <BlurFade delay={0.05} duration={0.4}>
-                <h1
-                  className="font-black uppercase tracking-tight leading-none"
-                  style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}
-                >
+                <h1 className="font-black uppercase tracking-tight leading-none" style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}>
                   {pageTitle}
                 </h1>
                 <div className="mt-2 h-[3px] w-12 bg-orange-500 rounded-full" />
@@ -460,7 +588,7 @@ const Categories = () => {
               </BlurFade>
             </div>
 
-            {/* Sort pills — solo desktop */}
+            {/* Sort pills — desktop */}
             <BlurFade delay={0.2} duration={0.4}>
               <div className="hidden lg:flex items-center gap-2">
                 <span className="text-[10px] text-gray-600 uppercase tracking-widest font-bold">Ordenar</span>
@@ -484,24 +612,17 @@ const Categories = () => {
             </BlurFade>
           </div>
 
-          {/* ── Row: CategoryBar + botón Filtros (mobile) ── */}
+          {/* CategoryBar + botón Filtros */}
           <BlurFade delay={0.25} duration={0.4}>
             <div className="mt-5 flex items-center gap-3">
-              {/* Category chips — scrollable */}
               <div className="flex-1 min-w-0">
-                <CategoryBar
-                  selected={selectedCategory}
-                  onSelect={handleCategoryClick}
-                  searchQuery={searchQuery}
-                />
+                <CategoryBar selected={selectedCategory} onSelect={handleCategoryClick} searchQuery={searchQuery} />
               </div>
-
-              {/* Botón Filtros — solo mobile (lg:hidden) */}
               <button
                 onClick={() => setDrawerOpen(true)}
                 className={`
                   lg:hidden shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black
-                  uppercase tracking-wide transition-all duration-200 relative
+                  uppercase tracking-wide transition-all relative
                   ${activeFiltersCount > 0
                     ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
                     : 'bg-[#16161f] border border-white/10 text-gray-300 hover:border-white/20'}
@@ -518,37 +639,26 @@ const Categories = () => {
             </div>
           </BlurFade>
 
-          {/* ── Chips de filtros activos (mobile) ── */}
+          {/* Chips filtros activos mobile */}
           {activeFiltersCount > 0 && (
             <div className="lg:hidden mt-3 flex items-center gap-2 overflow-x-auto scrollbar-hide pb-0.5">
-              {searchQuery.trim() && (
-                <ActiveChip label={`"${searchQuery}"`} onRemove={() => setSearchQuery('')} />
-              )}
+              {searchQuery.trim() && <ActiveChip label={`"${searchQuery}"`} onRemove={() => setSearchQuery('')} />}
               {selectedCategory !== 'all' && (
-                <ActiveChip
-                  label={selectedCategory}
-                  onRemove={() => { setSelectedCategory('all'); setSelectedSubcategory(null); }}
-                />
+                <ActiveChip label={selectedCategory} onRemove={() => { setSelectedCategory('all'); setSelectedSubcategory(null); }} />
               )}
               {selectedSubcategory && (
                 <ActiveChip label={selectedSubcategory} onRemove={() => setSelectedSubcategory(null)} />
               )}
               {(priceRange[0] > 0 || priceRange[1] < 5000) && (
-                <ActiveChip
-                  label={`S/${priceRange[0]} – S/${priceRange[1]}`}
-                  onRemove={() => setPriceRange([0, 5000])}
-                />
+                <ActiveChip label={`S/${priceRange[0]} – S/${priceRange[1]}`} onRemove={() => setPriceRange([0, 5000])} />
               )}
-              <button
-                onClick={handleClearAll}
-                className="text-[10px] text-gray-600 hover:text-orange-500 uppercase tracking-wider shrink-0 transition-colors ml-1"
-              >
+              <button onClick={handleClearAll} className="text-[10px] text-gray-600 hover:text-orange-500 uppercase tracking-wider shrink-0 transition-colors ml-1">
                 Limpiar todo
               </button>
             </div>
           )}
 
-          {/* Sort select — solo mobile */}
+          {/* Sort select mobile */}
           <div className="lg:hidden mt-4">
             <select
               value={sortBy}
@@ -563,11 +673,11 @@ const Categories = () => {
         </div>
       </section>
 
-      {/* ── BODY ─────────────────────────────────────────────── */}
+      {/* ── BODY ── */}
       <section className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 py-8 md:py-10">
         <div className="flex flex-col lg:flex-row gap-8">
 
-          {/* Sidebar — solo desktop */}
+          {/* Sidebar desktop */}
           <div className="hidden lg:block">
             <Sidebar
               selectedCategory={selectedCategory}
@@ -587,36 +697,21 @@ const Categories = () => {
 
           {/* Grid de productos */}
           <div className="flex-1 min-w-0">
+
+            {/* ══ BANNER de subcategoría seleccionada ══ */}
+            {selectedSubcategory && (
+              <SubcategoryBanner
+                subcategoryName={selectedSubcategory}
+              />
+            )}
+
+            {/* ══ GRID de subcategorías (cuando hay categoría pero no subcategoría) ══ */}
+            {selectedCategory !== 'all' && !selectedSubcategory && !searchQuery && hasSubs && (
+              <SubcategoryGrid category={selectedCategory} onSelect={handleSubcategoryClick} />
+            )}
+
             {sorted.length > 0 ? (
               <>
-                {/* Subcategorías inline */}
-                {selectedCategory !== 'all' && !selectedSubcategory && (() => {
-                  const cat = categories.find((c) => c.name === selectedCategory);
-                  return cat?.subcategories?.length > 0 ? (
-                    <BlurFade inView delay={0.05} duration={0.3}>
-                      <div className="mb-8">
-                        <SectionHeader title="Subcategorías" />
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                          {cat.subcategories.map((sub) => (
-                            <button
-                              key={sub.id}
-                              onClick={() => handleSubcategoryClick(selectedCategory, sub.name)}
-                              className="bg-[#16161f] border border-white/5 rounded-xl p-4 text-left
-                                hover:border-orange-500/30 hover:bg-[#1e1e2a] transition-all group"
-                            >
-                              <p className="text-xs font-black uppercase tracking-wide text-white
-                                group-hover:text-orange-400 transition-colors line-clamp-2">
-                                {sub.name}
-                              </p>
-                              <p className="text-[10px] text-gray-600 mt-1">{sub.count} productos</p>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </BlurFade>
-                  ) : null;
-                })()}
-
                 <SectionHeader
                   title={
                     selectedSubcategory
@@ -626,7 +721,6 @@ const Categories = () => {
                         : 'Todos los Productos'
                   }
                 />
-
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
                   {sorted.map((product, i) => (
                     <BlurFade key={product.id} inView delay={i * 0.03} yOffset={8} duration={0.35}>
@@ -646,7 +740,7 @@ const Categories = () => {
         </div>
       </section>
 
-      {/* ── CATEGORÍAS RELACIONADAS ───────────────────────────── */}
+      {/* ── CATEGORÍAS RELACIONADAS ── */}
       {(selectedSubcategory || (selectedCategory !== 'all' && !selectedSubcategory)) && (
         <section className="border-t border-white/5 bg-[#111118] py-10 md:py-12">
           <div className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12">
@@ -674,9 +768,7 @@ const Categories = () => {
                       )}
                       <div className="absolute inset-0 bg-[#0a0a0f]/60 group-hover:bg-[#0a0a0f]/40 transition-colors" />
                       <div className="relative h-full flex flex-col justify-end p-3">
-                        <p className="text-[9px] font-black uppercase tracking-widest text-white leading-tight">
-                          {cat.name}
-                        </p>
+                        <p className="text-[9px] font-black uppercase tracking-widest text-white leading-tight">{cat.name}</p>
                         <p className="text-[9px] text-gray-400 mt-0.5">{cat.count} prod.</p>
                       </div>
                       <div className="absolute inset-0 rounded-xl border border-orange-500/0 group-hover:border-orange-500/40 transition-colors" />
@@ -688,7 +780,7 @@ const Categories = () => {
         </section>
       )}
 
-      {/* ── FilterDrawer — solo mobile ────────────────────────── */}
+      {/* FilterDrawer mobile */}
       <FilterDrawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
@@ -700,13 +792,12 @@ const Categories = () => {
         onClear={handleClearAll}
       />
 
-      {/* ── WhatsApp flotante ─────────────────────────────────── */}
+      {/* WhatsApp flotante */}
       <a
         href="https://wa.me/51983955913"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-5 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#128C7E]
-          rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+        className="fixed bottom-6 right-5 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#128C7E] rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
         title="Contactar por WhatsApp"
       >
         <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">

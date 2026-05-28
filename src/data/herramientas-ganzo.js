@@ -13,7 +13,7 @@ export const herramientasGanzo = [
       ""
     ],
     category: "Herramientas Ganzo",
-    subcategory: "Lampas",
+    subcategory: "Lampas Ganzo",
     seller: "Codimag",
     rating: 4.8,
     reviews: 45,
@@ -45,7 +45,7 @@ export const herramientasGanzo = [
       "https://res.cloudinary.com/daq3sbggo/image/upload/v1776968058/Lampa_Ganzo_Grande_qzhgcf.jpg"
     ],
     category: "Herramientas Ganzo",
-    subcategory: "Lampas",
+    subcategory: "Lampas Ganzo",
     seller: "Codimag",
     rating: 4.7,
     reviews: 82,
@@ -76,7 +76,7 @@ export const herramientasGanzo = [
       "https://res.cloudinary.com/daq3sbggo/image/upload/v1776968059/Lampa_Ganzo_Estandar_y8qzey.jpg"
     ],
     category: "Herramientas Ganzo",
-    subcategory: "Lampas",
+    subcategory: "Lampas Ganzo",
     seller: "Codimag",
     rating: 4.5,
     reviews: 128,
@@ -107,7 +107,7 @@ export const herramientasGanzo = [
       "https://res.cloudinary.com/daq3sbggo/image/upload/v1776968059/Lampa_Ganzo_Mediano_un9t1u.jpg"
     ],
     category: "Herramientas Ganzo",
-    subcategory: "Lampas",
+    subcategory: "Lampas Ganzo",
     seller: "Codimag",
     rating: 4.6,
     reviews: 56,
@@ -137,7 +137,7 @@ export const herramientasGanzo = [
       "https://res.cloudinary.com/daq3sbggo/image/upload/v1776968058/Lampa_Ganzo_Peque%C3%B1o_ijihz6.jpg"
     ],
     category: "Herramientas Ganzo",
-    subcategory: "Lampas",
+    subcategory: "Lampas Ganzo",
     seller: "Codimag",
     rating: 4.4,
     reviews: 34,
@@ -167,7 +167,7 @@ export const herramientasGanzo = [
       "https://res.cloudinary.com/daq3sbggo/image/upload/v1776968058/Lampa_Ganzo_Chiquito_wliif4.jpg"
     ],
     category: "Herramientas Ganzo",
-    subcategory: "Lampas",
+    subcategory: "Lampas Ganzo",
     seller: "Codimag",
     rating: 4.3,
     reviews: 18,
@@ -197,7 +197,7 @@ export const herramientasGanzo = [
       "https://res.cloudinary.com/daq3sbggo/image/upload/v1776968058/Lampa_Ganzo_Bebito_jm2cbm.jpg"
     ],
     category: "Herramientas Ganzo",
-    subcategory: "Lampas",
+    subcategory: "Lampas Ganzo",
     seller: "Codimag",
     rating: 4.2,
     reviews: 12,
@@ -223,7 +223,7 @@ export const herramientasGanzo = [
   {
     id: 108,
     name: "Lampa Ganzo Tipo Cuchara Grande",
-  brand: "HERRAMIENTAS GANZO",
+    brand: "HERRAMIENTAS GANZO",
     price: 62.50,
     originalPrice: 78.00,
     discount: 20,
@@ -714,5 +714,4 @@ export const herramientasGanzo = [
       "Uso didáctico en agricultura"
     ]
   }
-
 ];
