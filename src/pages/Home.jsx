@@ -22,6 +22,8 @@ const CATEGORY_IMAGES = {
     'https://images.unsplash.com/photo-1530124560676-586cad3ad276?w=800',
   'Trípodes para Aspersor':
     'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
+  'Herramientas de Jardinería':
+  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
   'Otros':
     'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800',
 };
@@ -32,6 +34,7 @@ const CATEGORY_SUBTITLES = {
   'Rastrillos': 'Precisión en cada surco',
   'Herramientas de Construccion': 'Para toda obra',
   'Trípodes para Aspersor': 'Riego eficiente',
+  'Herramientas de Jardinería': 'Cuida tu jardín',
   'Otros': 'Accesorios y más',
 };
 
@@ -184,7 +187,7 @@ export default function Home() {
             {
               icon: 'local_shipping',
               title: 'Envíos nacionales',
-              desc: 'Cobertura a todo el Perú con seguimiento en tiempo real.',
+              desc: 'Cobertura a todo el Perú.',
               delay: 0.1,
             },
             {
@@ -196,7 +199,7 @@ export default function Home() {
             {
               icon: 'credit_card',
               title: 'Pago seguro',
-              desc: 'Tarjetas, transferencia y pago en cuotas disponibles.',
+              desc: 'Tarjetas y transferencia.',
               delay: 0.3,
             },
           ].map((b) => (

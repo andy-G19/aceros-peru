@@ -59,10 +59,10 @@ const Header = ({ onNavigate }) => {
           />
           <div className="flex flex-col">
             <span className="text-base md:text-xl font-bold tracking-tight text-white leading-none">
-              ACEROS PERÚ
+              INDUSTRIAS
             </span>
-            <span className="text-xs text-gray-400 font-medium">
-              HERRAMIENTAS GANZO
+            <span className="text-base text-gray-400 font-medium">
+              ACEROS PERÚ
             </span>
           </div>
         </button>
@@ -168,6 +168,7 @@ const Header = ({ onNavigate }) => {
       </div>
 
       {/* Navegación Desktop - CON FUNCIONALIDAD */}
+      {/*
       <nav className="hidden md:block border-t border-gray-700 bg-slate-900">
         <div className="container mx-auto px-4">
           <ul className="flex items-center gap-8 py-3 text-sm font-medium text-gray-300 overflow-x-auto">
@@ -244,6 +245,7 @@ const Header = ({ onNavigate }) => {
           </ul>
         </div>
       </nav>
+      */}
 
       {/* Menú móvil desplegable - CON FUNCIONALIDAD */}
       {menuOpen && (

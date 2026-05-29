@@ -7,6 +7,7 @@ import { herramientasGanzo } from './herramientas-ganzo';
 import { rastrillos } from './rastrillos';
 import { construccion } from './construccion';
 import { tripodes } from './tripodes';
+import { jardineria } from './jardineria';
 import { otros } from './otros';
 
 // Exportar todos los productos combinados
@@ -16,6 +17,7 @@ export const products = [
   ...rastrillos,
   ...construccion,
   ...tripodes,
+  ...jardineria,
   ...otros
 ];
 
@@ -26,5 +28,6 @@ export {
   rastrillos,
   construccion,
   tripodes,
+  jardineria,
   otros
 };

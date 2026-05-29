@@ -18,6 +18,8 @@ const CATEGORY_IMAGES = {
     'https://images.unsplash.com/photo-1530124560676-586cad3ad276?w=800',
   'Trípodes para Aspersor':
     'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
+  'Herramientas de Jardinería':
+  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
   'Otros':
     'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800',
 };
@@ -210,6 +212,32 @@ function Sidebar({
             <p className="text-xs text-white font-medium truncate">"{searchQuery}"</p>
           </div>
         )}
+
+        {/* Ordenar */}
+        <div>
+          <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-2">Ordenar por</p>
+          <div className="space-y-0.5">
+            {SORT_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => onSortChange(opt.value)}
+                className={`
+                  w-full text-left px-3 py-2 rounded-lg text-xs transition-all flex items-center justify-between gap-2
+                  ${sortBy === opt.value
+                    ? 'bg-orange-500 text-white font-bold'
+                    : 'text-gray-400 hover:bg-[#1e1e2a] hover:text-white'}
+                `}
+              >
+                <span>{opt.label}</span>
+                {sortBy === opt.value && (
+                  <svg className="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  </svg>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Categorías */}
         <div>
@@ -571,57 +599,29 @@ const Categories = () => {
             )}
           </div>
 
-          {/* Título + sort */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <BlurFade delay={0.05} duration={0.4}>
-                <h1 className="font-black uppercase tracking-tight leading-none" style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}>
-                  {pageTitle}
-                </h1>
-                <div className="mt-2 h-[3px] w-12 bg-orange-500 rounded-full" />
-              </BlurFade>
-              <BlurFade delay={0.15} duration={0.4}>
-                <p className="text-sm text-gray-500 mt-3">
-                  <span className="text-orange-500 font-bold">{sorted.length}</span>{' '}
-                  {sorted.length === 1 ? 'producto encontrado' : 'productos encontrados'}
-                </p>
-              </BlurFade>
-            </div>
-
-            {/* Sort pills — desktop */}
-            <BlurFade delay={0.2} duration={0.4}>
-              <div className="hidden lg:flex items-center gap-2">
-                <span className="text-[10px] text-gray-600 uppercase tracking-widest font-bold">Ordenar</span>
-                <div className="flex gap-1.5">
-                  {SORT_OPTIONS.map((opt) => (
-                    <button
-                      key={opt.value}
-                      onClick={() => setSortBy(opt.value)}
-                      className={`
-                        px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide transition-all
-                        ${sortBy === opt.value
-                          ? 'bg-orange-500 text-white'
-                          : 'bg-[#16161f] text-gray-500 hover:text-white border border-white/5'}
-                      `}
-                    >
-                      {opt.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+          {/* Título */}
+          <div>
+            <BlurFade delay={0.05} duration={0.4}>
+              <h1 className="font-black uppercase tracking-tight leading-none" style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}>
+                {pageTitle}
+              </h1>
+              <div className="mt-2 h-[3px] w-12 bg-orange-500 rounded-full" />
+            </BlurFade>
+            <BlurFade delay={0.15} duration={0.4}>
+              <p className="text-sm text-gray-500 mt-3">
+                <span className="text-orange-500 font-bold">{sorted.length}</span>{' '}
+                {sorted.length === 1 ? 'producto encontrado' : 'productos encontrados'}
+              </p>
             </BlurFade>
           </div>
 
-          {/* CategoryBar + botón Filtros */}
-          <BlurFade delay={0.25} duration={0.4}>
-            <div className="mt-5 flex items-center gap-3">
-              <div className="flex-1 min-w-0">
-                <CategoryBar selected={selectedCategory} onSelect={handleCategoryClick} searchQuery={searchQuery} />
-              </div>
+          {/* Botón Filtros mobile */}
+          <BlurFade delay={0.2} duration={0.4}>
+            <div className="mt-5 flex items-center gap-3 lg:hidden">
               <button
                 onClick={() => setDrawerOpen(true)}
                 className={`
-                  lg:hidden shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black
+                  shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black
                   uppercase tracking-wide transition-all relative
                   ${activeFiltersCount > 0
                     ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
@@ -636,6 +636,15 @@ const Categories = () => {
                   </span>
                 )}
               </button>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="flex-1 bg-[#16161f] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500/40 transition-colors"
+              >
+                {SORT_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>{opt.label}</option>
+                ))}
+              </select>
             </div>
           </BlurFade>
 
@@ -657,19 +666,6 @@ const Categories = () => {
               </button>
             </div>
           )}
-
-          {/* Sort select mobile */}
-          <div className="lg:hidden mt-4">
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="w-full bg-[#16161f] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-orange-500/40 transition-colors"
-            >
-              {SORT_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
         </div>
       </section>
 

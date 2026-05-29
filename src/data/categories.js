@@ -47,6 +47,14 @@ export const categories = [
     description: "Trípodes y sistemas de riego",
     subcategories: []
   },
+  {
+    id: 7,
+    name: "Herramientas de Jardinería",
+    icon: "park",
+    count: 4,
+    description: "Todo para el cuidado de jardines, huertos y plantas",
+    subcategories: []
+  },
   { 
     id: 6, 
     name: "Otros", 

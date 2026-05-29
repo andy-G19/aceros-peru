@@ -1,340 +1,173 @@
 export const construccion = [
   {
-    id: 141,
-    name: "Atador de Alambre Mediano (Tortol)",
+    id: "HER-CINTI-043",
+    name: "Cincel de Punta y Plana Tipo Corrugado",
     brand: null,
-    price: 12.00,
-    originalPrice: 15.00,
-    discount: 20,
+    price: 15.00,
+    originalPrice: 18.00,
+    discount: 16,
     images: [
-      "https://images.unsplash.com/photo-1530124560676-586cad3ad276?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1780019222/HER-CINTI-043_qmwyum.jpg" // URL a reemplazar con tus imágenes de catálogo
     ],
     category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.5,
-    reviews: 15,
-    stock: 100,
-    description: "Herramienta manual fabricada en acero liso con punta forjada en gancho. Diseñada para facilitar el amarre rápido de alambre negro en estructuras de fierro.",
+    seller: "Industrias Aceros Perú",
+    rating: 4.8,
+    reviews: 22,
+    stock: 120, // Ajustable según tu inventario
+    description: "Herramienta de impacto fabricada en acero corrugado forjado. Diseñada para trabajos exigentes de corte, ranurado y demolición en mampostería y concreto.",
     specifications: [
-      "Material: Acero liso de 3/8\"",
-      "Longitud: Mediana (estándar para estribos)",
-      "Punta: Tratamiento térmico para evitar desgaste",
-      "Uso: Amarre de acero de refuerzo"
+      "Material: Acero Corrugado",
+      "Espesores: 1/2\" - 5/8\" - 3/4\" - 1\"",
+      "Largo: 30 cm",
+      "Tipo de punta: Plana (corte) y Punta (perforación/rompimiento)",
+      "Empaque: Paquete de 12 unidades"
     ],
     recommendations: [
-      "Amarre de estribos en columnas y vigas",
-      "Trabajos de habilitado de acero",
-      "Uso con alambre recocido N° 16"
+      "Ideal para demolición, ranurado y labrado de concreto o ladrillo",
+      "Utilizar con combas o martillos de golpe de peso adecuado"
+      
     ]
   },
   {
-    id: 142,
-    name: "Atador de Alambre Grande (Tortol)",
+    id: "HER-CINTI-045",
+    name: "Cincel de Punta y Plana Tipo Liso",
+    brand: null,
+    price: 16.00,
+    originalPrice: 19.00,
+    discount: 15,
+    images: [
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1780019223/HER-CINTI-045_zdpfee.jpg" 
+    ],
+    category: "Herramientas de Construccion",
+    seller: "Industrias Aceros Perú",
+    rating: 4.9,
+    reviews: 18,
+    stock: 150,
+    description: "Herramienta de impacto fabricada en acero redondo liso de alta resistencia. Cuenta con una cabeza plana diseñada para optimizar la recepción del golpe (disponible en punta o plana), ideal para trabajos precisos de corte, ranurado y demolición.",
+    specifications: [
+      "Material: Acero Redondo Liso",
+      "Espesor: 5/8\" - 3/4\" - 1\"",
+      "Largo: 30 cm",
+      "Tipo de punta: Plana (corte) y Punta (perforación/rompimiento)",
+      "Empaque: Paquete de 12 unidades"
+    ],
+    recommendations: [
+      "Ideal para trabajos de acabado en mampostería, concreto y piedra",
+      "Asegurar un golpe perpendicular sobre la cabeza del cincel"
+    ]
+  },
+  {
+    id: "HER-CINTI-044",
+    name: "Cincel de Punta y Plana Tipo Hexagonal",
+    brand: null,
+    price: 18.00,
+    originalPrice: 22.00,
+    discount: 18,
+    images: [
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1780019223/HER-CINTI-044_mr5d06.jpg"
+    ],
+    category: "Herramientas de Construccion",
+    seller: "Industrias Aceros Perú",
+    rating: 4.9,
+    reviews: 25,
+    stock: 140,
+    description: "Herramienta de impacto forjada en acero de perfil hexagonal, diseñado para ofrecer un agarre más firme, ergonómico y evitar el rodamiento en superficies de trabajo. Está disponible con extremos en punta o plana para trabajos pesados de demolición y corte.",
+    specifications: [
+      "Material: Acero Hexagonal",
+      "Espesor: 3/4\" - 5/8\" - 1\"",
+      "Largo: 30 cm",
+      "Tipo de punta: Plana (corte) y Punta (perforación/rompimiento)",
+      "Empaque: Paquete de 12 unidades"
+    ],
+    recommendations: [
+      "El perfil hexagonal proporciona mayor control y seguridad al evitar que la herramienta resbale con el sudor o la vibración",
+      "Ideal para trabajos exigentes de demolición, ranurado y labrado en concreto, mampostería o piedra"
+      
+    ]
+  },
+  {
+    id: "HER-TORDE-042",
+    name: "Atador de Alambre - Tortol Liso",
     brand: null,
     price: 15.00,
     originalPrice: 20.00,
     discount: 25,
     images: [
-      "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1780019223/HER-TORDE-042_ppfyzn.jpg"
     ],
     category: "Herramientas de Construccion",
-    seller: "Codimag",
+    seller: "Industrias Aceros Perú",
     rating: 4.6,
     reviews: 12,
     stock: 80,
-    description: "Versión reforzada de longitud extendida para mayor palanca en amarres de fierro de mayor diámetro.",
+    description: "Tortol fabricada en acero redondo liso. Diseñada para ofrecer una rotación fluida en la mano del operario y máxima palanca en amarres de fierro estructural.",
     specifications: [
-      "Material: Acero liso de 1/2\"",
-      "Longitud: Grande (mayor torque)",
-      "Cuerpo: Ergonómico para operario de construcción",
-      "Resistencia: Alta resistencia a la flexión"
+      "Material: Acero Redondo Liso",
+      "Espesor: 1/2\" - 3/8\"",
+      "Largo: 35 cm - 25 cm",
+      "Empaque: Paquete de 12 unidades"
     ],
     recommendations: [
-      "Amarre de parrillas de cimentación",
-      "Habilitado de acero pesado",
-      "Uso intensivo en obras civiles"
+      "Amarre de acero estructural en columnas y zapatas",
+      "El acabado liso reduce la fricción en la mano durante el uso prolongado"
+      
     ]
   },
   {
-    id: 143,
-    name: "Cincel de 1/2\"",
+    id: "HER-TORDE-041",
+    name: "Atador de Alambre - Tortol Corrugado",
     brand: null,
-    price: 18.50,
-    originalPrice: 25.00,
-    discount: 26,
-    images: [
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.4,
-    reviews: 20,
-    stock: 50,
-    description: "Cincel de acero de alta dureza para trabajos de rotura manual en concreto y ladrillo.",
-    specifications: [
-      "Medida: 1/2 pulgada",
-      "Material: Acero hexagonal con temple en punta",
-      "Punta: Plana de alta penetración",
-      "Cabeza: Revenida para evitar astillamientos al golpe"
-    ],
-    recommendations: [
-      "Canalización en muros de ladrillo",
-      "Limpieza de restos de concreto en encofrados",
-      "Picado de tarrajeo"
-    ]
-  },
-  {
-    id: 144,
-    name: "Cincel de 5/8\"",
-    brand: null,
-    price: 22.00,
-    originalPrice: 30.00,
-    discount: 27,
-    images: [
-      "https://images.unsplash.com/photo-1581092918484-8313e1f7e8c6?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    subcategory: "Cinceles",
-    seller: "Codimag",
-    rating: 4.5,
-    reviews: 18,
-    stock: 45,
-    description: "Cincel de calibre intermedio para demolición manual ligera y perforación de elementos estructurales.",
-    specifications: [
-      "Medida: 5/8 pulgada",
-      "Cuerpo: Hexagonal para mejor agarre",
-      "Tratamiento: Templado por inducción",
-      "Longitud: Estándar para construcción"
-    ],
-    recommendations: [
-      "Rotura de veredas y pisos",
-      "Apertura de pases de tubería",
-      "Trabajos de albañilería general"
-    ]
-  },
-  {
-    id: 145,
-    name: "Cincel de 3/4\"",
-    brand: null,
-    price: 28.00,
-    originalPrice: 38.00,
-    discount: 26,
-    images: [
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.7,
-    reviews: 14,
-    stock: 30,
-    description: "Cincel reforzado para trabajos de impacto pesado. Gran capacidad de remoción de material.",
-    specifications: [
-      "Medida: 3/4 pulgada",
-      "Material: Acero de aleación superior",
-      "Peso: Elevado para mayor inercia de golpe",
-      "Filo: Rectificado"
-    ],
-    recommendations: [
-      "Demolición de concreto ciclópeo",
-      "Perfilado de rocas",
-      "Uso con combos de 4 lbs a más"
-    ]
-  },
-  {
-    id: 146,
-    name: "Cincel de  1\"",
-    brand: null,
-    price: 35.00,
-    originalPrice: 48.00,
-    discount: 27,
-    images: [
-      "https://images.unsplash.com/photo-1590470242291-a11586940a0c?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.8,
-    reviews: 10,
-    stock: 20,
-    description: "Cincel de máxima medida para trabajos de demolición crítica y picado de piedra.",
-    specifications: [
-      "Medida: 1 pulgada",
-      "Cuerpo: Acero hexagonal macizo",
-      "Resistencia: Máxima al impacto repetitivo",
-      "Uso: Profesional industrial"
-    ],
-    recommendations: [
-      "Demolición de bases de concreto",
-      "Corte de pernos oxidados grandes",
-      "Trabajos de cantería"
-    ]
-  },
-  {
-    id: 147,
-    name: "Barreta de Fierro Corrugado 1\" x 1.0 m",
-    brand: null,
-    price: 45.00,
-    originalPrice: 60.00,
+    price: 15.00,
+    originalPrice: 20.00,
     discount: 25,
     images: [
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1780019223/HER-TORDE-041_nvp5n7.jpg"
     ],
     category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.5,
-    reviews: 8,
-    stock: 25,
-    description: "Herramienta de perforación y palanca fabricada a partir de acero corrugado de alta resistencia.",
-    specifications: [
-      "Diámetro: 1 pulgada",
-      "Longitud: 1.0 metro",
-      "Punta: Afilada y templada",
-      "Material: Fierro corrugado grado 60"
-    ],
-    recommendations: [
-      "Excavación de pozos a tierra",
-      "Perfilado de zanjas",
-      "Palanca de materiales pesados"
-    ]
-  },
-  {
-    id: 148,
-    name: "Barreta de Fierro Corrugado 1\" x 1.5 m",
-    brand: null,
-    price: 60.00,
-    originalPrice: 80.00,
-    discount: 25,
-    images: [
-      "https://images.unsplash.com/photo-1595131838585-314059c25b7b?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.7,
-    reviews: 15,
-    stock: 20,
-    description: "Barreta de longitud intermedia, excelente equilibrio para perforación vertical manual.",
-    specifications: [
-      "Diámetro: 1 pulgada",
-      "Longitud: 1.5 metros",
-      "Peso: Ideal para caída por gravedad",
-      "Uso: Construcción agrícola y civil"
-    ],
-    recommendations: [
-      "Perforación para postes",
-      "Excavación en suelos compactos",
-      "Uso como barreta de golpe"
-    ]
-  },
-  {
-    id: 149,
-    name: "Barreta de Fierro Corrugado 1\" x 1.8 m",
-    brand: null,
-    price: 75.00,
-    originalPrice: 95.00,
-    discount: 21,
-    images: [
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.9,
-    reviews: 22,
-    stock: 15,
-    description: "Barreta extra larga para máxima potencia de impacto y profundidad de perforación.",
-    specifications: [
-      "Diámetro: 1 pulgada",
-      "Longitud: 1.8 metros",
-      "Peso: Máxima inercia",
-      "Durabilidad: Acero de refuerzo estructural"
-    ],
-    recommendations: [
-      "Excavación profunda en terrenos áridos",
-      "Demolición de veredas",
-      "Hincado de estacas grandes"
-    ]
-  },
-  {
-    id: 150,
-    name: "Trampa para Doblar Fierro 3/8\" (Machina)",
-    brand: null,
-    price: 25.00,
-    originalPrice: 35.00,
-    discount: 28,
-    images: [
-      "https://images.unsplash.com/photo-1530124560676-586cad3ad276?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    seller: "Codimag",
+    seller: "Industrias Aceros Perú",
     rating: 4.6,
-    reviews: 30,
-    stock: 40,
-    description: "Herramienta fija de mesa diseñada para el doblado preciso de varillas de acero corrugado de 3/8\".",
+    reviews: 12,
+    stock: 80,
+    description: "Tortol fabricada en acero corrugado. Su diseño proporciona mayor palanca y un agarre texturizado, ideal para amarres rápidos y seguros de fierro en obra.",
     specifications: [
-      "Capacidad: Fierro de 3/8\"",
-      "Material: Acero macizo soldado",
-      "Fijación: Orificios para pernos en banco de trabajo",
-      "Tipo: Machina simple"
+      "Material: Acero Corrugado",
+      "Espesor: 1/2\" - 3/8\"",
+      "Largo: 35 cm - 25 cm",
+      "Empaque: Paquete de 12 unidades"
     ],
     recommendations: [
-      "Doblado de bastones y ganchos",
-      "Producción de estribos pequeños",
-      "Uso en talleres de habilitado"
+      "Ideal para el amarre de parrillas de cimentación y vigas pesadas",
+      "Habilitado de acero pesado donde se requiere mayor torque"
+      
     ]
   },
   {
-    id: 151,
-    name: "Trampa para Doblar Fierro 1/2\" (Machina)",
+    id: "HER-HACDE-073",
+    name: "Hacha-Pico de Bomberos",
     brand: null,
-    price: 32.00,
-    originalPrice: 45.00,
-    discount: 29,
+    price: 45.00, // Precio referencial sugerido
+    originalPrice: 55.00,
+    discount: 18,
     images: [
-      "https://images.unsplash.com/photo-1530124560676-586cad3ad276?w=800"
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1780019223/HER-HACDE-073_jdqki6.jpg"
     ],
     category: "Herramientas de Construccion",
-    seller: "Codimag",
-    rating: 4.7,
-    reviews: 25,
-    stock: 35,
-    description: "Trampa reforzada para el doblado de acero estructural de 1/2 pulgada.",
-    specifications: [
-      "Capacidad: Fierro de 1/2\"",
-      "Estructura: Plancha de acero de alto espesor",
-      "Pines: Acero templado para evitar desgaste",
-      "Uso: Profesional"
-    ],
-    recommendations: [
-      "Doblado de fierro para vigas",
-      "Habilitado de columnas",
-      "Uso con tubos de extensión para palanca"
-    ]
-  },
-  {
-    id: 152,
-    name: "Tubo Doblador de Estribos Multimedida (3/8\", 1/2\", 5/8\")",
-    brand: null,
-    price: 20.00,
-    originalPrice: 28.00,
-    discount: 28,
-    images: [
-      "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?w=800"
-    ],
-    category: "Herramientas de Construccion",
-    subcategory: "Dobladores",
-    seller: "Codimag",
+    seller: "Industrias Aceros Perú",
     rating: 4.8,
-    reviews: 40,
-    stock: 60,
-    description: "Herramienta de palanca versátil diseñada para doblar estribos de diferentes medidas (3/8, 1/2 y 5/8).",
+    reviews: 15,
+    stock: 40,
+    description: "Herramienta especializada de doble propósito con cabeza de acero forjado de alta resistencia. Combina un filo de hacha para corte y un pico para perforación. Ensamblada con un mango de madera ergonómico.",
     specifications: [
-      "Medidas compatibles: 3/8\", 1/2\", 5/8\"",
-      "Material: Tubo de acero SCH-40 (Cédula 40)",
-      "Longitud: Optimizada para torque manual",
-      "Diseño: Boca de entrada reforzada"
+      "Material de la cabeza: Acero al Carbono",
+      "Acabado de la cabeza: Pintura roja contra oxido",
+      "Material del mango: Madera de alta densidad",
+      "Tipo de cabeza: Doble función"
     ],
     recommendations: [
-      "Doblado manual de estribos en obra",
-      "Corrección de fierros instalados",
-      "Uso complementario con la machina"
+      "Ideal para equipos de rescate y trabajos de demolición",
+      "El lado del pico es perfecto para romper ladrillos, concreto ligero o hacer palanca",
+      "Almacenar en un lugar seco para preservar la vida útil del mango de madera"
     ]
   }
+  
 ];

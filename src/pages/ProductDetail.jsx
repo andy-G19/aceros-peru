@@ -17,6 +17,7 @@ const VOLUME_CONFIG = {
   'Rastrillos':                   { label: 'Venta por docena',   qty: 12, unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades)' },
   'Herramientas de Construccion': { label: 'Venta por docena', qty: 12,  unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades) ' },
   'Trípodes para Aspersor':       { label: 'Venta por docena', qty: 12,  unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades) ' },
+  'Herramientas de Jardinería': { label: 'Venta por docena', qty: 12, unit: 'docena', minLabel: 'Mínimo 1 docena (12 unidades)' },
   'Otros':                        { label: 'Venta por docena', qty: 12,  unit: 'docena',   minLabel: 'Mínimo 1 docena (12 unidades) ' },
 };
 const DEFAULT_VOL = { label: 'Precio por volumen', qty: 1, unit: 'unidad', minLabel: 'Precio según cantidad' };

@@ -69,8 +69,11 @@ export const tripodes = [
     name: "Cuatripode Metalico de Angular 1 ½\" y 2\" con pisadera",
     description: "Trípode versátil de acero con conexión doble de 3/4\" y 1\" HE. Ideal para adaptar distintos aspersores de riego.",
     price: 95.00,
-    image: [
-      "https://res.cloudinary.com/daq3sbggo/image/upload/v1779854107/TR%C3%8D-CUAME-056_p6hrji.jpg"
+    images: [
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1779854107/TR%C3%8D-CUAME-056_p6hrji.jpg",
+      "https://res.cloudinary.com/daq3sbggo/image/upload/v1779854119/56_my5jhn.jpg"
+      
+      
       
       
     ],

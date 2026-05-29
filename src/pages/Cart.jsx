@@ -17,6 +17,7 @@ const VOLUME_LABELS = {
   'Rastrillos':                   'docena (12 u.)',
   'Herramientas de Construccion': 'docena (12 u.)',
   'Trípodes para Aspersor':       'docena (12 u.)',
+  'Herramientas de Jardinería': 'docena (12 u.)',
   'Otros':                        'docena (12 u.)',
 };
 

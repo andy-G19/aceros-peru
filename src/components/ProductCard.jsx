@@ -5,12 +5,14 @@ import { BorderBeam } from './magicui/border-beam';
 
 /* ─── Etiquetas de venta por volumen ─────────────────────────── */
 const VOLUME_LABELS = {
-  'Herramientas Acero':          { label: 'Venta por docena',  qty: 'Cotizar',  icon: 'inventory_2' },
-  'Herramientas Ganzo':          { label: 'Venta por docena',  qty: 'Cotizar',  icon: 'inventory_2' },
-  'Rastrillos':                   { label: 'Venta por docena',  qty: 'Cotizar',  icon: 'inventory_2'   },
-  'Herramientas de Construccion': { label: 'Venta por docena', qty: 'Cotizar',      icon: 'inventory_2' },
-  'Trípodes para Aspersor':       { label: 'Venta por docena', qty: 'Cotizar',      icon: 'inventory_2' },
-  'Otros':                        { label: 'Venta por docena', qty: 'Cotizar',      icon: 'inventory_2' },
+  'Herramientas Acero':          { label: 'Venta por docena',  icon: 'inventory_2' },
+  'Herramientas Ganzo':          { label: 'Venta por docena', icon: 'inventory_2' },
+  'Rastrillos':                   { label: 'Venta por docena',  icon: 'inventory_2'   },
+  'Herramientas de Construccion': { label: 'Venta por docena',      icon: 'inventory_2' },
+  'Trípodes para Aspersor':       { label: 'Venta por docena',      icon: 'inventory_2' },
+  'Herramientas de Jardinería': { label: 'Venta por docena', icon: 'inventory_2' },
+  'Otros':                        { label: 'Venta por docena',      icon: 'inventory_2' },
+
 };
 
 const DEFAULT_VOLUME = { label: 'Precio según cantidad', qty: 'Cotizar', icon: 'request_quote' };
