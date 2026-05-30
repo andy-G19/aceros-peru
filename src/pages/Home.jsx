@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import { products, categories } from '../data/products';
+import { products } from '../data/products';
 import { BlurFade } from '../components/magicui/blur-fade';
 import { NumberTicker } from '../components/magicui/number-ticker';
 import { Particles } from '../components/magicui/particles';
@@ -9,34 +9,6 @@ import { ShimmerButton } from '../components/magicui/shimmer-button';
 import AboutUs from '../components/AboutUs';
 import LocationSection from '../components/LocationSection';
 import SubcategoriesShowcase from '../components/SubcategoriesShowcase';
-
-// Mapa de imágenes destacadas por categoría
-const CATEGORY_IMAGES = {
-  'Herramientas Acero':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg',
-  'Herramientas Ganzo':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304308/Ganzo_Grande_wbunqf.jpg',
-  'Rastrillos':
-    'https://images.unsplash.com/photo-1585435465945-bef5a93f8849?w=800',
-  'Herramientas de Construccion':
-    'https://images.unsplash.com/photo-1530124560676-586cad3ad276?w=800',
-  'Trípodes para Aspersor':
-    'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
-  'Herramientas de Jardinería':
-  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
-  'Otros':
-    'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800',
-};
-
-const CATEGORY_SUBTITLES = {
-  'Herramientas Acero': 'Forjadas para durar',
-  'Herramientas Ganzo': 'Calidad profesional',
-  'Rastrillos': 'Precisión en cada surco',
-  'Herramientas de Construccion': 'Para toda obra',
-  'Trípodes para Aspersor': 'Riego eficiente',
-  'Herramientas de Jardinería': 'Cuida tu jardín',
-  'Otros': 'Accesorios y más',
-};
 
 const stats = [
   { value: 50, suffix: '+', label: 'Productos' },
@@ -47,7 +19,6 @@ const stats = [
 
 export default function Home() {
   const navigate = useNavigate();
-  const [activeCat, setActiveCat] = useState(0);
   const heroRef = useRef(null);
   const [heroH, setHeroH] = useState('100svh');
 
@@ -61,9 +32,6 @@ export default function Home() {
   const go = (page) => navigate(`/${page === 'home' ? '' : page}`);
   const goProduct = (product) =>
     navigate(`/product/${product.id}`, { state: { product } });
-
-  const featured = categories[0];
-  const rest = categories.slice(1);
 
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden">
@@ -174,13 +142,10 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
-          ¿QUIÉNES SOMOS?
+          ¿QUIÉNES SOMOS? & BENEFICIOS
       ═══════════════════════════════════════ */}
       <AboutUs />
 
-      {/* ═══════════════════════════════════════
-          BENEFICIOS
-      ═══════════════════════════════════════ */}
       <section className="border-t border-white/5 bg-[#111118] py-10 px-4 md:px-8">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
@@ -219,87 +184,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
-          CATEGORÍAS
-      ═══════════════════════════════════════ */}
-      <section className="px-4 py-10 md:px-8 lg:px-12 max-w-screen-xl mx-auto">
-        <div className="flex items-end justify-between mb-6">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Categorías</h2>
-            <div className="mt-1.5 h-[3px] w-14 bg-orange-500 rounded-full" />
-          </div>
-          <button
-            onClick={() => go('categories')}
-            className="text-xs font-bold text-gray-400 hover:text-orange-500 uppercase tracking-widest flex items-center gap-1 transition-colors"
-          >
-            Ver Todo <span className="text-base">↗</span>
-          </button>
-        </div>
-
-        {/* Card DESTACADA */}
-        <BlurFade inView delay={0.1} duration={0.5}>
-          <button
-            onClick={() => go('categories')}
-            className="w-full relative overflow-hidden rounded-2xl mb-4 group"
-            style={{ aspectRatio: '16/9' }}
-          >
-            <img
-              src={CATEGORY_IMAGES[featured?.name] || ''}
-              alt={featured?.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-            <div className="absolute inset-0 bg-[#0a0a0f]/20" />
-            <div className="absolute bottom-0 left-0 p-5 text-left">
-              <p className="text-[10px] font-bold text-orange-400 uppercase tracking-[0.2em] mb-1">
-                {CATEGORY_SUBTITLES[featured?.name]}
-              </p>
-              <h3 className="text-2xl md:text-3xl font-black uppercase leading-tight text-white">
-                {featured?.name}
-              </h3>
-            </div>
-            <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-orange-500 transition-colors">
-              <span className="text-white text-sm font-bold">→</span>
-            </div>
-          </button>
-        </BlurFade>
-
-        {/* Grid resto categorías */}
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-4">
-          {rest.map((cat, i) => {
-            const isActive = activeCat === i + 1;
-            return (
-              <BlurFade key={cat.id} inView delay={0.1 + i * 0.07} duration={0.4}>
-                <button
-                  onClick={() => { setActiveCat(i + 1); go('categories'); }}
-                  className={`w-full relative overflow-hidden rounded-xl p-4 text-left transition-all duration-300 group
-                    ${isActive ? 'bg-orange-500 shadow-lg shadow-orange-500/30' : 'bg-[#16161f] hover:bg-[#1e1e2a] border border-white/5'}`}
-                >
-                  {CATEGORY_IMAGES[cat.name] && !isActive && (
-                    <div
-                      className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity"
-                      style={{ backgroundImage: `url(${CATEGORY_IMAGES[cat.name]})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-                    />
-                  )}
-                  <div className="relative">
-                    <span className={`material-symbols-outlined text-3xl mb-3 block transition-colors ${isActive ? 'text-white' : 'text-orange-500'}`}>
-                      {cat.icon}
-                    </span>
-                    <p className={`text-xs font-black uppercase leading-tight tracking-wide ${isActive ? 'text-white' : 'text-gray-200'}`}>
-                      {cat.name}
-                    </p>
-                    <p className={`text-[10px] mt-1 ${isActive ? 'text-white/70' : 'text-gray-500'}`}>
-                      {cat.count} productos
-                    </p>
-                  </div>
-                </button>
-              </BlurFade>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════
-          🆕 NUESTRAS LÍNEAS — Subcategorías
+          NUEVO FILTRO: LÍNEAS Y CATEGORÍAS
       ═══════════════════════════════════════ */}
       <SubcategoriesShowcase />
 
@@ -344,11 +229,10 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
-          UBICACIÓN
+          UBICACIÓN Y WHATSAPP
       ═══════════════════════════════════════ */}
       <LocationSection />
 
-      {/* WhatsApp flotante */}
       <a
         href="https://wa.me/51983955913"
         target="_blank"

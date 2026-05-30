@@ -35,13 +35,13 @@ const SUBCATEGORY_IMAGES = {
 
   // ── Herramientas Ganzo ──
   'Lampas Ganzo':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507755/Lganzo_gusark.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104118/16_jlzpw0.jpg',
   'Lampas Tipo Cuchara':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507755/Cganzo_rr45qe.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104119/17_ijxwjq.jpg',
   'Lampas Tipo Pala':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507755/Pganzo_pdtipk.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104119/18_igiazx.jpg',
   'Rejillas Ganzo':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1779507756/Rganzo_m4z4sy.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104120/19_nuut3x.jpg',
 };
 
 const SORT_OPTIONS = [
@@ -61,8 +61,8 @@ function SubcategoryBanner({ subcategoryName }) {
     <>
       <BlurFade delay={0.05} duration={0.5}>
         <div
-          className="relative overflow-hidden rounded-2xl mb-8 cursor-zoom-in"
-          style={{ aspectRatio: '8/3' }}
+          className="relative overflow-hidden rounded-2xl mb-8 cursor-zoom-in w-full max-w-[1150px] mx-auto"
+          style={{ aspectRatio: '1150/600' }}
           onClick={() => img && setZoomed(true)}
         >
           {/* Imagen completa sin recorte */}
