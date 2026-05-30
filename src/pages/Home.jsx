@@ -38,11 +38,23 @@ export default function Home() {
       <section
         ref={heroRef}
         className="relative flex min-h-[580px] flex-col justify-end overflow-hidden"
-        style={{ height: heroH }}
+        style={{
+          height: heroH,
+        }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_10%,rgba(245,158,11,0.18),transparent_45%),radial-gradient(circle_at_85%_0%,rgba(255,255,255,0.08),transparent_35%),linear-gradient(135deg,#0b0b0c_0%,#15161a_45%,#0e1013_100%)]" />
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(-35deg,rgba(255,255,255,0.02)_0,rgba(255,255,255,0.02)_2px,transparent_2px,transparent_16px)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/70 to-transparent" />
+        <div 
+          className="absolute inset-0" 
+          style={{
+            backgroundImage: 'url(https://res.cloudinary.com/daq3sbggo/image/upload/v1772022472/port_dliyng.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            filter: 'brightness(0.5)',
+          }} 
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_10%,rgba(245,158,11,0.03),transparent_45%),radial-gradient(circle_at_85%_0%,rgba(255,255,255,0.01),transparent_35%),linear-gradient(135deg,#0b0b0c/40_0%,#15161a/40_45%,#0e1013/40_100%)]" />
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(-35deg,rgba(255,255,255,0.01)_0,rgba(255,255,255,0.01)_2px,transparent_2px,transparent_16px)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/50 via-[#0a0a0f]/20 to-transparent" />
 
         <Particles
           className="absolute inset-0 z-[1]"
