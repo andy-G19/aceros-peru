@@ -5,6 +5,7 @@ import FilterDrawer from '../components/FilterDrawer';
 import { products, categories } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { BlurFade } from '../components/magicui/blur-fade';
+import OptimizedImage from '../components/OptimizedImage';
 
 /* ─── Mapa visual de categorías ──────────────────────────────── */
 const CATEGORY_IMAGES = {
@@ -67,9 +68,14 @@ function SubcategoryBanner({ subcategoryName }) {
         >
           {/* Imagen completa sin recorte */}
           {img ? (
-            <img
+            <OptimizedImage
               src={img}
               alt={subcategoryName}
+              width={1150}
+              height={600}
+              mode="fill"
+              sizes="(max-width: 1280px) 100vw, 1150px"
+              eager
               className="absolute inset-0 w-full h-full object-cover"
             />
           ) : (
@@ -97,9 +103,14 @@ function SubcategoryBanner({ subcategoryName }) {
           onClick={() => setZoomed(false)}
         >
           <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <img
+            <OptimizedImage
               src={img}
               alt={subcategoryName}
+              width={1600}
+              height={900}
+              mode="limit"
+              sizes="95vw"
+              eager
               className="w-full rounded-2xl shadow-2xl"
             />
             <button
@@ -108,7 +119,7 @@ function SubcategoryBanner({ subcategoryName }) {
             >
               <span className="material-symbols-outlined text-white text-xl">close</span>
             </button>
-            <p className="text-center text-xs text-gray-500 uppercase tracking-widest font-bold mt-3">
+            <p className="text-center text-xs text-zinc-500 uppercase tracking-widest font-bold mt-3">
               Toca fuera para cerrar
             </p>
           </div>
@@ -126,12 +137,12 @@ function SectionHeader({ title, action, onAction }) {
         <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white">
           {title}
         </h2>
-        <div className="mt-1.5 h-[3px] w-10 bg-orange-500 rounded-full" />
+        <div className="mt-1.5 h-[3px] w-10 bg-amber-500 rounded-full" />
       </div>
       {action && (
         <button
           onClick={onAction}
-          className="text-[11px] font-bold text-gray-500 hover:text-orange-500 uppercase tracking-widest flex items-center gap-1 transition-colors"
+          className="text-[11px] font-bold text-zinc-500 hover:text-amber-500 uppercase tracking-widest flex items-center gap-1 transition-colors"
         >
           {action} <span className="text-sm">↗</span>
         </button>
@@ -148,13 +159,13 @@ function FilterChip({ label, active, onClick, count }) {
       className={`
         w-full text-left px-3 py-2 rounded-lg text-xs transition-all flex items-center justify-between gap-2
         ${active
-          ? 'bg-orange-500 text-white font-bold'
-          : 'text-gray-400 hover:bg-[#1e1e2a] hover:text-white'}
+          ? 'bg-amber-500 text-white font-bold'
+          : 'text-zinc-400 hover:bg-[#1e1e2a] hover:text-white'}
       `}
     >
       <span className="truncate">{label}</span>
       {count != null && (
-        <span className={`text-[10px] shrink-0 ${active ? 'text-white/70' : 'text-gray-600'}`}>
+        <span className={`text-[10px] shrink-0 ${active ? 'text-white/70' : 'text-zinc-600'}`}>
           ({count})
         </span>
       )}
@@ -165,7 +176,7 @@ function FilterChip({ label, active, onClick, count }) {
 /* ─── ActiveChip (filtro activo removible) ────────────────────── */
 function ActiveChip({ label, onRemove }) {
   return (
-    <span className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap shrink-0">
+    <span className="inline-flex items-center gap-1.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[10px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap shrink-0">
       {label}
       <button
         onClick={onRemove}
@@ -194,12 +205,12 @@ function Sidebar({
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-orange-500 text-lg">tune</span>
+            <span className="material-symbols-outlined text-amber-500 text-lg">tune</span>
             <span className="text-sm font-black uppercase tracking-widest text-white">Filtros</span>
           </div>
           <button
             onClick={onClearAll}
-            className="text-[10px] font-bold text-gray-600 hover:text-orange-500 uppercase tracking-wider transition-colors"
+            className="text-[10px] font-bold text-zinc-600 hover:text-amber-500 uppercase tracking-wider transition-colors"
           >
             Limpiar
           </button>
@@ -207,15 +218,15 @@ function Sidebar({
 
         {/* Búsqueda activa */}
         {searchQuery && (
-          <div className="px-3 py-2.5 bg-orange-500/10 border border-orange-500/30 rounded-xl">
-            <p className="text-[10px] font-bold text-orange-400 uppercase tracking-wider mb-1">Buscando</p>
+          <div className="px-3 py-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1">Buscando</p>
             <p className="text-xs text-white font-medium truncate">"{searchQuery}"</p>
           </div>
         )}
 
         {/* Ordenar */}
         <div>
-          <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-2">Ordenar por</p>
+          <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-2">Ordenar por</p>
           <div className="space-y-0.5">
             {SORT_OPTIONS.map((opt) => (
               <button
@@ -224,8 +235,8 @@ function Sidebar({
                 className={`
                   w-full text-left px-3 py-2 rounded-lg text-xs transition-all flex items-center justify-between gap-2
                   ${sortBy === opt.value
-                    ? 'bg-orange-500 text-white font-bold'
-                    : 'text-gray-400 hover:bg-[#1e1e2a] hover:text-white'}
+                    ? 'bg-amber-500 text-white font-bold'
+                    : 'text-zinc-400 hover:bg-[#1e1e2a] hover:text-white'}
                 `}
               >
                 <span>{opt.label}</span>
@@ -241,7 +252,7 @@ function Sidebar({
 
         {/* Categorías */}
         <div>
-          <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-2">Categorías</p>
+          <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-2">Categorías</p>
           <div className="space-y-0.5">
             <FilterChip
               label="Todas"
@@ -263,7 +274,7 @@ function Sidebar({
                   {cat.subcategories?.length > 0 && (
                     <button
                       onClick={() => onToggleExpand(cat.name)}
-                      className="px-1.5 py-2 text-gray-600 hover:text-orange-500 transition-colors shrink-0"
+                      className="px-1.5 py-2 text-zinc-600 hover:text-amber-500 transition-colors shrink-0"
                     >
                       <span className="material-symbols-outlined text-sm">
                         {expandedCategories[cat.name] ? 'expand_less' : 'expand_more'}
@@ -291,15 +302,15 @@ function Sidebar({
 
         {/* Precio */}
         <div>
-          <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-3">
+          <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-3">
             Precio (S/ {priceRange[0]} – S/ {priceRange[1]})
           </p>
           <input
             type="range" min="0" max="5000" value={priceRange[1]}
             onChange={(e) => onPriceChange([priceRange[0], +e.target.value])}
-            className="w-full accent-orange-500"
+            className="w-full accent-amber-500"
           />
-          <div className="flex justify-between text-[10px] text-gray-600 mt-1">
+          <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
             <span>S/ 0</span><span>S/ 5000</span>
           </div>
         </div>
@@ -317,8 +328,8 @@ function CategoryBar({ selected, onSelect, searchQuery }) {
         className={`
           shrink-0 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all
           ${selected === 'all' && !searchQuery
-            ? 'bg-orange-500 text-white'
-            : 'bg-[#16161f] text-gray-400 hover:text-white border border-white/5'}
+            ? 'bg-amber-500 text-white'
+            : 'bg-[#16161f] text-zinc-400 hover:text-white border border-white/5'}
         `}
       >
         Todas
@@ -330,8 +341,8 @@ function CategoryBar({ selected, onSelect, searchQuery }) {
           className={`
             shrink-0 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all
             ${selected === cat.name && !searchQuery
-              ? 'bg-orange-500 text-white'
-              : 'bg-[#16161f] text-gray-400 hover:text-white border border-white/5'}
+              ? 'bg-amber-500 text-white'
+              : 'bg-[#16161f] text-zinc-400 hover:text-white border border-white/5'}
           `}
         >
           {cat.name}
@@ -351,7 +362,7 @@ function SubcategoryGrid({ category, onSelect }) {
     <BlurFade inView delay={0.05} duration={0.3}>
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-[3px] h-5 bg-orange-500 rounded-full" />
+          <div className="w-[3px] h-5 bg-amber-500 rounded-full" />
           <h3 className="text-lg font-black uppercase tracking-widest text-white">Subcategorías</h3>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -361,14 +372,18 @@ function SubcategoryGrid({ category, onSelect }) {
               <BlurFade key={sub.id} inView delay={i * 0.06} duration={0.35}>
                 <button
                   onClick={() => onSelect(category, sub.name)}
-                  className="relative overflow-hidden rounded-xl group border border-white/5 hover:border-orange-500/40 transition-all duration-300"
+                  className="relative overflow-hidden rounded-xl group border border-white/5 hover:border-amber-500/40 transition-all duration-300"
                   style={{ aspectRatio: '4/3' }}
                 >
                   {/* Imagen */}
                   {img ? (
-                    <img
+                    <OptimizedImage
                       src={img}
                       alt={sub.name}
+                      width={520}
+                      height={390}
+                      mode="fill"
+                      sizes="(max-width: 768px) 50vw, 25vw"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
@@ -380,15 +395,15 @@ function SubcategoryGrid({ category, onSelect }) {
 
                   {/* Texto */}
                   <div className="relative h-full flex flex-col justify-end p-3.5 text-left">
-                    <p className="text-xs font-black uppercase tracking-wide text-white group-hover:text-orange-400 transition-colors leading-tight mb-1">
+                    <p className="text-xs font-black uppercase tracking-wide text-white group-hover:text-amber-400 transition-colors leading-tight mb-1">
                       {sub.name}
                     </p>
-                    <p className="text-[10px] text-gray-400">{sub.count} productos</p>
+                    <p className="text-[10px] text-zinc-400">{sub.count} productos</p>
                   </div>
 
                   {/* Flecha */}
                   <div className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-orange-400 text-xs font-bold">→</span>
+                    <span className="text-amber-400 text-xs font-bold">→</span>
                   </div>
                 </button>
               </BlurFade>
@@ -405,10 +420,10 @@ function EmptyState({ searchQuery, selectedSubcategory, onClear }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
       <div className="w-16 h-16 rounded-2xl bg-[#16161f] border border-white/5 flex items-center justify-center mb-5">
-        <span className="material-symbols-outlined text-gray-700 text-3xl">search_off</span>
+        <span className="material-symbols-outlined text-zinc-700 text-3xl">search_off</span>
       </div>
       <h3 className="text-lg font-black uppercase text-white mb-1">Sin resultados</h3>
-      <p className="text-sm text-gray-500 mb-6 max-w-xs">
+      <p className="text-sm text-zinc-500 mb-6 max-w-xs">
         {searchQuery
           ? `No hay productos para "${searchQuery}"`
           : selectedSubcategory
@@ -417,7 +432,7 @@ function EmptyState({ searchQuery, selectedSubcategory, onClear }) {
       </p>
       <button
         onClick={onClear}
-        className="px-6 py-2.5 bg-orange-500 hover:bg-orange-400 text-white text-xs font-bold uppercase tracking-widest rounded-full transition-colors"
+        className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-white text-xs font-bold uppercase tracking-widest rounded-full transition-colors"
       >
         Limpiar Filtros
       </button>
@@ -571,11 +586,11 @@ const Categories = () => {
         <div className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 relative z-10">
 
           {/* Breadcrumb */}
-          <div className="flex items-center gap-1.5 text-xs text-gray-600 mb-5 font-medium">
-            <button onClick={() => navigate('/')} className="hover:text-orange-500 transition-colors">Inicio</button>
+          <div className="flex items-center gap-1.5 text-xs text-zinc-600 mb-5 font-medium">
+            <button onClick={() => navigate('/')} className="hover:text-amber-500 transition-colors">Inicio</button>
             <span className="material-symbols-outlined text-[10px]">chevron_right</span>
             <span
-              className={selectedCategory !== 'all' ? 'hover:text-orange-500 cursor-pointer transition-colors' : 'text-gray-400'}
+              className={selectedCategory !== 'all' ? 'hover:text-amber-500 cursor-pointer transition-colors' : 'text-zinc-400'}
               onClick={() => selectedCategory !== 'all' && handleCategoryClick('all')}
             >
               Categorías
@@ -584,7 +599,7 @@ const Categories = () => {
               <>
                 <span className="material-symbols-outlined text-[10px]">chevron_right</span>
                 <span
-                  className={selectedSubcategory ? 'hover:text-orange-500 cursor-pointer transition-colors' : 'text-orange-500'}
+                  className={selectedSubcategory ? 'hover:text-amber-500 cursor-pointer transition-colors' : 'text-amber-500'}
                   onClick={() => selectedSubcategory && handleCategoryClick(selectedCategory)}
                 >
                   {selectedCategory}
@@ -594,7 +609,7 @@ const Categories = () => {
             {selectedSubcategory && (
               <>
                 <span className="material-symbols-outlined text-[10px]">chevron_right</span>
-                <span className="text-orange-500">{selectedSubcategory}</span>
+                <span className="text-amber-500">{selectedSubcategory}</span>
               </>
             )}
           </div>
@@ -605,11 +620,11 @@ const Categories = () => {
               <h1 className="font-black uppercase tracking-tight leading-none" style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)' }}>
                 {pageTitle}
               </h1>
-              <div className="mt-2 h-[3px] w-12 bg-orange-500 rounded-full" />
+              <div className="mt-2 h-[3px] w-12 bg-amber-500 rounded-full" />
             </BlurFade>
             <BlurFade delay={0.15} duration={0.4}>
-              <p className="text-sm text-gray-500 mt-3">
-                <span className="text-orange-500 font-bold">{sorted.length}</span>{' '}
+              <p className="text-sm text-zinc-500 mt-3">
+                <span className="text-amber-500 font-bold">{sorted.length}</span>{' '}
                 {sorted.length === 1 ? 'producto encontrado' : 'productos encontrados'}
               </p>
             </BlurFade>
@@ -624,14 +639,14 @@ const Categories = () => {
                   shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black
                   uppercase tracking-wide transition-all relative
                   ${activeFiltersCount > 0
-                    ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
-                    : 'bg-[#16161f] border border-white/10 text-gray-300 hover:border-white/20'}
+                    ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
+                    : 'bg-[#16161f] border border-white/10 text-zinc-300 hover:border-white/20'}
                 `}
               >
                 <span className="material-symbols-outlined text-base">tune</span>
                 <span>Filtros</span>
                 {activeFiltersCount > 0 && (
-                  <span className="w-4 h-4 rounded-full bg-white text-orange-600 text-[9px] font-black flex items-center justify-center">
+                  <span className="w-4 h-4 rounded-full bg-white text-amber-600 text-[9px] font-black flex items-center justify-center">
                     {activeFiltersCount}
                   </span>
                 )}
@@ -639,7 +654,7 @@ const Categories = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="flex-1 bg-[#16161f] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500/40 transition-colors"
+                className="flex-1 bg-[#16161f] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/40 transition-colors"
               >
                 {SORT_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -661,7 +676,7 @@ const Categories = () => {
               {(priceRange[0] > 0 || priceRange[1] < 5000) && (
                 <ActiveChip label={`S/${priceRange[0]} – S/${priceRange[1]}`} onRemove={() => setPriceRange([0, 5000])} />
               )}
-              <button onClick={handleClearAll} className="text-[10px] text-gray-600 hover:text-orange-500 uppercase tracking-wider shrink-0 transition-colors ml-1">
+              <button onClick={handleClearAll} className="text-[10px] text-zinc-600 hover:text-amber-500 uppercase tracking-wider shrink-0 transition-colors ml-1">
                 Limpiar todo
               </button>
             </div>
@@ -756,18 +771,22 @@ const Categories = () => {
                       style={{ aspectRatio: '1/1' }}
                     >
                       {CATEGORY_IMAGES[cat.name] && (
-                        <img
+                        <OptimizedImage
                           src={CATEGORY_IMAGES[cat.name]}
                           alt={cat.name}
+                          width={320}
+                          height={320}
+                          mode="fill"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       )}
                       <div className="absolute inset-0 bg-[#0a0a0f]/60 group-hover:bg-[#0a0a0f]/40 transition-colors" />
                       <div className="relative h-full flex flex-col justify-end p-3">
                         <p className="text-[9px] font-black uppercase tracking-widest text-white leading-tight">{cat.name}</p>
-                        <p className="text-[9px] text-gray-400 mt-0.5">{cat.count} prod.</p>
+                        <p className="text-[9px] text-zinc-400 mt-0.5">{cat.count} prod.</p>
                       </div>
-                      <div className="absolute inset-0 rounded-xl border border-orange-500/0 group-hover:border-orange-500/40 transition-colors" />
+                      <div className="absolute inset-0 rounded-xl border border-amber-500/0 group-hover:border-amber-500/40 transition-colors" />
                     </button>
                   </BlurFade>
                 ))}

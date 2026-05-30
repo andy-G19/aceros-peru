@@ -118,7 +118,7 @@ export default function FilterDrawer({
         {/* ── Header ── */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 flex-shrink-0">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-orange-500 text-xl">tune</span>
+            <span className="material-symbols-outlined text-amber-500 text-xl">tune</span>
             <h2 className="text-base font-black uppercase tracking-[0.2em] text-white">Filtros</h2>
           </div>
           <button
@@ -126,7 +126,7 @@ export default function FilterDrawer({
             className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
             aria-label="Cerrar filtros"
           >
-            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -137,7 +137,7 @@ export default function FilterDrawer({
 
           {/* ── CATEGORÍAS ── */}
           <section>
-            <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] mb-4">
+            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-4">
               Categorías
             </p>
 
@@ -146,11 +146,11 @@ export default function FilterDrawer({
               onClick={() => { setDraftCat('all'); setDraftSub(null); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-all duration-200 text-left ${
                 draftCat === 'all'
-                  ? 'bg-orange-500/20 border border-orange-500/40 text-orange-400'
-                  : 'bg-[#1a1c26] border border-transparent text-gray-400 hover:border-white/10'
+                  ? 'bg-amber-500/20 border border-amber-500/40 text-amber-400'
+                  : 'bg-[#1a1c26] border border-transparent text-zinc-400 hover:border-white/10'
               }`}
             >
-              <span className={`material-symbols-outlined text-xl ${draftCat === 'all' ? 'text-orange-500' : 'text-gray-500'}`}>
+              <span className={`material-symbols-outlined text-xl ${draftCat === 'all' ? 'text-amber-500' : 'text-zinc-500'}`}>
                 apps
               </span>
               <span className="text-sm font-bold">Todas las categorías</span>
@@ -169,7 +169,7 @@ export default function FilterDrawer({
                     <div
                       className={`flex items-center rounded-xl overflow-hidden transition-all duration-200 ${
                         isActive
-                          ? 'bg-orange-500/25 border border-orange-500/50'
+                          ? 'bg-amber-500/25 border border-amber-500/50'
                           : 'bg-[#1a1c26] border border-transparent hover:border-white/8'
                       }`}
                     >
@@ -178,10 +178,10 @@ export default function FilterDrawer({
                         onClick={() => selectCat(cat.name)}
                         className="flex items-center gap-3 flex-1 px-4 py-3 text-left"
                       >
-                        <span className={`material-symbols-outlined text-xl ${isActive ? 'text-orange-500' : 'text-gray-500'}`}>
+                        <span className={`material-symbols-outlined text-xl ${isActive ? 'text-amber-500' : 'text-zinc-500'}`}>
                           {cat.icon}
                         </span>
-                        <span className={`text-sm font-bold flex-1 ${isActive ? 'text-orange-400' : 'text-gray-300'}`}>
+                        <span className={`text-sm font-bold flex-1 ${isActive ? 'text-amber-400' : 'text-zinc-300'}`}>
                           {cat.name}
                         </span>
                       </button>
@@ -190,7 +190,7 @@ export default function FilterDrawer({
                       {hasSubcats && (
                         <button
                           onClick={() => toggleAccordion(cat.name)}
-                          className="px-3 py-3 text-gray-500 hover:text-orange-400 transition-colors"
+                          className="px-3 py-3 text-zinc-500 hover:text-amber-400 transition-colors"
                           aria-label="Expandir subcategorías"
                         >
                           <svg
@@ -218,13 +218,13 @@ export default function FilterDrawer({
                                 onClick={() => selectSub(cat.name, sub.name)}
                                 className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all duration-150 flex items-center justify-between group ${
                                   isSubActive
-                                    ? 'bg-orange-500/15 text-orange-400 font-bold'
-                                    : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
+                                    ? 'bg-amber-500/15 text-amber-400 font-bold'
+                                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'
                                 }`}
                               >
                                 <span>{sub.name}</span>
                                 {isSubActive && (
-                                  <svg className="w-3.5 h-3.5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                  <svg className="w-3.5 h-3.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                   </svg>
                                 )}
@@ -242,7 +242,7 @@ export default function FilterDrawer({
 
           {/* ── RANGO DE PRECIO ── */}
           <section>
-            <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] mb-5">
+            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-5">
               Rango de Precio
             </p>
 
@@ -252,7 +252,7 @@ export default function FilterDrawer({
               <div className="relative h-1.5 rounded-full bg-[#1a1c26]">
                 {/* Active range fill */}
                 <div
-                  className="absolute h-full rounded-full bg-gradient-to-r from-orange-600 to-orange-400"
+                  className="absolute h-full rounded-full bg-gradient-to-r from-amber-600 to-amber-400"
                   style={{ left: `${pctMin}%`, right: `${100 - pctMax}%` }}
                 />
               </div>
@@ -289,11 +289,11 @@ export default function FilterDrawer({
 
               {/* Visual thumbs */}
               <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-orange-500 border-2 border-white shadow-lg shadow-orange-500/40 pointer-events-none"
+                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-amber-500 border-2 border-white shadow-lg shadow-amber-500/40 pointer-events-none"
                 style={{ left: `calc(${pctMin}% - 10px)` }}
               />
               <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-orange-500 border-2 border-white shadow-lg shadow-orange-500/40 pointer-events-none"
+                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-amber-500 border-2 border-white shadow-lg shadow-amber-500/40 pointer-events-none"
                 style={{ left: `calc(${pctMax}% - 10px)` }}
               />
             </div>
@@ -301,9 +301,9 @@ export default function FilterDrawer({
             {/* Min / Max inputs */}
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-[#1a1c26] rounded-xl px-4 py-3 border border-white/5">
-                <p className="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-1">Mínimo</p>
+                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Mínimo</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-xs text-gray-500">S/</span>
+                  <span className="text-xs text-zinc-500">S/</span>
                   <input
                     type="number"
                     min={0}
@@ -316,9 +316,9 @@ export default function FilterDrawer({
                 </div>
               </div>
               <div className="bg-[#1a1c26] rounded-xl px-4 py-3 border border-white/5">
-                <p className="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-1">Máximo</p>
+                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Máximo</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-xs text-gray-500">S/</span>
+                  <span className="text-xs text-zinc-500">S/</span>
                   <input
                     type="number"
                     min={draftMin + 10}
@@ -339,7 +339,7 @@ export default function FilterDrawer({
           {/* Limpiar */}
           <button
             onClick={handleClear}
-            className="w-full py-3.5 rounded-2xl border border-white/10 bg-white/5 text-gray-300 text-sm font-black uppercase tracking-[0.2em] hover:bg-white/10 hover:border-white/20 transition-all duration-200 active:scale-[0.98]"
+            className="w-full py-3.5 rounded-2xl border border-white/10 bg-white/5 text-zinc-300 text-sm font-black uppercase tracking-[0.2em] hover:bg-white/10 hover:border-white/20 transition-all duration-200 active:scale-[0.98]"
           >
             Limpiar Filtros
           </button>
@@ -347,7 +347,7 @@ export default function FilterDrawer({
           {/* Aplicar */}
           <button
             onClick={handleApply}
-            className="w-full py-4 rounded-2xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-black uppercase tracking-[0.2em] shadow-lg shadow-orange-600/30 hover:shadow-orange-500/40 transition-all duration-200 active:scale-[0.98]"
+            className="w-full py-4 rounded-2xl bg-amber-600 hover:bg-amber-500 text-white text-sm font-black uppercase tracking-[0.2em] shadow-lg shadow-amber-600/30 hover:shadow-amber-500/40 transition-all duration-200 active:scale-[0.98]"
           >
             Aplicar Selección
           </button>
@@ -365,3 +365,4 @@ export default function FilterDrawer({
     </>
   );
 }
+

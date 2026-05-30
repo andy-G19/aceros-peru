@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BlurFade } from './magicui/blur-fade';
 import { categories } from '../data/categories';
+import OptimizedImage from './OptimizedImage';
 
 // ── IMÁGENES (Ajustadas conceptualmente a 1150x600) ──
 const SUBCATEGORY_IMAGES = {
@@ -69,8 +70,8 @@ export default function SubcategoriesShowcase() {
           backgroundSize: '60px 60px',
         }}
       />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent" />
-      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-amber-600/5 blur-3xl pointer-events-none" />
 
       {/* ── CONTENEDOR PRINCIPAL ── */}
       <div className="relative max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 flex flex-col items-center">
@@ -78,9 +79,9 @@ export default function SubcategoriesShowcase() {
         {/* ── HEADER ── */}
         <BlurFade inView delay={0.05} duration={0.5} className="w-full max-w-[1150px]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-[3px] h-5 bg-orange-500 rounded-full" />
-            <span className="text-[10px] font-black text-orange-500/70 uppercase tracking-[0.3em]">
-              Filtro de Catálogo
+            <div className="w-[3px] h-5 bg-amber-500 rounded-full" />
+            <span className="text-[10px] font-black text-amber-500/70 uppercase tracking-[0.3em]">
+              Catálogo 2026
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
@@ -88,11 +89,11 @@ export default function SubcategoriesShowcase() {
               <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white leading-none mb-1">
                 Explora
               </h2>
-              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-orange-500 leading-none">
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-amber-500 leading-none">
                 Nuestras Líneas
               </h2>
             </div>
-            <p className="text-sm text-gray-500 max-w-xs leading-relaxed">
+            <p className="text-sm text-zinc-500 max-w-xs leading-relaxed">
               Filtra por categoría para encontrar las herramientas especializadas para tu trabajo.
             </p>
           </div>
@@ -109,8 +110,8 @@ export default function SubcategoriesShowcase() {
                   shrink-0 flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-black uppercase
                   tracking-widest transition-all duration-200
                   ${activeTab === cat.id
-                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30'
-                    : 'bg-[#16161f] border border-white/5 text-gray-400 hover:text-white hover:border-white/15 hover:bg-[#1a1a24]'}
+                    ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
+                    : 'bg-[#16161f] border border-white/5 text-zinc-400 hover:text-white hover:border-white/15 hover:bg-[#1a1a24]'}
                 `}
               >
                 <span className="material-symbols-outlined text-lg">{cat.icon}</span>
@@ -136,12 +137,16 @@ export default function SubcategoriesShowcase() {
                     <BlurFade key={sub.id} inView delay={i * 0.1} duration={0.5}>
                       <button
                         onClick={() => handleSubClick(activeCat.name, sub.name)}
-                        className="group relative overflow-hidden rounded-[2rem] w-full text-left border border-white/5 hover:border-orange-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 h-[400px] md:h-[600px]"
+                        className="group relative overflow-hidden rounded-[2rem] w-full text-left border border-white/5 hover:border-amber-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 h-[400px] md:h-[600px]"
                       >
                         {img ? (
-                          <img
+                          <OptimizedImage
                             src={img}
                             alt={sub.name}
+                            width={1150}
+                            height={600}
+                            mode="fill"
+                            sizes="(max-width: 768px) 100vw, 1150px"
                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                           />
                         ) : (
@@ -151,12 +156,12 @@ export default function SubcategoriesShowcase() {
                         {/* Overlays */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:via-black/30 transition-all duration-500" />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
-                        <div className="absolute top-0 left-0 right-0 h-[3px] bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                        <div className="absolute top-0 left-0 right-0 h-[3px] bg-amber-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                         {/* Top Badge */}
                         <div className="absolute top-6 left-6 md:top-8 md:left-8">
                           <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
-                            <span className="material-symbols-outlined text-orange-500 text-lg">{icon}</span>
+                            <span className="material-symbols-outlined text-amber-500 text-lg">{icon}</span>
                             <span className="text-xs font-black text-white/90 uppercase tracking-widest">
                               {activeCat.name}
                             </span>
@@ -164,30 +169,30 @@ export default function SubcategoriesShowcase() {
                         </div>
 
                         {/* Flecha Hover */}
-                        <div className="absolute top-6 right-6 md:top-8 md:right-8 flex items-center justify-center w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 group-hover:bg-orange-500 group-hover:border-orange-500 transition-all duration-300 transform group-hover:rotate-45">
+                        <div className="absolute top-6 right-6 md:top-8 md:right-8 flex items-center justify-center w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 group-hover:bg-amber-500 group-hover:border-amber-500 transition-all duration-300 transform group-hover:rotate-45">
                           <span className="text-white text-xl font-bold">↗</span>
                         </div>
 
                         {/* Contenido Textual (Más grande para el formato 1150x600) */}
                         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 w-full md:w-3/4 lg:w-2/3">
-                          <h3 className="text-xl md:text-2xl lg:text-3xl font-black uppercase text-white mb-4 group-hover:text-orange-400 transition-colors duration-300 leading-tight">
+                          <h3 className="text-xl md:text-2xl lg:text-3xl font-black uppercase text-white mb-4 group-hover:text-amber-400 transition-colors duration-300 leading-tight">
                             {sub.name}
                           </h3>
 
                           {desc && (
-                            <p className="text-gray-300 text-sm md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8">
+                            <p className="text-zinc-300 text-sm md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8">
                               {desc}
                             </p>
                           )}
 
                           <div className="flex flex-wrap items-center gap-4">
-                            <div className="flex items-center gap-2 bg-orange-500/20 backdrop-blur-sm border border-orange-500/30 px-4 py-2 rounded-full">
-                              <span className="material-symbols-outlined text-orange-500 text-sm md:text-base">inventory_2</span>
-                              <span className="text-[10px] md:text-xs font-black text-orange-400 uppercase tracking-widest">
+                            <div className="flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm border border-amber-500/30 px-4 py-2 rounded-full">
+                              <span className="material-symbols-outlined text-amber-500 text-sm md:text-base">inventory_2</span>
+                              <span className="text-[10px] md:text-xs font-black text-amber-400 uppercase tracking-widest">
                                 {sub.count} productos disponibles
                               </span>
                             </div>
-                            <div className="inline-flex items-center gap-2 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest group-hover:text-orange-500 transition-colors">
+                            <div className="inline-flex items-center gap-2 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest group-hover:text-amber-500 transition-colors">
                               Explorar Línea <span className="text-lg leading-none">→</span>
                             </div>
                           </div>
@@ -202,31 +207,35 @@ export default function SubcategoriesShowcase() {
               <BlurFade inView delay={0.1} duration={0.5}>
                 <button
                   onClick={() => handleMainCatClick(activeCat.name)}
-                  className="group relative overflow-hidden rounded-[2rem] w-full text-left border border-white/5 hover:border-orange-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 h-[400px] md:h-[600px]"
+                  className="group relative overflow-hidden rounded-[2rem] w-full text-left border border-white/5 hover:border-amber-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 h-[400px] md:h-[600px]"
                 >
-                  <img
+                  <OptimizedImage
                     src={MAIN_CATEGORY_IMAGES[activeCat.name] || 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1150&h=600&fit=crop'}
                     alt={activeCat.name}
+                    width={1150}
+                    height={600}
+                    mode="fill"
+                    sizes="(max-width: 768px) 100vw, 1150px"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   <div className="absolute inset-0 bg-[#0a0a0f]/20 group-hover:bg-transparent transition-colors duration-500" />
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-amber-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                   
                   <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-3/4 lg:w-2/3">
                     <div className="flex items-center gap-3 mb-4">
-                       <span className="material-symbols-outlined text-orange-500 text-2xl md:text-3xl">{activeCat.icon}</span>
-                       <span className="text-xs md:text-sm font-black text-orange-400 uppercase tracking-widest bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+                       <span className="material-symbols-outlined text-amber-500 text-2xl md:text-3xl">{activeCat.icon}</span>
+                       <span className="text-xs md:text-sm font-black text-amber-400 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
                          {activeCat.count} Productos
                        </span>
                     </div>
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-black uppercase text-white mb-4 group-hover:text-orange-400 transition-colors duration-300 leading-tight">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-black uppercase text-white mb-4 group-hover:text-amber-400 transition-colors duration-300 leading-tight">
                       {activeCat.name}
                     </h3>
-                    <p className="text-gray-300 mb-8 text-sm md:text-lg lg:text-xl leading-relaxed">
+                    <p className="text-zinc-300 mb-8 text-sm md:text-lg lg:text-xl leading-relaxed">
                       {activeCat.description}
                     </p>
-                    <div className="inline-flex items-center gap-2 bg-orange-500 text-white px-6 py-4 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest group-hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/25">
+                    <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-6 py-4 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest group-hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/25">
                       Ver Todos Los Productos <span className="text-xl leading-none">→</span>
                     </div>
                   </div>
@@ -243,7 +252,7 @@ export default function SubcategoriesShowcase() {
               <p className="text-base md:text-lg font-black text-white uppercase tracking-wide mb-1">
                 ¿No encuentras lo que buscas?
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-zinc-500">
                 Escríbenos por WhatsApp y te asesoramos en tu pedido al por mayor.
               </p>
             </div>

@@ -8,11 +8,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#ea580c",
-        "primary-hover": "#c2410c",
+        primary: "#f59e0b",
+        "primary-hover": "#d97706",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Rajdhani', 'Inter', 'sans-serif'],
       },
       animation: {
         "meteor": "meteor var(--duration, 8s) var(--delay, 0s) linear infinite",

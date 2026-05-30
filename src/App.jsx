@@ -17,7 +17,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-zinc-900">
       <Header onNavigate={handleNavigate} />
       <Routes>
         <Route path="/" element={<Home onNavigate={handleNavigate} />} />

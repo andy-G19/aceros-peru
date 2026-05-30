@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BlurFade } from '../components/magicui/blur-fade';
+import OptimizedImage from './OptimizedImage';
 
 /* ── Fotos del taller (placeholder con imágenes reales de herramientas/taller) ── */
 /* ── Seccion donde dice ¿Quienes somos? ── */
@@ -79,23 +80,23 @@ export default function AboutUs() {
           backgroundSize: '60px 60px',
         }}
       />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
-      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
+      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-amber-600/5 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12">
 
         {/* ── HEADER DE SECCIÓN ── */}
         <BlurFade inView delay={0.05} duration={0.5}>
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-[3px] h-5 bg-orange-500 rounded-full" />
-            <span className="text-[10px] font-black text-orange-500/70 uppercase tracking-[0.3em]">
+            <div className="w-[3px] h-5 bg-amber-500 rounded-full" />
+            <span className="text-[10px] font-black text-amber-500/70 uppercase tracking-[0.3em]">
               Nuestra Historia
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white leading-none mb-1">
             ¿Quiénes
           </h2>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-orange-500 leading-none mb-8">
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-amber-500 leading-none mb-8">
             Somos?
           </h2>
         </BlurFade>
@@ -106,9 +107,9 @@ export default function AboutUs() {
           {/* ── TEXTO ── */}
           <div>
             <BlurFade inView delay={0.1} duration={0.5}>
-              <div className="space-y-5 text-gray-400 leading-relaxed">
-                <p className="text-base md:text-lg text-gray-200 font-medium border-l-2 border-orange-500 pl-4">
-                  Somos <span className="text-orange-400 font-bold">Industrias Aceros Perú</span>, empresa distribuidora
+              <div className="space-y-5 text-zinc-400 leading-relaxed">
+                <p className="text-base md:text-lg text-zinc-200 font-medium border-l-2 border-amber-500 pl-4">
+                  Somos <span className="text-amber-400 font-bold">Industrias Aceros Perú</span>, empresa distribuidora
                   especializada en herramientas agrícolas y de construcción con más de{' '}
                   <span className="text-white font-bold">15 años</span> en el mercado peruano.
                 </p>
@@ -142,18 +143,17 @@ export default function AboutUs() {
               {/* Foto principal */}
               <div className="relative rounded-2xl overflow-hidden bg-[#111118] border border-white/5 shadow-2xl"
                 style={{ aspectRatio: '4/3' }}>
-                {TALLER_PHOTOS.map((photo, i) => (
-                  <img
-                    key={i}
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
-                    style={{
-                      opacity: activePhoto === i ? 1 : 0,
-                      transform: activePhoto === i ? 'scale(1)' : 'scale(1.04)',
-                    }}
-                  />
-                ))}
+                <OptimizedImage
+                  key={TALLER_PHOTOS[activePhoto].src}
+                  src={TALLER_PHOTOS[activePhoto].src}
+                  alt={TALLER_PHOTOS[activePhoto].alt || TALLER_PHOTOS[activePhoto].label}
+                  width={1200}
+                  height={900}
+                  mode="fill"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  eager
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
+                />
                 {/* Overlay gradiente */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
@@ -178,7 +178,7 @@ export default function AboutUs() {
                     onClick={() => handleDot(i)}
                     className={`rounded-full transition-all duration-300 ${
                       i === activePhoto
-                        ? 'w-6 h-2 bg-orange-500'
+                        ? 'w-6 h-2 bg-amber-500'
                         : 'w-2 h-2 bg-white/20 hover:bg-white/40'
                     }`}
                     aria-label={`Ver foto ${i + 1}`}
@@ -194,19 +194,27 @@ export default function AboutUs() {
                     onClick={() => handleDot(i)}
                     className={`relative rounded-xl overflow-hidden transition-all duration-200 ${
                       i === activePhoto
-                        ? 'ring-2 ring-orange-500 ring-offset-2 ring-offset-[#0d0d14] scale-[1.03]'
+                        ? 'ring-2 ring-amber-500 ring-offset-2 ring-offset-[#0d0d14] scale-[1.03]'
                         : 'opacity-40 hover:opacity-70'
                     }`}
                     style={{ aspectRatio: '1/1' }}
                   >
-                    <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
+                    <OptimizedImage
+                      src={photo.src}
+                      alt={photo.alt || photo.label}
+                      width={280}
+                      height={280}
+                      mode="fill"
+                      sizes="(max-width: 1024px) 22vw, 12vw"
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 ))}
               </div>
 
               {/* Elemento decorativo */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl border-2 border-orange-500/20 -z-10" />
-              <div className="absolute -top-4 -left-4 w-16 h-16 rounded-xl bg-orange-500/5 border border-orange-500/10 -z-10" />
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl border-2 border-amber-500/20 -z-10" />
+              <div className="absolute -top-4 -left-4 w-16 h-16 rounded-xl bg-amber-500/5 border border-amber-500/10 -z-10" />
             </div>
           </BlurFade>
         </div>
@@ -214,22 +222,22 @@ export default function AboutUs() {
         {/* ── VALORES / PILARES ── */}
         <BlurFade inView delay={0.1} duration={0.4}>
           <div className="border-t border-white/5 pt-12">
-            <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em] mb-8 text-center">
+            <p className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] mb-8 text-center">
               Nuestros pilares
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {VALUES.map((val, i) => (
                 <BlurFade key={val.title} inView delay={0.1 + i * 0.08} duration={0.4}>
                   <div className="group bg-[#111118] border border-white/5 rounded-2xl p-5
-                    hover:border-orange-500/25 hover:bg-[#16161f] transition-all duration-300">
-                    <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20
-                      flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
-                      <span className="material-symbols-outlined text-orange-500 text-lg">{val.icon}</span>
+                    hover:border-amber-500/25 hover:bg-[#16161f] transition-all duration-300">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20
+                      flex items-center justify-center mb-4 group-hover:bg-amber-500/20 transition-colors">
+                      <span className="material-symbols-outlined text-amber-500 text-lg">{val.icon}</span>
                     </div>
                     <h3 className="text-sm font-black uppercase tracking-wide text-white mb-2">
                       {val.title}
                     </h3>
-                    <p className="text-[11px] text-gray-500 leading-relaxed">
+                    <p className="text-[11px] text-zinc-500 leading-relaxed">
                       {val.desc}
                     </p>
                   </div>

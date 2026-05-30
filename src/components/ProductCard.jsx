@@ -2,6 +2,7 @@ import React from 'react';
 import { useCart } from '../context/CartContext';
 import { MagicCard } from './magicui/magic-card';
 import { BorderBeam } from './magicui/border-beam';
+import OptimizedImage from './OptimizedImage';
 
 /* ─── Etiquetas de venta por volumen ─────────────────────────── */
 const VOLUME_LABELS = {
@@ -35,7 +36,7 @@ const ProductCard = ({ product, onViewDetails }) => {
   return (
     <MagicCard
       onClick={() => onViewDetails(product)}
-      className="bg-[#16161f] border border-white/5 rounded-xl overflow-hidden cursor-pointer group hover:border-orange-500/30 transition-all duration-300"
+      className="bg-[#16161f] border border-white/5 rounded-xl overflow-hidden cursor-pointer group hover:border-amber-500/30 transition-all duration-300"
       gradientColor="#ea580c"
       gradientOpacity={0.1}
       gradientSize={200}
@@ -48,21 +49,25 @@ const ProductCard = ({ product, onViewDetails }) => {
       {/* ── Imagen ── */}
       <div className="relative bg-[#1e1e2a] overflow-hidden" style={{ aspectRatio: '1/1' }}>
         {displayImage ? (
-          <img
+          <OptimizedImage
             src={displayImage}
             alt={product.name}
+            width={420}
+            height={420}
+            mode="limit"
+            sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
             className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <span className="material-symbols-outlined text-gray-600 text-4xl">image_not_supported</span>
+            <span className="material-symbols-outlined text-zinc-600 text-4xl">image_not_supported</span>
           </div>
         )}
 
         {/* Badge volumen — esquina superior izquierda */}
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-[#0a0a0f]/80 backdrop-blur-sm border border-orange-500/30 px-1.5 py-0.5 rounded-md">
-          <span className="material-symbols-outlined text-orange-500 text-[10px]">{volume.icon}</span>
-          <span className="text-[9px] font-black text-orange-400 uppercase tracking-wide leading-none">
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-[#0a0a0f]/80 backdrop-blur-sm border border-amber-500/30 px-1.5 py-0.5 rounded-md">
+          <span className="material-symbols-outlined text-amber-500 text-[10px]">{volume.icon}</span>
+          <span className="text-[9px] font-black text-amber-400 uppercase tracking-wide leading-none">
             {volume.qty}
           </span>
         </div>
@@ -73,7 +78,7 @@ const ProductCard = ({ product, onViewDetails }) => {
 
         {/* Marca */}
         {product.brand && (
-          <p className="text-[9px] font-black text-orange-500/60 uppercase tracking-[0.2em] truncate leading-none">
+          <p className="text-[9px] font-black text-amber-500/60 uppercase tracking-[0.2em] truncate leading-none">
             {product.brand}
           </p>
         )}
@@ -85,10 +90,10 @@ const ProductCard = ({ product, onViewDetails }) => {
 
         {/* Etiqueta de venta por volumen */}
         <div className="flex items-center gap-1.5 py-2 px-2.5 rounded-lg bg-[#111118] border border-white/5">
-          <span className="material-symbols-outlined text-orange-500 text-sm flex-shrink-0">{volume.icon}</span>
+          <span className="material-symbols-outlined text-amber-500 text-sm flex-shrink-0">{volume.icon}</span>
           <div className="min-w-0">
             <p className="text-[10px] font-black text-white leading-none truncate">{volume.label}</p>
-            <p className="text-[9px] text-gray-500 mt-0.5 uppercase tracking-widest">
+            <p className="text-[9px] text-zinc-500 mt-0.5 uppercase tracking-widest">
               Precio a consultar
             </p>
           </div>
@@ -97,7 +102,7 @@ const ProductCard = ({ product, onViewDetails }) => {
         {/* Botón */}
         <button
           onClick={handleAddToCart}
-          className="w-full bg-orange-600 hover:bg-orange-500 active:scale-95 text-white py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
+          className="w-full bg-amber-600 hover:bg-amber-500 active:scale-95 text-white py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
         >
           <span className="material-symbols-outlined text-sm">add_shopping_cart</span>
           Cotizar

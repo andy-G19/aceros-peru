@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { products } from '../data/products';
 import { BlurFade } from '../components/magicui/blur-fade';
+import OptimizedImage from '../components/OptimizedImage';
 
 /* ══════════════════════════════════════════════════════════
    CONFIGURACIÓN GLOBAL — cambiar a false para ocultar precios
@@ -63,11 +64,11 @@ export default function ProductDetail() {
     return (
       <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
         <div className="text-center">
-          <span className="material-symbols-outlined text-6xl text-gray-700 mb-4 block">inventory_2</span>
-          <p className="text-gray-400 mb-6 text-lg">Producto no encontrado</p>
+          <span className="material-symbols-outlined text-6xl text-zinc-700 mb-4 block">inventory_2</span>
+          <p className="text-zinc-400 mb-6 text-lg">Producto no encontrado</p>
           <button
             onClick={() => navigate('/categories')}
-            className="bg-orange-600 hover:bg-orange-500 text-white px-8 py-3 rounded-xl font-bold uppercase tracking-wide"
+            className="bg-amber-600 hover:bg-amber-500 text-white px-8 py-3 rounded-xl font-bold uppercase tracking-wide"
           >
             Ver productos
           </button>
@@ -115,14 +116,14 @@ export default function ProductDetail() {
       <div className="sticky top-0 z-20 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-white/5 px-4 py-3 flex items-center justify-between">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-400 hover:text-orange-500 transition-colors text-sm"
+          className="flex items-center gap-2 text-zinc-400 hover:text-amber-500 transition-colors text-sm"
         >
           <span className="material-symbols-outlined text-base">arrow_back</span>
           <span>Volver</span>
         </button>
         <button
           onClick={() => setLiked(p => !p)}
-          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${liked ? 'bg-red-500/20 text-red-400' : 'bg-white/5 text-gray-500 hover:text-red-400'}`}
+          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${liked ? 'bg-red-500/20 text-red-400' : 'bg-white/5 text-zinc-500 hover:text-red-400'}`}
         >
           <svg className={`w-4 h-4 ${liked ? 'fill-current' : 'fill-none'}`} stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
@@ -133,12 +134,12 @@ export default function ProductDetail() {
       <div className="max-w-5xl mx-auto px-4 pt-5">
 
         {/* ── Breadcrumb ───────────────────────────────── */}
-        <div className="flex items-center gap-1.5 text-[10px] text-gray-600 mb-5 font-medium uppercase tracking-wide">
-          <button onClick={() => navigate('/')} className="hover:text-orange-500 transition-colors">Inicio</button>
+        <div className="flex items-center gap-1.5 text-[10px] text-zinc-600 mb-5 font-medium uppercase tracking-wide">
+          <button onClick={() => navigate('/')} className="hover:text-amber-500 transition-colors">Inicio</button>
           <span className="material-symbols-outlined text-[10px]">chevron_right</span>
-          <button onClick={() => navigate('/categories')} className="hover:text-orange-500 transition-colors">Catálogo</button>
+          <button onClick={() => navigate('/categories')} className="hover:text-amber-500 transition-colors">Catálogo</button>
           <span className="material-symbols-outlined text-[10px]">chevron_right</span>
-          <span className="text-orange-500 truncate max-w-[140px]">{product.name}</span>
+          <span className="text-amber-500 truncate max-w-[140px]">{product.name}</span>
         </div>
 
         {/* ══ LAYOUT DESKTOP: 2 cols ══════════════════════ */}
@@ -158,7 +159,7 @@ export default function ProductDetail() {
 
                 {/* Badge categoría */}
                 <div className="absolute top-3 right-3 z-10">
-                  <span className="bg-orange-600/20 border border-orange-500/40 text-orange-400 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-full">
+                  <span className="bg-amber-600/20 border border-amber-500/40 text-amber-400 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-full">
                     {product.category}
                   </span>
                 </div>
@@ -166,14 +167,19 @@ export default function ProductDetail() {
                 {/* Imagen */}
                 <div className="aspect-square flex items-center justify-center p-4 sm:p-1 cursor-zoom-in">
                   {images[activeImg] ? (
-                    <img
+                    <OptimizedImage
                       src={images[activeImg]}
                       alt={product.name}
                       onClick={() => setZoomOpen(true)}
+                      eager
+                      width={900}
+                      height={900}
+                      mode="limit"
+                      sizes="(max-width: 1024px) 90vw, 45vw"
                       className="w-full h-full object-contain transition-opacity duration-300 rounded-2xl hover:opacity-80"
                     />
                   ) : (
-                    <div className="flex flex-col items-center gap-3 text-gray-700">
+                    <div className="flex flex-col items-center gap-3 text-zinc-700">
                       <span className="material-symbols-outlined text-7xl">image_not_supported</span>
                       <span className="text-xs uppercase tracking-widest">Sin imagen</span>
                     </div>
@@ -191,15 +197,24 @@ export default function ProductDetail() {
                     onClick={() => setActiveImg(i)}
                     className={`w-14 h-14 rounded-xl overflow-hidden border-2 flex-shrink-0 transition-all ${
                       activeImg === i
-                        ? 'border-orange-500 shadow-md shadow-orange-500/30 scale-105'
+                        ? 'border-amber-500 shadow-md shadow-amber-500/30 scale-105'
                         : 'border-white/8 opacity-50 hover:opacity-80'
                     }`}
                   >
                     {img ? (
-                      <img src={img} alt="" className="w-full h-full object-contain p-1 bg-[#111118]" />
+                      <OptimizedImage
+                        src={img}
+                        alt=""
+                        width={80}
+                        height={80}
+                        mode="limit"
+                        sizes="80px"
+                        placeholderBlur={false}
+                        className="w-full h-full object-contain p-1 bg-[#111118]"
+                      />
                     ) : (
                       <div className="w-full h-full bg-[#111118] flex items-center justify-center">
-                        <span className="material-symbols-outlined text-xs text-gray-600">image</span>
+                        <span className="material-symbols-outlined text-xs text-zinc-600">image</span>
                       </div>
                     )}
                   </button>
@@ -214,7 +229,7 @@ export default function ProductDetail() {
 
               {/* Marca */}
               {product.brand && (
-                <p className="text-[10px] font-black text-orange-500/70 uppercase tracking-[0.3em] mb-2">
+                <p className="text-[10px] font-black text-amber-500/70 uppercase tracking-[0.3em] mb-2">
                   {product.brand}
                 </p>
               )}
@@ -225,14 +240,14 @@ export default function ProductDetail() {
               </h1>
 
               {/* Descripción corta */}
-              <p className="text-sm text-gray-400 leading-relaxed mb-5 border-l-2 border-orange-500/40 pl-3">
+              <p className="text-sm text-zinc-400 leading-relaxed mb-5 border-l-2 border-amber-500/40 pl-3">
                 {product.description}
               </p>
 
               {/* 5. NUEVO: UI DE SELECCIÓN DE VARIANTES (Tamaños) */}
               {product.sizes && product.sizes.length > 0 && (
                 <div className="mb-5">
-                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">
+                  <label className="block text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">
                     Seleccionar Tamaño / Modelo
                   </label>
                   <div className="grid grid-cols-1 gap-2">
@@ -242,13 +257,13 @@ export default function ProductDetail() {
                         onClick={() => setSelectedSize(size)}
                         className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
                           selectedSize?.label === size.label
-                            ? 'bg-orange-500/10 border-orange-500 text-white shadow-sm shadow-orange-500/20'
-                            : 'bg-[#111118] border-white/5 text-gray-400 hover:border-white/20 hover:text-gray-200'
+                            ? 'bg-amber-500/10 border-amber-500 text-white shadow-sm shadow-amber-500/20'
+                            : 'bg-[#111118] border-white/5 text-zinc-400 hover:border-white/20 hover:text-zinc-200'
                         }`}
                       >
                         <span>{size.label}</span>
                         {SHOW_PRICES && size.price !== undefined && (
-                          <span className={selectedSize?.label === size.label ? 'text-orange-400 font-black' : 'text-gray-500'}>
+                          <span className={selectedSize?.label === size.label ? 'text-amber-400 font-black' : 'text-zinc-500'}>
                             S/ {size.price.toFixed(2)}
                           </span>
                         )}
@@ -263,7 +278,7 @@ export default function ProductDetail() {
                 <div className="mb-5 p-4 bg-[#111118] rounded-2xl border border-white/5">
                   <div className="flex items-end gap-3 flex-wrap">
                     {product.originalPrice && (
-                      <span className="text-sm text-gray-600 line-through">
+                      <span className="text-sm text-zinc-600 line-through">
                         S/ {product.originalPrice.toFixed(2)}
                       </span>
                     )}
@@ -272,7 +287,7 @@ export default function ProductDetail() {
                       S/ {displayPrice?.toFixed(2)}
                     </span>
                     {product.discount > 0 && (
-                      <span className="mb-1 bg-orange-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-lg tracking-widest">
+                      <span className="mb-1 bg-amber-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-lg tracking-widest">
                         AHORRA {product.discount}%
                       </span>
                     )}
@@ -285,14 +300,14 @@ export default function ProductDetail() {
                 </div>
               ) : (
                 /* MODO CATÁLOGO — sin precios */
-                <div className="mb-5 p-4 bg-[#111118] rounded-2xl border border-orange-500/20">
+                <div className="mb-5 p-4 bg-[#111118] rounded-2xl border border-amber-500/20">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-orange-500/15 flex items-center justify-center flex-shrink-0">
-                      <span className="material-symbols-outlined text-orange-500 text-xl">request_quote</span>
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+                      <span className="material-symbols-outlined text-amber-500 text-xl">request_quote</span>
                     </div>
                     <div>
                       <p className="text-sm font-black text-white">{vol.label}</p>
-                      <p className="text-[10px] text-gray-500 mt-0.5 uppercase tracking-widest">{vol.minLabel}</p>
+                      <p className="text-[10px] text-zinc-500 mt-0.5 uppercase tracking-widest">{vol.minLabel}</p>
                     </div>
                   </div>
                 </div>
@@ -303,7 +318,7 @@ export default function ProductDetail() {
                 <div className={`grid gap-2 mb-5 ${quickSpecs.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
                   {quickSpecs.map((s, i) => (
                     <div key={i} className="bg-[#111118] border border-white/5 rounded-xl px-3 py-2.5">
-                      <p className="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-1">{s.label}</p>
+                      <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">{s.label}</p>
                       <p className="text-xs font-bold text-white truncate" title={s.value}>{s.value || '—'}</p>
                     </div>
                   ))}
@@ -322,18 +337,18 @@ export default function ProductDetail() {
 
                 {/* Selector cantidad */}
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-gray-600 uppercase tracking-widest font-bold">{vol.unit}s</span>
+                  <span className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">{vol.unit}s</span>
                   <div className="flex items-center bg-[#111118] border border-white/10 rounded-xl overflow-hidden">
                     <button
                       onClick={() => setQty(q => Math.max(1, q - 1))}
-                      className="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-orange-500 transition-colors"
+                      className="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-amber-500 transition-colors"
                     >
                       <span className="material-symbols-outlined text-base">remove</span>
                     </button>
                     <span className="w-9 text-center text-sm font-black text-white tabular-nums">{qty}</span>
                     <button
                       onClick={() => setQty(q => Math.min(product.stock || 99, q + 1))}
-                      className="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-orange-500 transition-colors"
+                      className="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-amber-500 transition-colors"
                     >
                       <span className="material-symbols-outlined text-base">add</span>
                     </button>
@@ -348,7 +363,7 @@ export default function ProductDetail() {
                   className={`w-full py-4 rounded-2xl font-black uppercase tracking-widest text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
                     addedAnim
                       ? 'bg-emerald-500 shadow-lg shadow-emerald-500/30 scale-[0.98]'
-                      : 'bg-orange-600 hover:bg-orange-500 shadow-lg shadow-orange-600/30 hover:shadow-orange-500/40 active:scale-[0.98]'
+                      : 'bg-amber-600 hover:bg-amber-500 shadow-lg shadow-amber-600/30 hover:shadow-amber-500/40 active:scale-[0.98]'
                   }`}
                 >
                   <span className="material-symbols-outlined text-lg">
@@ -364,7 +379,7 @@ export default function ProductDetail() {
                   className="w-full py-3.5 rounded-2xl font-black uppercase tracking-widest text-sm bg-[#111118] border border-white/10 hover:border-[#25D366]/40 hover:bg-[#25D366]/10 flex items-center justify-center gap-2 transition-all duration-300 active:scale-[0.98]"
                 >
                   <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse flex-shrink-0" />
-                  <span className="text-gray-200">Cotizar por WhatsApp</span>
+                  <span className="text-zinc-200">Cotizar por WhatsApp</span>
                 </a>
               </div>
 
@@ -378,13 +393,13 @@ export default function ProductDetail() {
           <section className="mt-10">
             <BlurFade inView delay={0.05} duration={0.35}>
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-1 h-7 bg-orange-500 rounded-full" />
+                <div className="w-1 h-7 bg-amber-500 rounded-full" />
                 <h2 className="text-lg font-black uppercase tracking-widest text-white">Detalles Técnicos</h2>
               </div>
               <div className="bg-[#111118] border border-white/5 rounded-2xl overflow-hidden divide-y divide-white/5">
                 {specsParsed.map((s, i) => (
                   <div key={i} className="flex items-start justify-between px-5 py-3.5 hover:bg-white/[0.02] transition-colors">
-                    <span className="text-xs text-gray-500 flex-shrink-0 w-2/5 font-medium">{s.label}</span>
+                    <span className="text-xs text-zinc-500 flex-shrink-0 w-2/5 font-medium">{s.label}</span>
                     <span className="text-xs font-bold text-white text-right ml-3">{s.value || '—'}</span>
                   </div>
                 ))}
@@ -398,18 +413,18 @@ export default function ProductDetail() {
           <section className="mt-8">
             <BlurFade inView delay={0.05} duration={0.35}>
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-1 h-7 bg-orange-500 rounded-full" />
+                <div className="w-1 h-7 bg-amber-500 rounded-full" />
                 <h2 className="text-lg font-black uppercase tracking-widest text-white">Usos Recomendados</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {product.recommendations.map((rec, i) => (
                   <div key={i} className="flex items-start gap-3 bg-[#111118] border border-white/5 rounded-xl px-4 py-3">
-                    <span className="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-2.5 h-2.5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                    <span className="w-5 h-5 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-2.5 h-2.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                       </svg>
                     </span>
-                    <p className="text-xs text-gray-400 leading-relaxed">{rec}</p>
+                    <p className="text-xs text-zinc-400 leading-relaxed">{rec}</p>
                   </div>
                 ))}
               </div>
@@ -427,7 +442,7 @@ export default function ProductDetail() {
             className={`flex-1 py-3.5 rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2 transition-all duration-300 ${
               addedAnim
                 ? 'bg-emerald-500 shadow-lg shadow-emerald-500/30'
-                : 'bg-orange-600 hover:bg-orange-500 shadow-lg shadow-orange-600/30'
+                : 'bg-amber-600 hover:bg-amber-500 shadow-lg shadow-amber-600/30'
             }`}
           >
             <span className="material-symbols-outlined text-base">
@@ -458,9 +473,14 @@ export default function ProductDetail() {
             className="relative max-w-2xl max-h-[80vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <OptimizedImage
               src={images[activeImg]}
               alt={product.name}
+              width={1400}
+              height={1400}
+              mode="limit"
+              sizes="95vw"
+              eager
               className="w-full h-full object-contain rounded-2xl"
             />
             

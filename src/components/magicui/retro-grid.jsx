@@ -34,7 +34,7 @@ export function RetroGrid({
       </div>
 
       {/* Gradient fade at bottom */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent to-90%" />
+      <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent to-90%" />
     </div>
   );
 }

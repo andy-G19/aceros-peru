@@ -8,7 +8,7 @@ export const rastrillos = [
     originalPrice: 48.00,
     discount: 21,
     images: [
-      "https://images.unsplash.com/photo-1585435465945-bef5a93f8849?w=800"
+      null
     ],
     category: "Rastrillos",
     seller: "Codimag",
@@ -37,7 +37,7 @@ export const rastrillos = [
     originalPrice: 55.00,
     discount: 23,
     images: [
-      "https://images.unsplash.com/photo-1598901847919-b95dd0fabbb6?w=800"
+      null
     ],
     category: "Rastrillos",
     seller: "Codimag",
@@ -66,7 +66,7 @@ export const rastrillos = [
     originalPrice: 60.00,
     discount: 20,
     images: [
-      "https://images.unsplash.com/photo-1592150621344-79838b169521?w=800"
+      null
     ],
     category: "Rastrillos",
     seller: "Codimag",
@@ -95,7 +95,7 @@ export const rastrillos = [
     originalPrice: 70.00,
     discount: 21,
     images: [
-      "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800"
+      null
     ],
     category: "Rastrillos",
     seller: "Codimag",
@@ -124,7 +124,7 @@ export const rastrillos = [
     originalPrice: 24.00,
     discount: 23,
     images: [
-      "https://images.unsplash.com/photo-1617576621019-ac52274185ee?w=800"
+      null
     ],
     category: "Rastrillos",
     seller: "Codimag",
