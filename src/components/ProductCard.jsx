@@ -64,13 +64,6 @@ const ProductCard = ({ product, onViewDetails }) => {
           </div>
         )}
 
-        {/* Badge volumen — esquina superior izquierda */}
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-[#0a0a0f]/80 backdrop-blur-sm border border-amber-500/30 px-1.5 py-0.5 rounded-md">
-          <span className="material-symbols-outlined text-amber-500 text-[10px]">{volume.icon}</span>
-          <span className="text-[9px] font-black text-amber-400 uppercase tracking-wide leading-none">
-            {volume.qty}
-          </span>
-        </div>
       </div>
 
       {/* ── Info ── */}
@@ -83,6 +76,10 @@ const ProductCard = ({ product, onViewDetails }) => {
           </p>
         )}
 
+
+        <p className="text-[12px] font-black text-zinc-500 uppercase tracking-[0.2em] leading-none">
+          Cod: {product.id}
+        </p>
         {/* Nombre — más grande y prominente */}
         <h3 className="text-sm font-black text-white uppercase leading-tight tracking-wide line-clamp-3">
           {product.name}
@@ -113,3 +110,6 @@ const ProductCard = ({ product, onViewDetails }) => {
 };
 
 export default ProductCard;
+
+
+

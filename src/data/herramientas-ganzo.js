@@ -3,7 +3,7 @@ export const herramientasGanzo = [
   //Lampas Ganzo
   /////////////////////////////////
   {
-    id: 101,
+    id: "HER-LAMGA-001",
     name: "Lampa Ganzo Extra Grande",
     brand: "HERRAMIENTAS GANZO",
     price: 65.90,
@@ -34,7 +34,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 102,
+    id: "HER-LAMGA-002",
     name: "Lampa Ganzo Grande",
     brand: "HERRAMIENTAS GANZO",
     price: 58.50,
@@ -65,7 +65,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 103,
+    id: "HER-LAMGA-003",
     name: "Lampa Ganzo Estándar",
     brand: "HERRAMIENTAS GANZO",
     price: 49.90,
@@ -96,7 +96,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 104,
+    id: "HER-LAMGA-004",
     name: "Lampa Ganzo Mediano",
     brand: "HERRAMIENTAS GANZO",
     price: 42.00,
@@ -126,7 +126,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 105,
+    id: "HER-LAMGA-005",
     name: "Lampa Ganzo Pequeños",
     brand: "HERRAMIENTAS GANZO",
     price: 35.50,
@@ -156,7 +156,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 106,
+    id: "HER-LAMGA-006",
     name: "Lampa Ganzo Chiquitos",
     brand: "HERRAMIENTAS GANZO",
     price: 25.00,
@@ -186,7 +186,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 107,
+    id: "HER-LAMGA-007",
     name: "Lampa Ganzo Bebitos",
     brand: "HERRAMIENTAS GANZO",
     price: 18.90,
@@ -221,7 +221,7 @@ export const herramientasGanzo = [
   //Lampas Tipo Cuchara Ganzo
   /////////////////////////////////
   {
-    id: 108,
+    id: "HER-LAMGA-008",
     name: "Lampa Ganzo Tipo Cuchara Grande",
     brand: "HERRAMIENTAS GANZO",
     price: 62.50,
@@ -252,7 +252,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 109,
+    id: "HER-LAMGA-009",
     name: "Lampa Ganzo Tipo Cuchara Estándar",
     brand: "HERRAMIENTAS GANZO",
     price: 54.90,
@@ -283,7 +283,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 110,
+    id: "HER-LAMGA-010",
     name: "Lampa Ganzo Tipo Cuchara Mediano",
     brand: "HERRAMIENTAS GANZO",
     price: 46.00,
@@ -313,7 +313,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 111,
+    id: "HER-LAMGA-011",
     name: "Lampa Ganzo Tipo Cuchara Pequeño",
     brand: "HERRAMIENTAS GANZO",
     price: 38.00,
@@ -343,7 +343,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 112,
+    id: "HER-LAMGA-012",
     name: "Lampa Ganzo Tipo Cuchara Chiquito",
     brand: "HERRAMIENTAS GANZO",
     price: 28.50,
@@ -377,7 +377,7 @@ export const herramientasGanzo = [
   //Lampas Tipo Pala Ganzo
   /////////////////////////////////
   {
-    id: 113,
+    id: "HER-LAMGA-013",
     name: "Lampa Ganzo Tipo Pala Grande",
     brand: "HERRAMIENTAS GANZO",
     price: 59.90,
@@ -408,7 +408,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 114,
+    id: "HER-LAMGA-014",
     name: "Lampa Ganzo Tipo Pala Mediano",
     brand: "HERRAMIENTAS GANZO",
     price: 52.00,
@@ -439,7 +439,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 115,
+    id: "HER-LAMGA-015",
     name: "Lampa Ganzo Tipo Pala Pequeño",
     brand: "HERRAMIENTAS GANZO",
     price: 44.50,
@@ -469,7 +469,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 116,
+    id: "HER-LAMGA-016",
     name: "Lampa Ganzo Tipo Pala Chiquito",
     brand: "HERRAMIENTAS GANZO",
     price: 32.00,
@@ -503,7 +503,7 @@ export const herramientasGanzo = [
   //Rejillas Ganzo
   /////////////////////////////////
   {
-    id: 117,
+    id: "HER-REJGA-018",
     name: "Rejillas Ganzo Corazón Grande",
     brand: "HERRAMIENTAS GANZO",
     price: 68.00,
@@ -565,7 +565,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 119,
+    id: "HER-REJGA-019",
     name: "Rejilla Ganzo Estándar 24 cm",
     brand: "HERRAMIENTAS GANZO",
     price: 48.90,
@@ -595,7 +595,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 120,
+    id: "HER-REJGA-020",
     name: "Rejilla Ganzo de 22 cm",
     brand: "HERRAMIENTAS GANZO",
     price: 42.00,
@@ -625,7 +625,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 121,
+    id: "HER-REJGA-021",
     name: "Rejilla Ganzo Chiquito",
     brand: "HERRAMIENTAS GANZO",
     price: 32.50,
@@ -655,7 +655,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 122,
+    id: "HER-REJGA-022",
     name: "Rejilla Ganzo Punta Cortado 22 cm",
     brand: "HERRAMIENTAS GANZO",
     price: 45.00,
@@ -685,7 +685,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 123,
+    id: "HER-REJGA-023",
     name: "Rejilla Ganzo Bebito",
     brand: "HERRAMIENTAS GANZO",
     price: 22.00,

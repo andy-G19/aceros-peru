@@ -9,6 +9,7 @@ import { ShimmerButton } from '../components/magicui/shimmer-button';
 import AboutUs from '../components/AboutUs';
 import LocationSection from '../components/LocationSection';
 import SubcategoriesShowcase from '../components/SubcategoriesShowcase';
+import PillarsSection from '../components/PillarsSection';
 
 const stats = [
   { value: 50, suffix: '+', label: 'Lineas de productos' },
@@ -142,42 +143,7 @@ export default function Home() {
 
       <AboutUs />
 
-      <section className="border-t border-white/5 bg-zinc-900/80 px-4 py-10 md:px-8">
-        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-3">
-          {[
-            {
-              icon: 'precision_manufacturing',
-              title: 'Fabricacion robusta',
-              desc: 'Herramientas y piezas pensadas para uso intensivo.',
-              delay: 0.1,
-            },
-            {
-              icon: 'verified_user',
-              title: 'Garantia real',
-              desc: 'Respaldo tecnico y control de calidad en cada lote.',
-              delay: 0.2,
-            },
-            {
-              icon: 'support_agent',
-              title: 'Asesoria tecnica',
-              desc: 'Te ayudamos a elegir soluciones segun tu trabajo.',
-              delay: 0.3,
-            },
-          ].map((b) => (
-            <BlurFade key={b.title} inView delay={b.delay} duration={0.4}>
-              <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10">
-                  <span className="material-symbols-outlined text-xl text-amber-400">{b.icon}</span>
-                </div>
-                <div>
-                  <p className="text-sm font-bold uppercase tracking-wide text-white">{b.title}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-zinc-400">{b.desc}</p>
-                </div>
-              </div>
-            </BlurFade>
-          ))}
-        </div>
-      </section>
+      
 
       <SubcategoriesShowcase />
 
@@ -219,6 +185,49 @@ export default function Home() {
       </section>
 
       <LocationSection />
+      <section className="border-t border-white/5 bg-zinc-900/80 px-4 py-10 md:px-8">
+        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-3">
+          {[
+            {
+              icon: 'precision_manufacturing',
+              title: 'Fabricacion robusta',
+              desc: 'Herramientas y piezas pensadas para uso intensivo.',
+              delay: 0.1,
+            },
+            {
+              icon: 'verified_user',
+              title: 'Garantia real',
+              desc: 'Respaldo tecnico y control de calidad en cada lote.',
+              delay: 0.2,
+            },
+            {
+              icon: 'support_agent',
+              title: 'Asesoria tecnica',
+              desc: 'Te ayudamos a elegir soluciones segun tu trabajo.',
+              delay: 0.3,
+            },
+            {
+              icon: 'local_shipping',
+              title: 'Distribuimos a todo el Perú',
+              desc: 'Costa, sierra o selva.',
+              delay: 0.4,
+            }
+          ].map((b) => (
+            <BlurFade key={b.title} inView delay={b.delay} duration={0.4}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10">
+                  <span className="material-symbols-outlined text-xl text-amber-400">{b.icon}</span>
+                </div>
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-wide text-white">{b.title}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-zinc-400">{b.desc}</p>
+                </div>
+              </div>
+            </BlurFade>
+          ))}
+        </div>
+      </section>
+      <PillarsSection />
 
       <a
         href="https://wa.me/51983955913"

@@ -2,51 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from './OptimizedImage';
 
-/* ── Fotos del taller (placeholder con imágenes reales de herramientas/taller) ── */
-/* ── Seccion donde dice ¿Quienes somos? ── */
+/* Fotos del taller */
 const TALLER_PHOTOS = [
   {
     src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/a0ddcf2e-6a99-42ed-bf2e-947614c2068c_sxy89q.jpg',
-    //alt: 'Herramientas Aceros Perú',
     label: 'Taller Industrias Aceros Perú',
   },
   {
     src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/04369818-d376-4df7-843a-f175d032f733_zsasut.jpg',
-    //alt: 'Herramientas Ganzo',
     label: 'Estación de Pintura',
   },
   {
     src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319973/Gemini_Generated_Image_5ydhss5ydhss5ydh_uiapzo.png',
-    //alt: 'Rejillas y bieldos',
-    label: 'Estación de Forjado' ,
+    label: 'Estación de Forjado',
   },
   {
     src: 'https://res.cloudinary.com/daq3sbggo/image/upload/v1779319971/57539d80-49ae-4bd9-b023-4800e497a410_ji0yos.jpg',
-    //alt: 'Lampas tipo cuchara',
     label: 'Empaquetado y Envíos',
-  },
-];
-
-const VALUES = [
-  {
-    icon: 'handyman',
-    title: 'Artesanía Nacional',
-    desc: 'Cada herramienta es fabricada con acero nacional de alta tenacidad, controlando cada etapa del proceso productivo.',
-  },
-  {
-    icon: 'verified_user',
-    title: 'Garantía Real',
-    desc: 'Respaldamos nuestros productos con garantía de fábrica. Si falla, la reponemos sin preguntas.',
-  },
-  {
-    icon: 'groups',
-    title: 'Compromiso Agrícola',
-    desc: 'Trabajamos de la mano con agricultores, ferreterías y contratistas para entender sus necesidades reales.',
-  },
-  {
-    icon: 'timeline',
-    title: '+15 Años de Experiencia',
-    desc: 'Desde Andahuaylas-Apurímac distribuimos a todo el Perú, con conocimiento profundo del sector agrícola y de construcción.',
   },
 ];
 
@@ -71,7 +43,6 @@ export default function AboutUs() {
 
   return (
     <section className="relative overflow-hidden bg-[#0d0d14] py-16 md:py-24">
-      {/* ── Decoración de fondo ── */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
@@ -84,8 +55,6 @@ export default function AboutUs() {
       <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-amber-600/5 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12">
-
-        {/* ── HEADER DE SECCIÓN ── */}
         <BlurFade inView delay={0.05} duration={0.5}>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-[3px] h-5 bg-amber-500 rounded-full" />
@@ -101,10 +70,7 @@ export default function AboutUs() {
           </h2>
         </BlurFade>
 
-        {/* ── GRID PRINCIPAL ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-
-          {/* ── TEXTO ── */}
           <div>
             <BlurFade inView delay={0.1} duration={0.5}>
               <div className="space-y-5 text-zinc-400 leading-relaxed">
@@ -133,16 +99,15 @@ export default function AboutUs() {
                   vía WhatsApp.
                 </p>
               </div>
-
             </BlurFade>
           </div>
 
-          {/* ── GALERÍA DE FOTOS ── */}
           <BlurFade inView delay={0.2} duration={0.5}>
             <div className="relative">
-              {/* Foto principal */}
-              <div className="relative rounded-2xl overflow-hidden bg-[#111118] border border-white/5 shadow-2xl"
-                style={{ aspectRatio: '4/3' }}>
+              <div
+                className="relative rounded-2xl overflow-hidden bg-[#111118] border border-white/5 shadow-2xl"
+                style={{ aspectRatio: '4/3' }}
+              >
                 <OptimizedImage
                   key={TALLER_PHOTOS[activePhoto].src}
                   src={TALLER_PHOTOS[activePhoto].src}
@@ -154,39 +119,32 @@ export default function AboutUs() {
                   eager
                   className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                 />
-                {/* Overlay gradiente */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                {/* Label foto activa */}
                 <div className="absolute bottom-4 left-4">
                   <span className="text-[10px] font-black text-white/80 uppercase tracking-widest bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
                     {TALLER_PHOTOS[activePhoto].label}
                   </span>
                 </div>
 
-                {/* Contador fotos */}
                 <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-2.5 py-1 text-[10px] text-white/70 font-bold">
                   {activePhoto + 1} / {TALLER_PHOTOS.length}
                 </div>
               </div>
 
-              {/* Dots de navegación */}
               <div className="flex justify-center gap-2 mt-4">
                 {TALLER_PHOTOS.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => handleDot(i)}
                     className={`rounded-full transition-all duration-300 ${
-                      i === activePhoto
-                        ? 'w-6 h-2 bg-amber-500'
-                        : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                      i === activePhoto ? 'w-6 h-2 bg-amber-500' : 'w-2 h-2 bg-white/20 hover:bg-white/40'
                     }`}
                     aria-label={`Ver foto ${i + 1}`}
                   />
                 ))}
               </div>
 
-              {/* Thumbnails strip */}
               <div className="grid grid-cols-4 gap-2 mt-3">
                 {TALLER_PHOTOS.map((photo, i) => (
                   <button
@@ -212,43 +170,13 @@ export default function AboutUs() {
                 ))}
               </div>
 
-              {/* Elemento decorativo */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl border-2 border-amber-500/20 -z-10" />
               <div className="absolute -top-4 -left-4 w-16 h-16 rounded-xl bg-amber-500/5 border border-amber-500/10 -z-10" />
             </div>
           </BlurFade>
         </div>
-
-        {/* ── VALORES / PILARES ── */}
-        <BlurFade inView delay={0.1} duration={0.4}>
-          <div className="border-t border-white/5 pt-12">
-            <p className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] mb-8 text-center">
-              Nuestros pilares
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {VALUES.map((val, i) => (
-                <BlurFade key={val.title} inView delay={0.1 + i * 0.08} duration={0.4}>
-                  <div className="group bg-[#111118] border border-white/5 rounded-2xl p-5
-                    hover:border-amber-500/25 hover:bg-[#16161f] transition-all duration-300">
-                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20
-                      flex items-center justify-center mb-4 group-hover:bg-amber-500/20 transition-colors">
-                      <span className="material-symbols-outlined text-amber-500 text-lg">{val.icon}</span>
-                    </div>
-                    <h3 className="text-sm font-black uppercase tracking-wide text-white mb-2">
-                      {val.title}
-                    </h3>
-                    <p className="text-[11px] text-zinc-500 leading-relaxed">
-                      {val.desc}
-                    </p>
-                  </div>
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        </BlurFade>
       </div>
 
-      {/* Línea decorativa inferior */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </section>
   );

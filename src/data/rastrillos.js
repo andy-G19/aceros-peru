@@ -1,7 +1,7 @@
 export const rastrillos = [
   
   {
-    id: 136,
+    id: "RAS-RASDE-036",
     name: "Rastrillo de 9 Dientes con Mango de Tubo",
     brand: null,
     price: 38.00,
@@ -30,7 +30,7 @@ export const rastrillos = [
     ]
   },
   {
-    id: 137,
+    id: "RAS-RASDE-037",
     name: "Rastrillo de 10 Dientes con Mango de Tubo",
     brand: null,
     price: 42.50,
@@ -59,7 +59,7 @@ export const rastrillos = [
     ]
   },
   {
-    id: 138,
+    id: "RAS-RASDE-038",
     name: "Rastrillo de 12 Dientes con Mango de Tubo",
     brand: null,
     price: 48.00,
@@ -88,7 +88,7 @@ export const rastrillos = [
     ]
   },
   {
-    id: 139,
+    id: "RAS-RASDE-039",
     name: "Rastrillo de 14 Dientes con Mango de Tubo",
     brand: null,
     price: 55.00,
@@ -117,7 +117,7 @@ export const rastrillos = [
     ]
   },
   {
-    id: 140,
+    id: "RAS-MANDE-040",
     name: "Manitos de 4 dientes",
     brand: null,
     price: 18.50,

@@ -6,8 +6,8 @@ import OptimizedImage from './OptimizedImage';
 
 // ── IMÁGENES (Ajustadas conceptualmente a 1150x600) ──
 const SUBCATEGORY_IMAGES = {
-  'Lampas': 'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg',
-  'Rejillas': 'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304127/Rejilla_Triangulo_xzii78.jpg',
+  'Lampas': 'https://res.cloudinary.com/daq3sbggo/image/upload/v1780403563/29_hvntwi.jpg',
+  'Rejillas': 'https://res.cloudinary.com/daq3sbggo/image/upload/v1780403563/30_b4z1iw.jpg',
   'Lampas Ganzo': 'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104118/16_jlzpw0.jpg',
   'Lampas Tipo Cuchara': 'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104119/17_ijxwjq.jpg',
   'Lampas Tipo Pala': 'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104119/18_igiazx.jpg',
@@ -101,20 +101,20 @@ export default function SubcategoriesShowcase() {
 
         {/* ── TABS DE FILTRO ── */}
         <BlurFade inView delay={0.1} duration={0.4} className="w-full max-w-[1150px]">
-          <div className="flex gap-2 overflow-x-auto pb-4 mb-8 scrollbar-hide">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 pb-4 mb-8">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
                 className={`
-                  shrink-0 flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-black uppercase
+                  w-full h-11 md:h-12 px-3 md:px-4 rounded-xl text-[11px] md:text-xs font-black uppercase
                   tracking-widest transition-all duration-200
+                  flex items-center justify-center text-center
                   ${activeTab === cat.id
                     ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30'
                     : 'bg-[#16161f] border border-white/5 text-zinc-400 hover:text-white hover:border-white/15 hover:bg-[#1a1a24]'}
                 `}
               >
-                <span className="material-symbols-outlined text-lg">{cat.icon}</span>
                 <span>{cat.name}</span>
               </button>
             ))}

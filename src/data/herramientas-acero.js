@@ -3,7 +3,7 @@ export const herramientasAcero = [
     // LAMPAS DE ACERO
   ///////////////////////////////////////////////////
   {
-    id: 124,
+    id: "HER-LAMAC-024",
     name: "Lampa Aceros Perú Extra Grande",
     brand: "ACEROS PERÚ",
     price: 58.00,
@@ -35,7 +35,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 125,
+    id: "HER-LAMAC-025",
     name: "Lampa Aceros Perú Grande",
     brand: "ACEROS PERÚ",
     price: 52.50,
@@ -67,7 +67,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 126,
+    id: "HER-LAMAC-026",
     name: "Lampa Aceros Perú Normal (Comercial)",
     brand: "ACEROS PERÚ",
     price: 45.00,
@@ -98,7 +98,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 127,
+    id: "HER-LAMAC-027",
     name: "Lampa Aceros Perú Mediana",
     brand: "ACEROS PERÚ",
     price: 38.00,
@@ -128,7 +128,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 128,
+    id: "HER-LAMAC-028",
     name: "Lampa Aceros Perú Pequeña",
     brand: "ACEROS PERÚ",
     price: 29.90,
@@ -158,7 +158,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 129,
+    id: "HER-LAMAC-029",
     name: "Lampa Aceros Perú Bebito",
     brand: "ACEROS PERÚ",
     price: 15.50,
@@ -192,7 +192,7 @@ export const herramientasAcero = [
     // Rejilas ACeros POeru
   ///////////////////////////////////////////////////
   {
-    id: 130,
+    id: "HER-REJAC-030",
     name: "Rejilla Aceros Perú Grande Triangular",
     brand: "ACEROS PERÚ",
     price: 64.00,
@@ -223,7 +223,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 131,
+    id: "HER-REJAC-031",
     name: "Rejilla Aceros Perú Grande Corazón",
     brand: "ACEROS PERÚ",
     price: 66.00,
@@ -254,7 +254,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 132,
+    id: "HER-REJAC-032",
     name: "Rejilla Aceros Perú Mediano de 25 cm",
     brand: "ACEROS PERÚ",
     price: 55.00,
@@ -285,7 +285,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 133,
+    id: "HER-REJAC-033",
     name: "Rejilla Aceros Perú Pequeño 23 cm",
     brand: "ACEROS PERÚ",
     price: 49.50,
@@ -315,7 +315,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 134,
+    id: "HER-REJAC-034",
     name: "Rejilla Aceros Perú Chiquito",
     brand: "ACEROS PERÚ",
     price: 28.00,
@@ -345,7 +345,7 @@ export const herramientasAcero = [
     ]
   },
   {
-    id: 135,
+    id: "HER-REJAC-035",
     name: "Rejilla Aceros Perú Bebito",
     brand: "ACEROS PERÚ",
     price: 18.50,

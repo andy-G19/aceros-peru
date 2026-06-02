@@ -235,6 +235,9 @@ export default function ProductDetail() {
               )}
 
               {/* Nombre — grande y prominente */}
+              <p className="text-sm font-black text-zinc-500 uppercase tracking-[0.2em] mb-2">
+                Codigo: {product.id}
+              </p>
               <h1 className="text-2xl sm:text-3xl font-black uppercase leading-tight tracking-tight text-white mb-3">
                 {product.name}
               </h1>

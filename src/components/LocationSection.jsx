@@ -237,30 +237,7 @@ export default function LocationSection() {
           </BlurFade>
         </div>
 
-        {/* ── STRIP ZONAS DE DISTRIBUCIÓN ── */}
-        <BlurFade inView delay={0.15} duration={0.4}>
-          <div className="mt-10 p-5 rounded-2xl bg-[#111118] border border-white/5">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="material-symbols-outlined text-amber-500 text-lg">local_shipping</span>
-              <h3 className="text-sm font-black uppercase tracking-widest text-white">Distribuimos a todo el Perú</h3>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { region: 'Sierra Sur',          icon: 'landscape',    detail: 'Arequipa, Cusco, Puno' },
-                { region: 'Sierra Norte',        icon: 'terrain',      detail: 'Cajamarca, Ancash' },
-                { region: 'Provincias Costa',    icon: 'waves',        detail: 'Lima,Piura, Trujillo, Ica' },
-              ].map((z) => (
-                <div key={z.region} className="flex items-start gap-2.5 p-3 rounded-xl bg-[#0d0d14] border border-white/5">
-                  <span className="material-symbols-outlined text-amber-500/60 text-sm flex-shrink-0 mt-0.5">{z.icon}</span>
-                  <div>
-                    <p className="text-[10px] font-black text-white uppercase leading-tight">{z.region}</p>
-                    <p className="text-[9px] text-zinc-600 mt-0.5">{z.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BlurFade>
+        
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />

@@ -751,49 +751,7 @@ const Categories = () => {
         </div>
       </section>
 
-      {/* ── CATEGORÍAS RELACIONADAS ── */}
-      {(selectedSubcategory || (selectedCategory !== 'all' && !selectedSubcategory)) && (
-        <section className="border-t border-white/5 bg-[#111118] py-10 md:py-12">
-          <div className="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12">
-            <SectionHeader
-              title="Otras categorías"
-              action="Ver todo"
-              onAction={() => handleCategoryClick('all')}
-            />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {categories
-                .filter((c) => c.name !== selectedCategory)
-                .map((cat, i) => (
-                  <BlurFade key={cat.id} inView delay={i * 0.06} duration={0.35}>
-                    <button
-                      onClick={() => handleCategoryClick(cat.name)}
-                      className="relative overflow-hidden rounded-xl group"
-                      style={{ aspectRatio: '1/1' }}
-                    >
-                      {CATEGORY_IMAGES[cat.name] && (
-                        <OptimizedImage
-                          src={CATEGORY_IMAGES[cat.name]}
-                          alt={cat.name}
-                          width={320}
-                          height={320}
-                          mode="fill"
-                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-[#0a0a0f]/60 group-hover:bg-[#0a0a0f]/40 transition-colors" />
-                      <div className="relative h-full flex flex-col justify-end p-3">
-                        <p className="text-[9px] font-black uppercase tracking-widest text-white leading-tight">{cat.name}</p>
-                        <p className="text-[9px] text-zinc-400 mt-0.5">{cat.count} prod.</p>
-                      </div>
-                      <div className="absolute inset-0 rounded-xl border border-amber-500/0 group-hover:border-amber-500/40 transition-colors" />
-                    </button>
-                  </BlurFade>
-                ))}
-            </div>
-          </div>
-        </section>
-      )}
+      
 
       {/* FilterDrawer mobile */}
       <FilterDrawer
