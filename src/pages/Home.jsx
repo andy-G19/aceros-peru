@@ -10,6 +10,7 @@ import AboutUs from '../components/AboutUs';
 import LocationSection from '../components/LocationSection';
 import SubcategoriesShowcase from '../components/SubcategoriesShowcase';
 import PillarsSection from '../components/PillarsSection';
+import Icon from '../components/Icon';
 
 const stats = [
   { value: 50, suffix: '+', label: 'Lineas de productos' },
@@ -216,7 +217,7 @@ export default function Home() {
             <BlurFade key={b.title} inView delay={b.delay} duration={0.4}>
               <div className="flex items-start gap-4">
                 <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10">
-                  <span className="material-symbols-outlined text-xl text-amber-400">{b.icon}</span>
+                  <Icon name={b.icon} className="text-xl text-amber-400" />
                 </div>
                 <div>
                   <p className="text-sm font-bold uppercase tracking-wide text-white">{b.title}</p>

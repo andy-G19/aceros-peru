@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import { MagicCard } from './magicui/magic-card';
 import { BorderBeam } from './magicui/border-beam';
 import OptimizedImage from './OptimizedImage';
+import Icon from './Icon';
 
 /* ─── Etiquetas de venta por volumen ─────────────────────────── */
 const VOLUME_LABELS = {
@@ -60,7 +61,7 @@ const ProductCard = ({ product, onViewDetails }) => {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <span className="material-symbols-outlined text-zinc-600 text-4xl">image_not_supported</span>
+            <Icon name="image_not_supported" className="text-zinc-600 text-4xl" />
           </div>
         )}
 
@@ -87,7 +88,7 @@ const ProductCard = ({ product, onViewDetails }) => {
 
         {/* Etiqueta de venta por volumen */}
         <div className="flex items-center gap-1.5 py-2 px-2.5 rounded-lg bg-[#111118] border border-white/5">
-          <span className="material-symbols-outlined text-amber-500 text-sm flex-shrink-0">{volume.icon}</span>
+          <Icon name={volume.icon} className="text-amber-500 text-sm flex-shrink-0" />
           <div className="min-w-0">
             <p className="text-[10px] font-black text-white leading-none truncate">{volume.label}</p>
             <p className="text-[9px] text-zinc-500 mt-0.5 uppercase tracking-widest">
@@ -101,7 +102,7 @@ const ProductCard = ({ product, onViewDetails }) => {
           onClick={handleAddToCart}
           className="w-full bg-amber-600 hover:bg-amber-500 active:scale-95 text-white py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
         >
-          <span className="material-symbols-outlined text-sm">add_shopping_cart</span>
+          <Icon name="add_shopping_cart" className="text-base" />
           Cotizar
         </button>
       </div>

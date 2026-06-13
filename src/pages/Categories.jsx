@@ -6,6 +6,7 @@ import { products, categories } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from '../components/OptimizedImage';
+import Icon from '../components/Icon';
 
 /* ─── Mapa visual de categorías ──────────────────────────────── */
 const CATEGORY_IMAGES = {
@@ -88,7 +89,7 @@ function SubcategoryBanner({ subcategoryName }) {
           {/* Ícono lupa */}
           {img && (
             <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
-              <span className="material-symbols-outlined text-white text-base">zoom_in</span>
+              <Icon name="zoom_in" className="text-white text-base" />
             </div>
           )}
 
@@ -117,7 +118,7 @@ function SubcategoryBanner({ subcategoryName }) {
               onClick={() => setZoomed(false)}
               className="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-colors"
             >
-              <span className="material-symbols-outlined text-white text-xl">close</span>
+              <Icon name="close" className="text-white text-xl" />
             </button>
             <p className="text-center text-xs text-zinc-500 uppercase tracking-widest font-bold mt-3">
               Toca fuera para cerrar
@@ -205,7 +206,7 @@ function Sidebar({
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-amber-500 text-lg">tune</span>
+            <Icon name="tune" className="text-amber-500 text-lg" />
             <span className="text-sm font-black uppercase tracking-widest text-white">Filtros</span>
           </div>
           <button
@@ -276,9 +277,7 @@ function Sidebar({
                       onClick={() => onToggleExpand(cat.name)}
                       className="px-1.5 py-2 text-zinc-600 hover:text-amber-500 transition-colors shrink-0"
                     >
-                      <span className="material-symbols-outlined text-sm">
-                        {expandedCategories[cat.name] ? 'expand_less' : 'expand_more'}
-                      </span>
+                      <Icon name={expandedCategories[cat.name] ? 'expand_less' : 'expand_more'} className="text-sm" />
                     </button>
                   )}
                 </div>
@@ -420,7 +419,7 @@ function EmptyState({ searchQuery, selectedSubcategory, onClear }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
       <div className="w-16 h-16 rounded-2xl bg-[#16161f] border border-white/5 flex items-center justify-center mb-5">
-        <span className="material-symbols-outlined text-zinc-700 text-3xl">search_off</span>
+        <Icon name="search_off" className="text-zinc-700 text-3xl" />
       </div>
       <h3 className="text-lg font-black uppercase text-white mb-1">Sin resultados</h3>
       <p className="text-sm text-zinc-500 mb-6 max-w-xs">
@@ -588,7 +587,7 @@ const Categories = () => {
           {/* Breadcrumb */}
           <div className="flex items-center gap-1.5 text-xs text-zinc-600 mb-5 font-medium">
             <button onClick={() => navigate('/')} className="hover:text-amber-500 transition-colors">Inicio</button>
-            <span className="material-symbols-outlined text-[10px]">chevron_right</span>
+            <Icon name="chevron_right" className="text-[10px]" />
             <span
               className={selectedCategory !== 'all' ? 'hover:text-amber-500 cursor-pointer transition-colors' : 'text-zinc-400'}
               onClick={() => selectedCategory !== 'all' && handleCategoryClick('all')}
@@ -597,7 +596,7 @@ const Categories = () => {
             </span>
             {selectedCategory !== 'all' && (
               <>
-                <span className="material-symbols-outlined text-[10px]">chevron_right</span>
+                <Icon name="chevron_right" className="text-[10px]" />
                 <span
                   className={selectedSubcategory ? 'hover:text-amber-500 cursor-pointer transition-colors' : 'text-amber-500'}
                   onClick={() => selectedSubcategory && handleCategoryClick(selectedCategory)}
@@ -608,7 +607,7 @@ const Categories = () => {
             )}
             {selectedSubcategory && (
               <>
-                <span className="material-symbols-outlined text-[10px]">chevron_right</span>
+                <Icon name="chevron_right" className="text-[10px]" />
                 <span className="text-amber-500">{selectedSubcategory}</span>
               </>
             )}
@@ -643,7 +642,7 @@ const Categories = () => {
                     : 'bg-[#16161f] border border-white/10 text-zinc-300 hover:border-white/20'}
                 `}
               >
-                <span className="material-symbols-outlined text-base">tune</span>
+                <Icon name="tune" className="text-base" />
                 <span>Filtros</span>
                 {activeFiltersCount > 0 && (
                   <span className="w-4 h-4 rounded-full bg-white text-amber-600 text-[9px] font-black flex items-center justify-center">

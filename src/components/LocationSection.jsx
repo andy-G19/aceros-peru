@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BlurFade } from '../components/magicui/blur-fade';
+import Icon from './Icon';
 
 /* ══════════════════════════════════════════════════════════
    CONFIGURACIÓN — datos del taller
@@ -35,7 +36,7 @@ function ContactChip({ icon, label, value, href }) {
     <div className="flex items-start gap-3 p-3.5 bg-[#111118] border border-white/5 rounded-xl
       hover:border-amber-500/25 hover:bg-[#16161f] transition-all duration-200 group cursor-pointer">
       <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <span className="material-symbols-outlined text-amber-500 text-base">{icon}</span>
+        <Icon name={icon} className="text-amber-500 text-base" />
       </div>
       <div className="min-w-0">
         <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-0.5">{label}</p>
@@ -155,9 +156,7 @@ export default function LocationSection() {
                   border border-white/15 hover:border-amber-500/40 text-white text-[10px] font-black
                   uppercase tracking-widest px-3 py-2 rounded-xl transition-all hover:bg-[#16161f]/90 group"
               >
-                <span className="material-symbols-outlined text-amber-500 text-sm group-hover:scale-110 transition-transform">
-                  open_in_new
-                </span>
+                <Icon name="open_in_new" className="text-amber-500 text-sm group-hover:scale-110 transition-transform" />
                 Abrir en Maps
               </a>
             </div>
@@ -171,7 +170,7 @@ export default function LocationSection() {
               <div className="bg-[#111118] border border-amber-500/20 rounded-2xl p-5">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
-                    <span className="material-symbols-outlined text-amber-500 text-xl">location_on</span>
+                    <Icon name="location_on" className="text-amber-500 text-xl" />
                   </div>
                   <div>
                     <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Dirección</p>
@@ -193,7 +192,7 @@ export default function LocationSection() {
                     bg-amber-600 hover:bg-amber-500 text-white text-[10px] font-black uppercase
                     tracking-widest transition-all active:scale-[0.98]"
                 >
-                  <span className="material-symbols-outlined text-base">directions</span>
+                  <Icon name="directions" className="text-base" />
                   Cómo llegar
                 </a>
               </div>
@@ -215,7 +214,7 @@ export default function LocationSection() {
               {/* Horarios */}
               <div className="bg-[#111118] border border-white/5 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="material-symbols-outlined text-amber-500 text-base">schedule</span>
+                  <Icon name="schedule" className="text-amber-500 text-base" />
                   <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Horario de Atención</p>
                 </div>
                 <div className="space-y-2">

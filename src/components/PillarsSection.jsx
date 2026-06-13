@@ -1,5 +1,6 @@
 import React from 'react';
 import { BlurFade } from '../components/magicui/blur-fade';
+import Icon from './Icon';
 
 const VALUES = [
   {
@@ -38,7 +39,7 @@ export default function PillarsSection() {
                 <BlurFade key={val.title} inView delay={0.1 + i * 0.08} duration={0.4}>
                   <div className="group bg-[#111118] border border-white/5 rounded-2xl p-5 hover:border-amber-500/25 hover:bg-[#16161f] transition-all duration-300">
                     <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4 group-hover:bg-amber-500/20 transition-colors">
-                      <span className="material-symbols-outlined text-amber-500 text-lg">{val.icon}</span>
+                      <Icon name={val.icon} className="text-amber-500 text-lg" />
                     </div>
                     <h3 className="text-sm font-black uppercase tracking-wide text-white mb-2">
                       {val.title}

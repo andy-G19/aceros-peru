@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Icon from './Icon';
 
 /* ─────────────────────────────────────────────────────────
    FilterDrawer — panel lateral deslizable de filtros
@@ -31,14 +32,16 @@ export default function FilterDrawer({
 
   const MAX_PRICE = 5000;
   const drawerRef  = useRef(null);
+  const selectedMin = priceRange[0];
+  const selectedMax = priceRange[1];
 
   /* sync cuando cambia desde afuera */
   useEffect(() => {
     setDraftCat(selectedCat);
     setDraftSub(selectedSub);
-    setDraftMin(priceRange[0]);
-    setDraftMax(priceRange[1]);
-  }, [open, selectedCat, selectedSub, priceRange[0], priceRange[1]]);
+    setDraftMin(selectedMin);
+    setDraftMax(selectedMax);
+  }, [open, selectedCat, selectedSub, selectedMin, selectedMax]);
 
   /* bloquear scroll del body cuando está abierto */
   useEffect(() => {
@@ -118,7 +121,7 @@ export default function FilterDrawer({
         {/* ── Header ── */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 flex-shrink-0">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-amber-500 text-xl">tune</span>
+            <Icon name="tune" className="text-amber-500 text-xl" />
             <h2 className="text-base font-black uppercase tracking-[0.2em] text-white">Filtros</h2>
           </div>
           <button
@@ -150,9 +153,10 @@ export default function FilterDrawer({
                   : 'bg-[#1a1c26] border border-transparent text-zinc-400 hover:border-white/10'
               }`}
             >
-              <span className={`material-symbols-outlined text-xl ${draftCat === 'all' ? 'text-amber-500' : 'text-zinc-500'}`}>
-                apps
-              </span>
+              <Icon
+                name="apps"
+                className={`text-xl ${draftCat === 'all' ? 'text-amber-500' : 'text-zinc-500'}`}
+              />
               <span className="text-sm font-bold">Todas las categorías</span>
             </button>
 
@@ -178,9 +182,10 @@ export default function FilterDrawer({
                         onClick={() => selectCat(cat.name)}
                         className="flex items-center gap-3 flex-1 px-4 py-3 text-left"
                       >
-                        <span className={`material-symbols-outlined text-xl ${isActive ? 'text-amber-500' : 'text-zinc-500'}`}>
-                          {cat.icon}
-                        </span>
+                        <Icon
+                          name={cat.icon}
+                          className={`text-xl ${isActive ? 'text-amber-500' : 'text-zinc-500'}`}
+                        />
                         <span className={`text-sm font-bold flex-1 ${isActive ? 'text-amber-400' : 'text-zinc-300'}`}>
                           {cat.name}
                         </span>

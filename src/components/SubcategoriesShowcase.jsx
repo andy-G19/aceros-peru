@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BlurFade } from './magicui/blur-fade';
 import { categories } from '../data/categories';
 import OptimizedImage from './OptimizedImage';
+import Icon from './Icon';
 
 // ── IMÁGENES (Ajustadas conceptualmente a 1150x600) ──
 const SUBCATEGORY_IMAGES = {
@@ -161,7 +162,7 @@ export default function SubcategoriesShowcase() {
                         {/* Top Badge */}
                         <div className="absolute top-6 left-6 md:top-8 md:left-8">
                           <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
-                            <span className="material-symbols-outlined text-amber-500 text-lg">{icon}</span>
+                            <Icon name={icon} className="text-amber-500 text-lg" />
                             <span className="text-xs font-black text-white/90 uppercase tracking-widest">
                               {activeCat.name}
                             </span>
@@ -187,7 +188,7 @@ export default function SubcategoriesShowcase() {
 
                           <div className="flex flex-wrap items-center gap-4">
                             <div className="flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm border border-amber-500/30 px-4 py-2 rounded-full">
-                              <span className="material-symbols-outlined text-amber-500 text-sm md:text-base">inventory_2</span>
+                              <Icon name="inventory_2" className="text-amber-500 text-sm md:text-base" />
                               <span className="text-[10px] md:text-xs font-black text-amber-400 uppercase tracking-widest">
                                 {sub.count} productos disponibles
                               </span>
@@ -224,7 +225,7 @@ export default function SubcategoriesShowcase() {
                   
                   <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-3/4 lg:w-2/3">
                     <div className="flex items-center gap-3 mb-4">
-                       <span className="material-symbols-outlined text-amber-500 text-2xl md:text-3xl">{activeCat.icon}</span>
+                       <Icon name={activeCat.icon} className="text-amber-500 text-2xl md:text-3xl" />
                        <span className="text-xs md:text-sm font-black text-amber-400 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
                          {activeCat.count} Productos
                        </span>

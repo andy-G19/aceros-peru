@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from '../components/OptimizedImage';
+import Icon from '../components/Icon';
 
 /* ══════════════════════════════════════════════════
    CONFIGURACIÓN
@@ -47,7 +48,7 @@ function CartItem({ item, onRemove, onUpdate }) {
                 className="w-full h-full object-contain"
               />
             ) : (
-              <span className="material-symbols-outlined text-zinc-700 text-3xl">image_not_supported</span>
+              <Icon name="image_not_supported" className="text-zinc-700 text-3xl" />
             )}
           </div>
 
@@ -75,7 +76,7 @@ function CartItem({ item, onRemove, onUpdate }) {
                   onClick={() => onRemove(item.id)}
                   className="w-7 h-7 rounded-lg bg-white/5 hover:bg-red-500/20 flex items-center justify-center flex-shrink-0 transition-colors group"
                 >
-                  <span className="material-symbols-outlined text-zinc-600 group-hover:text-red-400 text-sm">delete</span>
+                  <Icon name="delete" className="text-zinc-600 group-hover:text-red-400 text-sm" />
                 </button>
               </div>
 
@@ -87,7 +88,7 @@ function CartItem({ item, onRemove, onUpdate }) {
                 </p>
               ) : (
                 <div className="flex items-center gap-1 mt-1">
-                  <span className="material-symbols-outlined text-amber-500/60 text-xs">request_quote</span>
+                  <Icon name="request_quote" className="text-amber-500/60 text-xs" />
                   <span className="text-[9px] text-zinc-500 uppercase tracking-wide">Precio a cotizar</span>
                 </div>
               )}
@@ -101,7 +102,7 @@ function CartItem({ item, onRemove, onUpdate }) {
                   onClick={() => onUpdate(item.id, item.quantity - 1)}
                   className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-amber-500 transition-colors"
                 >
-                  <span className="material-symbols-outlined text-sm">remove</span>
+                  <Icon name="remove" className="text-sm" />
                 </button>
                 <span className="w-8 text-center text-xs font-black text-white tabular-nums">{item.quantity}</span>
                 <button
@@ -109,7 +110,7 @@ function CartItem({ item, onRemove, onUpdate }) {
                   disabled={item.quantity >= (item.stock || 99)}
                   className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-amber-500 transition-colors disabled:opacity-30"
                 >
-                  <span className="material-symbols-outlined text-sm">add</span>
+                  <Icon name="add" className="text-sm" />
                 </button>
               </div>
 
@@ -140,7 +141,7 @@ function ShippingProgress({ cartTotal }) {
   return (
     <div className={`p-4 rounded-2xl border ${isFree ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-[#16161f] border-white/5'}`}>
       <div className="flex items-center gap-2 mb-2">
-        <span className="material-symbols-outlined text-base text-amber-500">local_shipping</span>
+        <Icon name="local_shipping" className="text-base text-amber-500" />
         {isFree ? (
           <p className="text-xs font-black text-emerald-400 uppercase tracking-wide">¡Envío gratis activado!</p>
         ) : (
@@ -162,7 +163,7 @@ function ShippingProgress({ cartTotal }) {
 }
 
 /* ── CartSummary ──────────────────────────────── */
-function CartSummary({ cartItems, cartTotal, cartSubtotal, cartDiscount, cartCount, onWhatsApp }) {
+function CartSummary({ cartTotal, cartSubtotal, cartDiscount, cartCount, onWhatsApp }) {
   const isFree     = cartTotal >= FREE_SHIP;
   const shipping   = isFree ? 0 : SHIP_COST;
   const finalTotal = cartTotal + shipping;
@@ -172,7 +173,7 @@ function CartSummary({ cartItems, cartTotal, cartSubtotal, cartDiscount, cartCou
 
       {/* Header */}
       <div className="px-5 py-4 border-b border-white/5 flex items-center gap-2">
-        <span className="material-symbols-outlined text-amber-500 text-base">receipt_long</span>
+        <Icon name="receipt_long" className="text-amber-500 text-base" />
         <h2 className="text-sm font-black uppercase tracking-widest text-white">Resumen del Pedido</h2>
       </div>
 
@@ -219,7 +220,7 @@ function CartSummary({ cartItems, cartTotal, cartSubtotal, cartDiscount, cartCou
         {!SHOW_PRICES && (
           <div className="border-t border-white/5 pt-3">
             <div className="flex items-start gap-3 p-3 bg-[#111118] rounded-xl border border-amber-500/15">
-              <span className="material-symbols-outlined text-amber-500 text-lg flex-shrink-0">info</span>
+              <Icon name="info" className="text-amber-500 text-lg flex-shrink-0" />
               <p className="text-[11px] text-zinc-400 leading-relaxed">
                 Los precios se definen según volumen y categoría. Envía tu lista por WhatsApp y un asesor te responderá con cotización inmediata.
               </p>
@@ -249,7 +250,7 @@ function CartSummary({ cartItems, cartTotal, cartSubtotal, cartDiscount, cartCou
             { icon: 'payments',       label: 'Pago flexible' },
           ].map((b) => (
             <div key={b.label} className="flex items-center gap-2 p-2 rounded-xl bg-[#111118] border border-white/5">
-              <span className="material-symbols-outlined text-amber-500/60 text-sm">{b.icon}</span>
+              <Icon name={b.icon} className="text-amber-500/60 text-sm" />
               <span className="text-[9px] text-zinc-600 uppercase tracking-wide font-bold leading-tight">{b.label}</span>
             </div>
           ))}
@@ -269,10 +270,10 @@ function EmptyCart({ onContinue }) {
     <div className="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center">
       <div className="relative mb-8">
         <div className="w-24 h-24 rounded-3xl bg-[#16161f] border border-white/5 flex items-center justify-center">
-          <span className="material-symbols-outlined text-zinc-700 text-5xl">shopping_cart</span>
+          <Icon name="shopping_cart" className="text-zinc-700 text-5xl" />
         </div>
         <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center">
-          <span className="material-symbols-outlined text-amber-500 text-sm">close</span>
+          <Icon name="close" className="text-amber-500 text-sm" />
         </div>
       </div>
       <h2 className="text-2xl font-black uppercase tracking-tight text-white mb-2">Carrito Vacío</h2>
@@ -383,14 +384,14 @@ const Cart = () => {
               onClick={() => navigate('/categories')}
               className="flex items-center gap-1.5 text-[10px] font-black text-zinc-500 hover:text-amber-500 uppercase tracking-widest transition-colors"
             >
-              <span className="material-symbols-outlined text-sm">arrow_back</span>
+              <Icon name="arrow_back" className="text-sm" />
               Seguir viendo
             </button>
             <button
               onClick={clearCart}
               className="flex items-center gap-1.5 text-[10px] font-black text-zinc-600 hover:text-red-400 uppercase tracking-widest transition-colors"
             >
-              <span className="material-symbols-outlined text-sm">delete_sweep</span>
+              <Icon name="delete_sweep" className="text-sm" />
               Vaciar lista
             </button>
           </div>
@@ -399,7 +400,6 @@ const Cart = () => {
         {/* Resumen */}
         <BlurFade inView delay={0.15} duration={0.4}>
           <CartSummary
-            cartItems={cartItems}
             cartTotal={cartTotal}
             cartSubtotal={cartSubtotal}
             cartDiscount={cartDiscount}
@@ -414,7 +414,7 @@ const Cart = () => {
             <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Entrega estimada</p>
             <div className="flex items-center gap-3">
               <div className="w-7 h-7 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-amber-500 text-sm">location_on</span>
+                <Icon name="location_on" className="text-amber-500 text-sm" />
               </div>
               <div>
                 <p className="text-xs font-bold text-white">Cercado de Lima, Lima</p>
@@ -423,7 +423,7 @@ const Cart = () => {
             </div>
             <div className="flex items-center gap-3">
               <div className="w-7 h-7 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-amber-500 text-sm">schedule</span>
+                <Icon name="schedule" className="text-amber-500 text-sm" />
               </div>
               <p className="text-xs text-zinc-400">Despacho en <span className="text-white font-bold">24 – 72 horas hábiles</span></p>
             </div>

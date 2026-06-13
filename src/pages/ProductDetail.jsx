@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { products } from '../data/products';
 import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from '../components/OptimizedImage';
+import Icon from '../components/Icon';
 
 /* ══════════════════════════════════════════════════════════
    CONFIGURACIÓN GLOBAL — cambiar a false para ocultar precios
@@ -40,6 +41,7 @@ export default function ProductDetail() {
   const { addToCart } = useCart();
 
   const product = location.state?.product || products.find((p) => p.id === parseInt(id) || p.id === id);
+  const productSizes = product?.sizes ?? null;
 
   const [activeImg, setActiveImg]   = useState(0);
   const [qty, setQty]               = useState(1);
@@ -48,23 +50,23 @@ export default function ProductDetail() {
   const [zoomOpen, setZoomOpen]     = useState(false);
   
   // 1. NUEVO: Estado para manejar la variante seleccionada
-  const [selectedSize, setSelectedSize] = useState(product?.sizes ? product.sizes[0] : null);
+  const [selectedSize, setSelectedSize] = useState(productSizes ? productSizes[0] : null);
 
   useEffect(() => { 
     window.scrollTo(0, 0); 
     // Resetear la variante si el producto cambia
-    if (product?.sizes) {
-      setSelectedSize(product.sizes[0]);
+    if (productSizes) {
+      setSelectedSize(productSizes[0]);
     } else {
       setSelectedSize(null);
     }
-  }, [product?.id]);
+  }, [product?.id, productSizes]);
 
   if (!product) {
     return (
       <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
         <div className="text-center">
-          <span className="material-symbols-outlined text-6xl text-zinc-700 mb-4 block">inventory_2</span>
+          <Icon name="inventory_2" className="text-6xl text-zinc-700 mb-4 block" />
           <p className="text-zinc-400 mb-6 text-lg">Producto no encontrado</p>
           <button
             onClick={() => navigate('/categories')}
@@ -118,7 +120,7 @@ export default function ProductDetail() {
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-zinc-400 hover:text-amber-500 transition-colors text-sm"
         >
-          <span className="material-symbols-outlined text-base">arrow_back</span>
+          <Icon name="arrow_back" className="text-base" />
           <span>Volver</span>
         </button>
         <button
@@ -136,9 +138,9 @@ export default function ProductDetail() {
         {/* ── Breadcrumb ───────────────────────────────── */}
         <div className="flex items-center gap-1.5 text-[10px] text-zinc-600 mb-5 font-medium uppercase tracking-wide">
           <button onClick={() => navigate('/')} className="hover:text-amber-500 transition-colors">Inicio</button>
-          <span className="material-symbols-outlined text-[10px]">chevron_right</span>
+          <Icon name="chevron_right" className="text-[10px]" />
           <button onClick={() => navigate('/categories')} className="hover:text-amber-500 transition-colors">Catálogo</button>
-          <span className="material-symbols-outlined text-[10px]">chevron_right</span>
+          <Icon name="chevron_right" className="text-[10px]" />
           <span className="text-amber-500 truncate max-w-[140px]">{product.name}</span>
         </div>
 
@@ -180,7 +182,7 @@ export default function ProductDetail() {
                     />
                   ) : (
                     <div className="flex flex-col items-center gap-3 text-zinc-700">
-                      <span className="material-symbols-outlined text-7xl">image_not_supported</span>
+                      <Icon name="image_not_supported" className="text-7xl" />
                       <span className="text-xs uppercase tracking-widest">Sin imagen</span>
                     </div>
                   )}
@@ -214,7 +216,7 @@ export default function ProductDetail() {
                       />
                     ) : (
                       <div className="w-full h-full bg-[#111118] flex items-center justify-center">
-                        <span className="material-symbols-outlined text-xs text-zinc-600">image</span>
+                        <Icon name="image" className="text-xs text-zinc-600" />
                       </div>
                     )}
                   </button>
@@ -306,7 +308,7 @@ export default function ProductDetail() {
                 <div className="mb-5 p-4 bg-[#111118] rounded-2xl border border-amber-500/20">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
-                      <span className="material-symbols-outlined text-amber-500 text-xl">request_quote</span>
+                      <Icon name="request_quote" className="text-amber-500 text-xl" />
                     </div>
                     <div>
                       <p className="text-sm font-black text-white">{vol.label}</p>
@@ -346,14 +348,14 @@ export default function ProductDetail() {
                       onClick={() => setQty(q => Math.max(1, q - 1))}
                       className="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-amber-500 transition-colors"
                     >
-                      <span className="material-symbols-outlined text-base">remove</span>
+                      <Icon name="remove" className="text-base" />
                     </button>
                     <span className="w-9 text-center text-sm font-black text-white tabular-nums">{qty}</span>
                     <button
                       onClick={() => setQty(q => Math.min(product.stock || 99, q + 1))}
                       className="w-9 h-9 flex items-center justify-center text-zinc-400 hover:text-amber-500 transition-colors"
                     >
-                      <span className="material-symbols-outlined text-base">add</span>
+                      <Icon name="add" className="text-base" />
                     </button>
                   </div>
                 </div>
@@ -369,9 +371,7 @@ export default function ProductDetail() {
                       : 'bg-amber-600 hover:bg-amber-500 shadow-lg shadow-amber-600/30 hover:shadow-amber-500/40 active:scale-[0.98]'
                   }`}
                 >
-                  <span className="material-symbols-outlined text-lg">
-                    {addedAnim ? 'check_circle' : 'add_shopping_cart'}
-                  </span>
+                  <Icon name={addedAnim ? 'check_circle' : 'add_shopping_cart'} className="text-xl" />
                   {addedAnim ? '¡Agregado!' : 'Añadir al Carrito'}
                 </button>
 
@@ -448,9 +448,7 @@ export default function ProductDetail() {
                 : 'bg-amber-600 hover:bg-amber-500 shadow-lg shadow-amber-600/30'
             }`}
           >
-            <span className="material-symbols-outlined text-base">
-              {addedAnim ? 'check_circle' : 'add_shopping_cart'}
-            </span>
+            <Icon name={addedAnim ? 'check_circle' : 'add_shopping_cart'} className="text-lg" />
             {addedAnim ? '¡Agregado!' : 'Añadir'}
           </button>
           <a
@@ -491,7 +489,7 @@ export default function ProductDetail() {
               onClick={() => setZoomOpen(false)}
               className="absolute top-4 right-4 w-10 h-10 rounded-lg bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-colors"
             >
-              <span className="material-symbols-outlined text-lg">close</span>
+              <Icon name="close" className="text-lg" />
             </button>
           </div>
         </div>

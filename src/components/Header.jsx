@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import logo from '../assets/logo.png';
 import { categories } from '../data/categories';
+import Icon from './Icon';
 
 const Header = ({ onNavigate }) => {
   const { cartCount, searchQuery, setSearchQuery } = useCart();
@@ -137,9 +138,7 @@ const Header = ({ onNavigate }) => {
           </button>
 
           <form onSubmit={handleSearch} className="relative hidden flex-1 md:flex">
-            <span className="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500">
-              search
-            </span>
+            <Icon name="search" className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
             <input
               value={searchQuery}
               onChange={handleSearchChange}
@@ -155,7 +154,7 @@ const Header = ({ onNavigate }) => {
                 className="absolute right-24 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors hover:text-zinc-100"
                 aria-label="Limpiar busqueda"
               >
-                <span className="material-symbols-outlined text-[20px]">close</span>
+                <Icon name="close" className="text-[20px]" />
               </button>
             )}
 
@@ -178,7 +177,7 @@ const Header = ({ onNavigate }) => {
             </a>
 
             <button className="hidden h-11 w-11 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/70 text-zinc-300 transition-colors hover:border-amber-500/70 hover:text-amber-300 md:flex">
-              <span className="material-symbols-outlined">person_outline</span>
+              <Icon name="person_outline" />
             </button>
 
             <button
@@ -186,7 +185,7 @@ const Header = ({ onNavigate }) => {
               className="relative flex h-11 w-11 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/70 text-zinc-200 transition-colors hover:border-amber-500/70 hover:text-amber-300"
               aria-label="Carrito"
             >
-              <span className="material-symbols-outlined">shopping_cart</span>
+              <Icon name="shopping_cart" />
               {cartCount > 0 && (
                 <span className="absolute -right-1 -top-1 min-w-5 rounded-full bg-amber-500 px-1.5 py-0.5 text-center text-[10px] font-bold text-zinc-950">
                   {cartCount}
@@ -200,16 +199,14 @@ const Header = ({ onNavigate }) => {
               className="flex h-11 w-11 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/70 text-zinc-200 transition-colors hover:border-amber-500/70 hover:text-amber-300 md:hidden"
               aria-label={menuOpen ? 'Cerrar menu' : 'Abrir menu'}
             >
-              <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span>
+              <Icon name={menuOpen ? 'close' : 'menu'} />
             </button>
           </div>
         </div>
 
         <div className="mt-3 md:hidden">
           <form onSubmit={handleSearch} className="relative flex">
-            <span className="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500">
-              search
-            </span>
+            <Icon name="search" className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
             <input
               value={searchQuery}
               onChange={handleSearchChange}
@@ -224,7 +221,7 @@ const Header = ({ onNavigate }) => {
                 className="absolute right-16 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors hover:text-zinc-100"
                 aria-label="Limpiar busqueda"
               >
-                <span className="material-symbols-outlined text-[18px]">close</span>
+                <Icon name="close" className="text-[18px]" />
               </button>
             )}
             <button
