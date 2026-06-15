@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { products } from '../data/products';
 import { BlurFade } from '../components/magicui/blur-fade';
-import { NumberTicker } from '../components/magicui/number-ticker';
-import { Particles } from '../components/magicui/particles';
-import { ShimmerButton } from '../components/magicui/shimmer-button';
 import AboutUs from '../components/AboutUs';
 import LocationSection from '../components/LocationSection';
 import SubcategoriesShowcase from '../components/SubcategoriesShowcase';
 import PillarsSection from '../components/PillarsSection';
+import OptimizedImage from '../components/OptimizedImage';
 import Icon from '../components/Icon';
+
+const HERO_IMAGE = 'https://res.cloudinary.com/daq3sbggo/image/upload/v1772022472/port_dliyng.png';
 
 const stats = [
   { value: 50, suffix: '+', label: 'Lineas de productos' },
@@ -21,15 +21,6 @@ const stats = [
 
 export default function Home() {
   const navigate = useNavigate();
-  const heroRef = useRef(null);
-  const [heroH, setHeroH] = useState('100svh');
-
-  useEffect(() => {
-    const update = () => setHeroH(`${window.innerHeight}px`);
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
 
   const go = (page) => navigate(`/${page === 'home' ? '' : page}`);
   const goProduct = (product) =>
@@ -38,92 +29,64 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-zinc-950 text-white">
       <section
-        ref={heroRef}
-        className="relative flex min-h-[580px] flex-col justify-end overflow-hidden"
-        style={{
-          height: heroH,
-        }}
+        className="relative flex min-h-[calc(100svh-118px)] flex-col justify-end overflow-hidden md:min-h-[calc(100svh-154px)]"
       >
-        <div 
-          className="absolute inset-0" 
-          style={{
-            backgroundImage: 'url(https://res.cloudinary.com/daq3sbggo/image/upload/v1772022472/port_dliyng.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            filter: 'brightness(0.5)',
-          }} 
+        <OptimizedImage
+          src={HERO_IMAGE}
+          alt=""
+          width={1600}
+          mode="limit"
+          quality="auto:good"
+          sizes="100vw"
+          eager
+          placeholderBlur={false}
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover brightness-50"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_10%,rgba(245,158,11,0.03),transparent_45%),radial-gradient(circle_at_85%_0%,rgba(255,255,255,0.01),transparent_35%),linear-gradient(135deg,#0b0b0c/40_0%,#15161a/40_45%,#0e1013/40_100%)]" />
         <div className="absolute inset-0 bg-[repeating-linear-gradient(-35deg,rgba(255,255,255,0.01)_0,rgba(255,255,255,0.01)_2px,transparent_2px,transparent_16px)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/50 via-[#0a0a0f]/20 to-transparent" />
 
-        <Particles
-          className="absolute inset-0 z-[1]"
-          quantity={52}
-          ease={80}
-          color="#f59e0b"
-          size={0.42}
-          staticity={50}
-        />
-
-        <div className="relative z-10 max-w-3xl px-5 pb-10 md:px-10 md:pb-14 lg:px-16">
-          <BlurFade delay={0.1} duration={0.5}>
-            <div className="mb-5 flex items-center gap-2">
-              <div className="h-4 w-[3px] rounded-full bg-amber-500" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-400">
-                Linea Industrial 2026
-              </span>
-            </div>
-          </BlurFade>
+        <div className="relative z-10 max-w-3xl px-5 pb-10 pt-7 md:px-10 md:pb-14 md:pt-9 lg:px-16 lg:pt-12">
+          <div className="mb-5 flex items-center gap-2">
+            <div className="h-4 w-[3px] rounded-full bg-amber-500" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-400">
+              Linea Industrial 2026
+            </span>
+          </div>
 
           <h1 className="mb-8 font-black leading-[0.9] tracking-tight">
-            <BlurFade delay={0.2} duration={0.5}>
               <span className="block text-zinc-100 uppercase" style={{ fontSize: 'clamp(2.5rem, 10vw, 5rem)' }}>
                 Herramientas de
               </span>
-            </BlurFade>
-            <BlurFade delay={0.35} duration={0.5}>
               <span className="block text-zinc-100 uppercase" style={{ fontSize: 'clamp(2.5rem, 10vw, 5rem)' }}>
                 alto rendimiento
               </span>
-            </BlurFade>
-            <BlurFade delay={0.5} duration={0.5}>
               <span className="block text-amber-400 uppercase" style={{ fontSize: 'clamp(2.5rem, 10vw, 5rem)' }}>
                 para los trabajos
               </span>
-            </BlurFade>
-            <BlurFade delay={0.65} duration={0.5}>
               <span className="block text-amber-400 uppercase" style={{ fontSize: 'clamp(2.5rem, 10vw, 5rem)' }}>
                 más exigentes en
               </span>
-            </BlurFade>
-            <BlurFade delay={0.8} duration={0.5}>
               <span className="block text-amber-400 uppercase" style={{ fontSize: 'clamp(2.5rem, 10vw, 5rem)' }}>
                 construcción y campo
               </span>
-            </BlurFade>
           </h1>
 
-          <BlurFade delay={1} duration={0.4}>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <ShimmerButton
-                onClick={() => go('categories')}
-                background="rgba(245, 158, 11, 1)"
-                shimmerColor="#ffffff"
-                shimmerDuration="2s"
-                className="flex-1 justify-center text-sm font-bold uppercase tracking-widest text-zinc-950 sm:flex-none"
-              >
-                Ver catalogo tecnico 
-              </ShimmerButton>
-              <button
-                onClick={() => go('categories')}
-                className="flex-1 rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:flex-none"
-              >
-                Ver productos
-              </button>
-            </div>
-          </BlurFade>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <button
+              onClick={() => go('categories')}
+              className="flex-1 rounded-lg bg-amber-500 px-6 py-3 text-center text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-amber-400 sm:flex-none"
+            >
+              Ver catalogo tecnico 
+            </button>
+            <button
+              onClick={() => go('categories')}
+              className="flex-1 rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:flex-none"
+            >
+              Ver productos
+            </button>
+          </div>
         </div>
       </section>
 
@@ -133,7 +96,7 @@ export default function Home() {
             <BlurFade key={s.label} inView delay={i * 0.08} duration={0.4}>
               <div className="px-2 py-5 text-center">
                 <p className="mb-1 text-xl font-black leading-none text-amber-400 md:text-2xl">
-                  <NumberTicker value={s.value} delay={i * 0.1} suffix={s.suffix} />
+                  {s.value}{s.suffix}
                 </p>
                 <p className="text-[10px] uppercase tracking-widest text-zinc-500">{s.label}</p>
               </div>
@@ -172,15 +135,12 @@ export default function Home() {
 
         {products.length > 8 && (
           <BlurFade inView delay={0.3} className="mt-8 text-center">
-            <ShimmerButton
+            <button
               onClick={() => go('categories')}
-              background="rgba(245, 158, 11, 1)"
-              shimmerColor="#ffffff"
-              shimmerDuration="2s"
-              className="mx-auto text-sm font-bold uppercase tracking-widest text-zinc-950"
+              className="mx-auto rounded-lg bg-amber-500 px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-amber-400"
             >
               Ver todos los productos 
-            </ShimmerButton>
+            </button>
           </BlurFade>
         )}
       </section>

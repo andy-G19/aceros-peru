@@ -1,6 +1,6 @@
 const CLOUDINARY_MARKER = '/image/upload/';
 
-const DEFAULT_WIDTHS = [320, 480, 640, 768, 960, 1200, 1600];
+const DEFAULT_WIDTHS = [320, 480, 640, 768, 960, 1200, 1440, 1600];
 
 export function isCloudinaryImage(src = '') {
   return typeof src === 'string' && src.includes('res.cloudinary.com') && src.includes(CLOUDINARY_MARKER);
@@ -13,14 +13,14 @@ function buildCloudinaryTransform({
   gravity = 'auto',
   quality = 'auto',
   format = 'auto',
-  dpr = 'auto',
+  dpr,
 } = {}) {
   const transform = [];
   const resize = [];
 
   transform.push(`f_${format}`);
   transform.push(`q_${quality}`);
-  transform.push(`dpr_${dpr}`);
+  if (dpr) transform.push(`dpr_${dpr}`);
 
   if (mode) resize.push(`c_${mode}`);
   if (width) resize.push(`w_${Math.round(width)}`);

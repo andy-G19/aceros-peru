@@ -1,7 +1,6 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { MagicCard } from './magicui/magic-card';
-import { BorderBeam } from './magicui/border-beam';
 import OptimizedImage from './OptimizedImage';
 import Icon from './Icon';
 
@@ -42,11 +41,6 @@ const ProductCard = ({ product, onViewDetails }) => {
       gradientOpacity={0.1}
       gradientSize={200}
     >
-      {/* BorderBeam en productos destacados */}
-      {product.discount > 20 && (
-        <BorderBeam size={180} duration={12} colorFrom="#ea580c" colorTo="#f97316" borderWidth={1.5} />
-      )}
-
       {/* ── Imagen ── */}
       <div className="relative bg-[#1e1e2a] overflow-hidden" style={{ aspectRatio: '1/1' }}>
         {displayImage ? (

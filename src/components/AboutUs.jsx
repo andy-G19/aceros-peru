@@ -116,7 +116,6 @@ export default function AboutUs() {
                   height={900}
                   mode="fill"
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  eager
                   className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

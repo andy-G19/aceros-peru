@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo-160.png';
 import { categories } from '../data/categories';
 import Icon from './Icon';
 

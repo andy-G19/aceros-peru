@@ -210,15 +210,19 @@ export default function SubcategoriesShowcase() {
                   onClick={() => handleMainCatClick(activeCat.name)}
                   className="group relative overflow-hidden rounded-[2rem] w-full text-left border border-white/5 hover:border-amber-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 h-[400px] md:h-[600px]"
                 >
-                  <OptimizedImage
-                    src={MAIN_CATEGORY_IMAGES[activeCat.name] || 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1150&h=600&fit=crop'}
-                    alt={activeCat.name}
-                    width={1150}
-                    height={600}
-                    mode="fill"
-                    sizes="(max-width: 768px) 100vw, 1150px"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                  />
+                  {MAIN_CATEGORY_IMAGES[activeCat.name] ? (
+                    <OptimizedImage
+                      src={MAIN_CATEGORY_IMAGES[activeCat.name]}
+                      alt={activeCat.name}
+                      width={1150}
+                      height={600}
+                      mode="fill"
+                      sizes="(max-width: 768px) 100vw, 1150px"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-[#1a1a28]" />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   <div className="absolute inset-0 bg-[#0a0a0f]/20 group-hover:bg-transparent transition-colors duration-500" />
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-amber-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />

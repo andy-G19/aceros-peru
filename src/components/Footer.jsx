@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo-160.png';
 import { RetroGrid } from './magicui/retro-grid';
 
 const Footer = () => {

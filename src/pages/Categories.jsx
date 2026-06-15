@@ -11,19 +11,19 @@ import Icon from '../components/Icon';
 /* ─── Mapa visual de categorías ──────────────────────────────── */
 const CATEGORY_IMAGES = {
   'Herramientas Acero':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780403563/29_hvntwi.jpg',
   'Herramientas Ganzo':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304308/Ganzo_Grande_wbunqf.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780104118/16_jlzpw0.jpg',
   'Rastrillos':
-    'https://images.unsplash.com/photo-1585435465945-bef5a93f8849?w=800',
+    null, 
   'Herramientas de Construccion':
-    'https://images.unsplash.com/photo-1530124560676-586cad3ad276?w=800',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780097013/Construcciom_r2nzii.jpg',
   'Trípodes para Aspersor':
-    'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780096281/Trripiodes_nmjhh0.png',
   'Herramientas de Jardinería':
-  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800',
+  'https://res.cloudinary.com/daq3sbggo/image/upload/v1780095441/PreJardin_tx6yj1.png',
   'Otros':
-    'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800',
+    null,
 };
 
 /* ─── Mapa visual de SUBcategorías ───────────────────────────── */
@@ -31,9 +31,9 @@ const CATEGORY_IMAGES = {
 const SUBCATEGORY_IMAGES = {
   // ── Herramientas Acero ──
   'Lampas':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304058/Lampa_Extra_Grande_v4m0n2.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780403563/29_hvntwi.jpg',
   'Rejillas':
-    'https://res.cloudinary.com/daq3sbggo/image/upload/v1774304127/Rejilla_Triangulo_xzii78.jpg',
+    'https://res.cloudinary.com/daq3sbggo/image/upload/v1780403563/30_b4z1iw.jpg',
 
   // ── Herramientas Ganzo ──
   'Lampas Ganzo':

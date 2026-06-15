@@ -15,6 +15,7 @@ const OptimizedImage = ({
   placeholderBlur = true,
   onLoad,
   onClick,
+  ...imgProps
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -56,6 +57,7 @@ const OptimizedImage = ({
       fetchPriority={eager ? 'high' : 'auto'}
       decoding="async"
       onClick={onClick}
+      {...imgProps}
       onLoad={(event) => {
         setLoaded(true);
         if (onLoad) onLoad(event);
