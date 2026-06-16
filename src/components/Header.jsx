@@ -29,8 +29,9 @@ const Header = ({ onNavigate }) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate('/categories');
+    const query = searchQuery.trim();
+    if (query) {
+      navigate(`/categories?q=${encodeURIComponent(query)}`);
       setMenuOpen(false);
     }
   };
@@ -45,7 +46,7 @@ const Header = ({ onNavigate }) => {
 
   const handleCategoryClick = (categoryName) => {
     setSearchQuery('');
-    navigate('/categories', { state: { category: categoryName } });
+    navigate(`/categories?cat=${encodeURIComponent(categoryName)}`);
     setMenuOpen(false);
   };
 
@@ -117,6 +118,7 @@ const Header = ({ onNavigate }) => {
               setMenuOpen(false);
             }}
             className="group flex items-center gap-2 md:gap-3"
+            aria-label="Ir al inicio"
           >
             <div className="relative rounded-md border border-zinc-700 bg-zinc-900 p-1.5 shadow-inner shadow-black/70 transition-colors group-hover:border-amber-500/70">
               <img
@@ -145,6 +147,7 @@ const Header = ({ onNavigate }) => {
               className="h-11 w-full rounded-l-md border border-zinc-700 bg-zinc-900/80 pl-10 pr-24 text-sm text-zinc-100 outline-none transition-all placeholder:text-zinc-500 focus:border-amber-500/70 focus:ring-2 focus:ring-amber-500/30"
               placeholder="Buscar barras, pletinas, herramientas..."
               type="text"
+              aria-label="Buscar productos"
             />
 
             {searchQuery && (
@@ -170,24 +173,30 @@ const Header = ({ onNavigate }) => {
             <a
               href="https://wa.me/51983955913"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hidden h-11 items-center justify-center rounded-md border border-emerald-500/60 bg-emerald-500/15 px-4 text-xs font-bold uppercase tracking-wider text-emerald-300 transition-colors hover:bg-emerald-500/25 lg:flex"
             >
               Cotizar
             </a>
 
-            <button className="hidden h-11 w-11 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/70 text-zinc-300 transition-colors hover:border-amber-500/70 hover:text-amber-300 md:flex">
+            <button
+              className="hidden h-11 w-11 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/70 text-zinc-300 transition-colors hover:border-amber-500/70 hover:text-amber-300 md:flex"
+              aria-label="Cuenta de usuario"
+            >
               <Icon name="person_outline" />
             </button>
 
             <button
               onClick={() => onNavigate('cart')}
               className="relative flex h-11 w-11 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/70 text-zinc-200 transition-colors hover:border-amber-500/70 hover:text-amber-300"
-              aria-label="Carrito"
+              aria-label={cartCount > 0 ? `Carrito, ${cartCount} productos` : 'Carrito'}
             >
               <Icon name="shopping_cart" />
               {cartCount > 0 && (
-                <span className="absolute -right-1 -top-1 min-w-5 rounded-full bg-amber-500 px-1.5 py-0.5 text-center text-[10px] font-bold text-zinc-950">
+                <span
+                  className="absolute -right-1 -top-1 min-w-5 rounded-full bg-amber-500 px-1.5 py-0.5 text-center text-[10px] font-bold text-zinc-950"
+                  aria-hidden="true"
+                >
                   {cartCount}
                 </span>
               )}
@@ -198,6 +207,8 @@ const Header = ({ onNavigate }) => {
               onClick={() => setMenuOpen((prev) => !prev)}
               className="flex h-11 w-11 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900/70 text-zinc-200 transition-colors hover:border-amber-500/70 hover:text-amber-300 md:hidden"
               aria-label={menuOpen ? 'Cerrar menu' : 'Abrir menu'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
             >
               <Icon name={menuOpen ? 'close' : 'menu'} />
             </button>
@@ -213,6 +224,7 @@ const Header = ({ onNavigate }) => {
               className="h-10 w-full rounded-l-md border border-zinc-700 bg-zinc-900/80 pl-10 pr-16 text-sm text-zinc-100 outline-none transition-all placeholder:text-zinc-500 focus:border-amber-500/70 focus:ring-2 focus:ring-amber-500/30"
               placeholder="Buscar productos metalurgicos..."
               type="text"
+              aria-label="Buscar productos"
             />
             {searchQuery && (
               <button
@@ -240,7 +252,7 @@ const Header = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => {
-                  navigate('/categories', { state: { category: 'all' } });
+                  navigate('/categories');
                   handleSearchClear();
                 }}
                 className={`rounded-md border px-4 py-1.5 font-semibold uppercase tracking-wide transition-all ${
@@ -271,12 +283,12 @@ const Header = ({ onNavigate }) => {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-zinc-800/80 bg-zinc-950/95 px-4 py-4 md:hidden">
+        <div id="mobile-menu" className="border-t border-zinc-800/80 bg-zinc-950/95 px-4 py-4 md:hidden">
           <div className="mx-auto flex max-w-2xl flex-col gap-2">
             <a
               href="https://wa.me/51983955913"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="mb-1 rounded-md border border-emerald-500/60 bg-emerald-500/15 px-4 py-2 text-center text-sm font-bold uppercase tracking-wide text-emerald-300"
             >
               Solicitar cotizacion por WhatsApp
@@ -284,7 +296,7 @@ const Header = ({ onNavigate }) => {
 
             <button
               onClick={() => {
-                navigate('/categories', { state: { category: 'all' } });
+                navigate('/categories');
                 handleSearchClear();
                 setMenuOpen(false);
               }}

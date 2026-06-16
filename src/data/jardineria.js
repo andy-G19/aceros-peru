@@ -360,9 +360,7 @@ export const jardineria = [
     price: 35.00,
     originalPrice: 42.00,
     discount: 16,
-    images: [
-      "/ruta-de-imagenes/herramienta-agricola.jpg" // Ruta referencial
-    ],
+    images: [],
     category: "Herramientas de Jardinería",
     seller: "Industrias Aceros Perú",
     rating: 4.7,

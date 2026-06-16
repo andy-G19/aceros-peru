@@ -10,7 +10,7 @@ const OptimizedImage = ({
   height,
   sizes = '100vw',
   mode = 'limit',
-  quality = 'auto',
+  quality = 'auto:eco',
   eager = false,
   placeholderBlur = true,
   onLoad,
@@ -54,7 +54,7 @@ const OptimizedImage = ({
       width={width}
       height={height}
       loading={eager ? 'eager' : 'lazy'}
-      fetchPriority={eager ? 'high' : 'auto'}
+      fetchPriority={eager ? 'high' : 'low'}
       decoding="async"
       onClick={onClick}
       {...imgProps}

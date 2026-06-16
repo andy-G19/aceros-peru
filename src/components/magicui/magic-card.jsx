@@ -13,6 +13,7 @@ export function MagicCard({
   gradientFrom = "#ea580c",
   gradientTo = "#f97316",
   onClick,
+  ...props
 }) {
   const cardRef = useRef(null);
   const [gradientPos, setGradientPos] = useState({ x: -999, y: -999 });
@@ -43,6 +44,7 @@ export function MagicCard({
           ? `radial-gradient(${gradientSize}px circle at ${gradientPos.x}px ${gradientPos.y}px, ${gradientColor}${Math.round(gradientOpacity * 255).toString(16).padStart(2, "0")}, transparent 80%)`
           : "transparent",
       }}
+      {...props}
     >
       {/* Border glow on hover */}
       <div

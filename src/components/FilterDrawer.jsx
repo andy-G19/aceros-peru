@@ -115,7 +115,10 @@ export default function FilterDrawer({
           transition: 'transform 0.32s cubic-bezier(0.4,0,0.2,1)',
           willChange: 'transform',
         }}
+        role="dialog"
+        aria-modal="true"
         aria-label="Panel de filtros"
+        aria-hidden={!open}
       >
 
         {/* ── Header ── */}
@@ -196,7 +199,8 @@ export default function FilterDrawer({
                         <button
                           onClick={() => toggleAccordion(cat.name)}
                           className="px-3 py-3 text-zinc-500 hover:text-amber-400 transition-colors"
-                          aria-label="Expandir subcategorías"
+                          aria-label={isOpen ? `Contraer subcategorias de ${cat.name}` : `Expandir subcategorias de ${cat.name}`}
+                          aria-expanded={Boolean(isOpen)}
                         >
                           <svg
                             className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
@@ -269,6 +273,7 @@ export default function FilterDrawer({
                 max={MAX_PRICE}
                 step={10}
                 value={draftMin}
+                aria-label="Precio minimo"
                 onChange={(e) => {
                   const v = Math.min(+e.target.value, draftMax - 10);
                   setDraftMin(v);
@@ -284,6 +289,7 @@ export default function FilterDrawer({
                 max={MAX_PRICE}
                 step={10}
                 value={draftMax}
+                aria-label="Precio maximo"
                 onChange={(e) => {
                   const v = Math.max(+e.target.value, draftMin + 10);
                   setDraftMax(v);
@@ -315,6 +321,7 @@ export default function FilterDrawer({
                     max={draftMax - 10}
                     step={10}
                     value={draftMin}
+                    aria-label="Precio minimo"
                     onChange={(e) => setDraftMin(Math.min(+e.target.value, draftMax - 10))}
                     className="bg-transparent text-base font-black text-white w-full outline-none"
                   />
@@ -330,6 +337,7 @@ export default function FilterDrawer({
                     max={MAX_PRICE}
                     step={10}
                     value={draftMax}
+                    aria-label="Precio maximo"
                     onChange={(e) => setDraftMax(Math.max(+e.target.value, draftMin + 10))}
                     className="bg-transparent text-base font-black text-white w-full outline-none"
                   />

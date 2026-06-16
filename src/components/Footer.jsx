@@ -24,13 +24,13 @@ const Footer = () => {
               Tu socio confiable en construcción. Calidad, resistencia y el mejor servicio para tus proyectos.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-zinc-400 hover:text-amber-600 transition-colors">
+              <a href="#" className="text-zinc-400 hover:text-amber-600 transition-colors" aria-label="Facebook de Aceros Peru">
                 <span className="text-xl">FB</span>
               </a>
-              <a href="#" className="text-zinc-400 hover:text-amber-600 transition-colors">
+              <a href="#" className="text-zinc-400 hover:text-amber-600 transition-colors" aria-label="Instagram de Aceros Peru">
                 <span className="text-xl">IG</span>
               </a>
-              <a href="#" className="text-zinc-400 hover:text-amber-600 transition-colors">
+              <a href="#" className="text-zinc-400 hover:text-amber-600 transition-colors" aria-label="LinkedIn de Aceros Peru">
                 <span className="text-xl">LN</span>
               </a>
             </div>
@@ -69,6 +69,7 @@ const Footer = () => {
                 className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-amber-600"
                 placeholder="Tu correo electrónico"
                 type="email"
+                aria-label="Correo electronico para suscripcion"
               />
               <button className="bg-white text-zinc-900 py-2 rounded-lg text-sm font-bold hover:bg-amber-600 hover:text-white transition-colors">
                 Suscribirse

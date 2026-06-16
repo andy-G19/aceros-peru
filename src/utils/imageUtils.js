@@ -14,12 +14,14 @@ function buildCloudinaryTransform({
   quality = 'auto',
   format = 'auto',
   dpr,
+  progressive = true,
 } = {}) {
   const transform = [];
   const resize = [];
 
   transform.push(`f_${format}`);
   transform.push(`q_${quality}`);
+  if (progressive) transform.push('fl_progressive');
   if (dpr) transform.push(`dpr_${dpr}`);
 
   if (mode) resize.push(`c_${mode}`);
@@ -42,6 +44,8 @@ export function getOptimizedImageUrl(src, options = {}) {
 
   const base = src.slice(0, markerIndex + CLOUDINARY_MARKER.length);
   const rest = src.slice(markerIndex + CLOUDINARY_MARKER.length);
+  if (/^(?:f_|q_|c_|w_|h_|g_|dpr_|fl_)/.test(rest)) return src;
+
   const transform = buildCloudinaryTransform(options);
 
   return `${base}${transform}/${rest}`;

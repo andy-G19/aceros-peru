@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
-import { products } from '../data/products';
 import { BlurFade } from '../components/magicui/blur-fade';
-import AboutUs from '../components/AboutUs';
-import LocationSection from '../components/LocationSection';
-import SubcategoriesShowcase from '../components/SubcategoriesShowcase';
-import PillarsSection from '../components/PillarsSection';
 import OptimizedImage from '../components/OptimizedImage';
+import DeferredSection from '../components/DeferredSection';
+import SEO, { SITE_URL } from '../components/SEO';
 import Icon from '../components/Icon';
 
 const HERO_IMAGE = 'https://res.cloudinary.com/daq3sbggo/image/upload/v1772022472/port_dliyng.png';
+const AboutUs = lazy(() => import('../components/AboutUs'));
+const SubcategoriesShowcase = lazy(() => import('../components/SubcategoriesShowcase'));
+const FeaturedProducts = lazy(() => import('../components/FeaturedProducts'));
+const LocationSection = lazy(() => import('../components/LocationSection'));
+const PillarsSection = lazy(() => import('../components/PillarsSection'));
 
 const stats = [
   { value: 50, suffix: '+', label: 'Lineas de productos' },
@@ -23,11 +24,32 @@ export default function Home() {
   const navigate = useNavigate();
 
   const go = (page) => navigate(`/${page === 'home' ? '' : page}`);
-  const goProduct = (product) =>
-    navigate(`/product/${product.id}`, { state: { product } });
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-zinc-950 text-white">
+      <SEO
+        title="Industrias Aceros Peru | Herramientas para construccion, campo y jardineria"
+        description="Herramientas de alto rendimiento para construccion, campo y jardineria. Catalogo B2B de lampas, rastrillos, tripodes para aspersor y herramientas de acero en Peru."
+        canonicalPath="/"
+        image={HERO_IMAGE}
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'Industrias Aceros Peru',
+          url: SITE_URL,
+          image: HERO_IMAGE,
+          telephone: '+51 983 955 913',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Av. Confraternidad N 988',
+            addressRegion: 'Apurimac',
+            addressCountry: 'PE',
+          },
+          areaServed: 'Peru',
+          openingHours: ['Mo-Sa 08:00-18:00'],
+          sameAs: ['https://wa.me/51983955913'],
+        }}
+      />
       <section
         className="relative flex min-h-[calc(100svh-118px)] flex-col justify-end overflow-hidden md:min-h-[calc(100svh-154px)]"
       >
@@ -105,47 +127,29 @@ export default function Home() {
         </div>
       </section>
 
-      <AboutUs />
+      <DeferredSection minHeight={620}>
+        <Suspense fallback={null}>
+          <AboutUs />
+        </Suspense>
+      </DeferredSection>
 
-      
+      <DeferredSection minHeight={760}>
+        <Suspense fallback={null}>
+          <SubcategoriesShowcase />
+        </Suspense>
+      </DeferredSection>
 
-      <SubcategoriesShowcase />
+      <DeferredSection minHeight={620}>
+        <Suspense fallback={null}>
+          <FeaturedProducts />
+        </Suspense>
+      </DeferredSection>
 
-      <section className="mx-auto max-w-screen-xl px-4 py-10 md:px-8 lg:px-12">
-        <div className="mb-6 flex items-end justify-between">
-          <div>
-            <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">Destacadas</h2>
-            <div className="mt-1.5 h-[3px] w-14 rounded-full bg-amber-500" />
-          </div>
-          <button
-            onClick={() => go('categories')}
-            className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-zinc-400 transition-colors hover:text-amber-400"
-          >
-            Ver todo <span className="text-base">-</span>
-          </button>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
-          {products.slice(0, 8).map((product, i) => (
-            <BlurFade key={product.id} inView delay={i * 0.05} yOffset={12} duration={0.4}>
-              <ProductCard product={product} onViewDetails={goProduct} />
-            </BlurFade>
-          ))}
-        </div>
-
-        {products.length > 8 && (
-          <BlurFade inView delay={0.3} className="mt-8 text-center">
-            <button
-              onClick={() => go('categories')}
-              className="mx-auto rounded-lg bg-amber-500 px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-950 transition-colors hover:bg-amber-400"
-            >
-              Ver todos los productos 
-            </button>
-          </BlurFade>
-        )}
-      </section>
-
-      <LocationSection />
+      <DeferredSection minHeight={620}>
+        <Suspense fallback={null}>
+          <LocationSection />
+        </Suspense>
+      </DeferredSection>
       <section className="border-t border-white/5 bg-zinc-900/80 px-4 py-10 md:px-8">
         <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-6 sm:grid-cols-3">
           {[
@@ -188,7 +192,11 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <PillarsSection />
+      <DeferredSection minHeight={300}>
+        <Suspense fallback={null}>
+          <PillarsSection />
+        </Suspense>
+      </DeferredSection>
 
       <a
         href="https://wa.me/51983955913"

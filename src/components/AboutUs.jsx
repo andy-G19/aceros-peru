@@ -155,6 +155,8 @@ export default function AboutUs() {
                         : 'opacity-40 hover:opacity-70'
                     }`}
                     style={{ aspectRatio: '1/1' }}
+                    aria-label={`Ver ${photo.label}`}
+                    aria-current={i === activePhoto ? 'true' : undefined}
                   >
                     <OptimizedImage
                       src={photo.src}

@@ -133,6 +133,7 @@ export default function LocationSection() {
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                   referrerPolicy="no-referrer-when-downgrade"
                   onLoad={() => setMapLoaded(true)}
                   className="absolute inset-0 w-full h-full"

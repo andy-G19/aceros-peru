@@ -23,6 +23,7 @@ export const CartProvider = ({ children }) => {
   });
   
   const [searchQuery, setSearchQuery] = useState('');
+  const [cartNotice, setCartNotice] = useState(null);
 
   // Forzar modo oscuro siempre
   useEffect(() => {
@@ -48,6 +49,11 @@ export const CartProvider = ({ children }) => {
       
       return [...prevItems, { ...product, quantity }];
     });
+    setCartNotice({
+      id: `${product.id}-${Date.now()}`,
+      productName: product.name,
+      quantity,
+    });
   };
 
   const removeFromCart = (productId) => {
@@ -69,6 +75,10 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCartItems([]);
+  };
+
+  const clearCartNotice = () => {
+    setCartNotice(null);
   };
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -96,7 +106,9 @@ export const CartProvider = ({ children }) => {
     cartSubtotal,
     cartDiscount,
     searchQuery,      
-    setSearchQuery,   
+    setSearchQuery,
+    cartNotice,
+    clearCartNotice,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

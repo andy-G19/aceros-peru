@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from '../components/OptimizedImage';
+import SEO from '../components/SEO';
 import Icon from '../components/Icon';
 
 /* ══════════════════════════════════════════════════
@@ -75,6 +76,7 @@ function CartItem({ item, onRemove, onUpdate }) {
                 <button
                   onClick={() => onRemove(item.id)}
                   className="w-7 h-7 rounded-lg bg-white/5 hover:bg-red-500/20 flex items-center justify-center flex-shrink-0 transition-colors group"
+                  aria-label={`Eliminar ${item.name} del carrito`}
                 >
                   <Icon name="delete" className="text-zinc-600 group-hover:text-red-400 text-sm" />
                 </button>
@@ -101,21 +103,25 @@ function CartItem({ item, onRemove, onUpdate }) {
                 <button
                   onClick={() => onUpdate(item.id, item.quantity - 1)}
                   className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-amber-500 transition-colors"
+                  aria-label={`Disminuir cantidad de ${item.name}`}
                 >
                   <Icon name="remove" className="text-sm" />
                 </button>
-                <span className="w-8 text-center text-xs font-black text-white tabular-nums">{item.quantity}</span>
+                <span className="w-8 text-center text-xs font-black text-white tabular-nums" aria-live="polite">{item.quantity}</span>
                 <button
                   onClick={() => onUpdate(item.id, item.quantity + 1)}
                   disabled={item.quantity >= (item.stock || 99)}
                   className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-amber-500 transition-colors disabled:opacity-30"
+                  aria-label={`Aumentar cantidad de ${item.name}`}
                 >
                   <Icon name="add" className="text-sm" />
                 </button>
               </div>
 
               {/* Unidad vol */}
-              <span className="text-[9px] text-zinc-600 uppercase tracking-wide">× {volUnit}</span>
+              <span className="inline-flex shrink-0 items-center rounded-full border border-amber-500/35 bg-amber-500/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-amber-300 shadow-sm shadow-amber-950/30">
+                × {volUnit}
+              </span>
 
               {/* Subtotal (solo si SHOW_PRICES) */}
               {SHOW_PRICES && (
@@ -326,15 +332,31 @@ const Cart = () => {
     }
     msg += `\n¡Gracias!`;
 
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
   }
 
   if (cartItems.length === 0) {
-    return <main className="min-h-screen bg-[#0a0a0f]"><EmptyCart onContinue={() => navigate('/categories')} /></main>;
+    return (
+      <main className="min-h-screen bg-[#0a0a0f]">
+        <SEO
+          title="Carrito de cotizacion | Aceros Peru"
+          description="Lista de cotizacion privada para solicitar precios por volumen en Aceros Peru."
+          canonicalPath="/cart"
+          noindex
+        />
+        <EmptyCart onContinue={() => navigate('/categories')} />
+      </main>
+    );
   }
 
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-white pb-10">
+      <SEO
+        title="Carrito de cotizacion | Aceros Peru"
+        description="Lista de cotizacion privada para solicitar precios por volumen en Aceros Peru."
+        canonicalPath="/cart"
+        noindex
+      />
 
       {/* ── Header ── */}
       <div className="bg-[#111118] border-b border-white/5 px-4 pt-6 pb-5">

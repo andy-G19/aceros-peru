@@ -12,7 +12,7 @@ export function BlurFade({
   yOffset = 6,
   inView = false,
   inViewMargin = "-50px",
-  blur = "6px",
+  blur = "0px",
 }) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(!inView);
