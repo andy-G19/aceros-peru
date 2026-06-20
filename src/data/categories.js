@@ -3,7 +3,7 @@ export const categories = [
     id: 1, 
     name: "Herramientas Acero", 
     icon: "construction", 
-    count: 2,
+    count: 12,
     description: "Lampas y rejillas de acero forjado",
     subcategories: [
       { id: 101, name: "Lampas", count: 6 },
@@ -14,7 +14,7 @@ export const categories = [
     id: 2, 
     name: "Herramientas Ganzo", 
     icon: "handyman", 
-    count: 4,
+    count: 23,
     description: "Lampas de alta calidad para jardinería y agricultura",
     subcategories: [
       { id: 201, name: "Lampas Ganzo", count: 7 },
@@ -27,7 +27,7 @@ export const categories = [
     id: 3, 
     name: "Rastrillos", 
     icon: "yard", 
-    count: 1,
+    count: 5,
     description: "Rastrillos para jardín y agricultura",
     subcategories: []
   },
@@ -35,7 +35,7 @@ export const categories = [
     id: 4, 
     name: "Herramientas de Construccion", 
     icon: "home_repair_service", 
-    count: 2,
+    count: 6,
     description: "Herramientas para albañilería y construcción",
     subcategories: []
   },
@@ -43,7 +43,7 @@ export const categories = [
     id: 5, 
     name: "Trípodes para Aspersor", 
     icon: "water_drop", 
-    count: 1,
+    count: 7,
     description: "Trípodes y sistemas de riego",
     subcategories: []
   },
@@ -51,7 +51,7 @@ export const categories = [
     id: 7,
     name: "Herramientas de Jardinería",
     icon: "park",
-    count: 4,
+    count: 14,
     description: "Todo para el cuidado de jardines, huertos y plantas",
     subcategories: []
   },
@@ -59,7 +59,7 @@ export const categories = [
     id: 6, 
     name: "Otros", 
     icon: "more_horiz", 
-    count: 1,
+    count: 0,
     description: "Otros productos y accesorios",
     subcategories: []
   }

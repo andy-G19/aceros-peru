@@ -9,8 +9,7 @@ import Icon from './Icon';
      categories    array    — lista de categorías del proyecto
      selectedCat   string   — categoría activa ('all' | name)
      selectedSub   string   — subcategoría activa (null | name)
-     priceRange    [min,max]
-     onApply       fn({ category, subcategory, priceRange })
+     onApply       fn({ category, subcategory })
      onClear       fn()
 ───────────────────────────────────────────────────────── */
 export default function FilterDrawer({
@@ -19,29 +18,21 @@ export default function FilterDrawer({
   categories = [],
   selectedCat = 'all',
   selectedSub = null,
-  priceRange = [0, 5000],
   onApply,
   onClear,
 }) {
   /* ── local draft state (no se aplica hasta "Aplicar") ── */
   const [draftCat, setDraftCat]   = useState(selectedCat);
   const [draftSub, setDraftSub]   = useState(selectedSub);
-  const [draftMin, setDraftMin]   = useState(priceRange[0]);
-  const [draftMax, setDraftMax]   = useState(priceRange[1]);
   const [expanded, setExpanded]   = useState({});      // accordion
 
-  const MAX_PRICE = 5000;
   const drawerRef  = useRef(null);
-  const selectedMin = priceRange[0];
-  const selectedMax = priceRange[1];
 
   /* sync cuando cambia desde afuera */
   useEffect(() => {
     setDraftCat(selectedCat);
     setDraftSub(selectedSub);
-    setDraftMin(selectedMin);
-    setDraftMax(selectedMax);
-  }, [open, selectedCat, selectedSub, selectedMin, selectedMax]);
+  }, [open, selectedCat, selectedSub]);
 
   /* bloquear scroll del body cuando está abierto */
   useEffect(() => {
@@ -76,20 +67,14 @@ export default function FilterDrawer({
   function handleClear() {
     setDraftCat('all');
     setDraftSub(null);
-    setDraftMin(0);
-    setDraftMax(MAX_PRICE);
     onClear?.();
     onClose();
   }
 
   function handleApply() {
-    onApply?.({ category: draftCat, subcategory: draftSub, priceRange: [draftMin, draftMax] });
+    onApply?.({ category: draftCat, subcategory: draftSub });
     onClose();
   }
-
-  /* slider thumb % */
-  const pctMin = (draftMin / MAX_PRICE) * 100;
-  const pctMax = (draftMax / MAX_PRICE) * 100;
 
   return (
     <>
@@ -249,102 +234,6 @@ export default function FilterDrawer({
             </div>
           </section>
 
-          {/* ── RANGO DE PRECIO ── */}
-          <section>
-            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-5">
-              Rango de Precio
-            </p>
-
-            {/* Dual range slider (CSS trick) */}
-            <div className="relative mb-6 px-1">
-              {/* Track background */}
-              <div className="relative h-1.5 rounded-full bg-[#1a1c26]">
-                {/* Active range fill */}
-                <div
-                  className="absolute h-full rounded-full bg-gradient-to-r from-amber-600 to-amber-400"
-                  style={{ left: `${pctMin}%`, right: `${100 - pctMax}%` }}
-                />
-              </div>
-
-              {/* Min thumb */}
-              <input
-                type="range"
-                min={0}
-                max={MAX_PRICE}
-                step={10}
-                value={draftMin}
-                aria-label="Precio minimo"
-                onChange={(e) => {
-                  const v = Math.min(+e.target.value, draftMax - 10);
-                  setDraftMin(v);
-                }}
-                className="absolute inset-0 w-full opacity-0 cursor-pointer h-6 -top-2.5"
-                style={{ zIndex: draftMin > MAX_PRICE * 0.95 ? 5 : 3 }}
-              />
-
-              {/* Max thumb */}
-              <input
-                type="range"
-                min={0}
-                max={MAX_PRICE}
-                step={10}
-                value={draftMax}
-                aria-label="Precio maximo"
-                onChange={(e) => {
-                  const v = Math.max(+e.target.value, draftMin + 10);
-                  setDraftMax(v);
-                }}
-                className="absolute inset-0 w-full opacity-0 cursor-pointer h-6 -top-2.5"
-                style={{ zIndex: 4 }}
-              />
-
-              {/* Visual thumbs */}
-              <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-amber-500 border-2 border-white shadow-lg shadow-amber-500/40 pointer-events-none"
-                style={{ left: `calc(${pctMin}% - 10px)` }}
-              />
-              <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-amber-500 border-2 border-white shadow-lg shadow-amber-500/40 pointer-events-none"
-                style={{ left: `calc(${pctMax}% - 10px)` }}
-              />
-            </div>
-
-            {/* Min / Max inputs */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-[#1a1c26] rounded-xl px-4 py-3 border border-white/5">
-                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Mínimo</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-xs text-zinc-500">S/</span>
-                  <input
-                    type="number"
-                    min={0}
-                    max={draftMax - 10}
-                    step={10}
-                    value={draftMin}
-                    aria-label="Precio minimo"
-                    onChange={(e) => setDraftMin(Math.min(+e.target.value, draftMax - 10))}
-                    className="bg-transparent text-base font-black text-white w-full outline-none"
-                  />
-                </div>
-              </div>
-              <div className="bg-[#1a1c26] rounded-xl px-4 py-3 border border-white/5">
-                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Máximo</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-xs text-zinc-500">S/</span>
-                  <input
-                    type="number"
-                    min={draftMin + 10}
-                    max={MAX_PRICE}
-                    step={10}
-                    value={draftMax}
-                    aria-label="Precio maximo"
-                    onChange={(e) => setDraftMax(Math.max(+e.target.value, draftMin + 10))}
-                    className="bg-transparent text-base font-black text-white w-full outline-none"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
         </div>
 
         {/* ── Footer sticky — botones ── */}
@@ -366,15 +255,6 @@ export default function FilterDrawer({
           </button>
         </div>
       </aside>
-
-      {/* ── Custom range input styles ── */}
-      <style>{`
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 0; height: 0; }
-        input[type=range]::-moz-range-thumb { width: 0; height: 0; border: 0; }
-        input[type=number]::-webkit-outer-spin-button,
-        input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type=number] { -moz-appearance: textfield; }
-      `}</style>
     </>
   );
 }

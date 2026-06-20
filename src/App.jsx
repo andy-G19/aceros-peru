@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
 import DeferredSection from './components/DeferredSection';
@@ -17,10 +17,14 @@ function RouteFallback() {
 
 // Wrapper para pasar navigate a los componentes
 function AppContent() {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleNavigate = (page) => {
-    navigate(`/${page === 'home' ? '' : page}`);
+    const target = `/${page === 'home' ? '' : page}`;
+    if (`${location.pathname}${location.search}` !== target) {
+      navigate(target);
+    }
   };
 
   return (

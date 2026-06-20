@@ -14,24 +14,48 @@ const Header = ({ onNavigate }) => {
   const navigate = useNavigate();
 
   const currentPage = location.pathname.split('/')[1] || 'home';
+  const currentParams = new URLSearchParams(location.search);
+  const activeCategory = currentPage === 'categories' ? currentParams.get('cat') : null;
+  const isCatalogGeneralActive =
+    currentPage === 'categories' &&
+    !currentParams.get('cat') &&
+    !currentParams.get('sub') &&
+    !currentParams.get('q');
 
-  const getCategoryName = (id, fallback) =>
-    categories.find((category) => category.id === id)?.name || fallback;
+  const categoryLabels = {
+    'Herramientas de Construccion': 'Construccion',
+    'Trípodes para Aspersor': 'Tripodes',
+    'Herramientas de Jardinería': 'Jardineria',
+  };
 
-  const quickCategories = [
-    { label: 'Herramientas Acero', query: getCategoryName(1, 'Herramientas Acero') },
-    { label: 'Herramientas Ganzo', query: getCategoryName(2, 'Herramientas Ganzo') },
-    { label: 'Rastrillos', query: getCategoryName(3, 'Rastrillos') },
-    { label: 'Construccion', query: getCategoryName(4, 'Herramientas de Construccion') },
-    { label: 'Tripodes', query: getCategoryName(5, 'Tripodes para Aspersor') },
-    { label: 'Jardineria', query: getCategoryName(7, 'Herramientas de Jardineria') },
-  ];
+  const quickCategories = categories
+    .filter((category) => category.count > 0)
+    .map((category) => ({
+      label: categoryLabels[category.name] || category.name,
+      query: category.name,
+    }));
+
+  const buildCatalogPath = (params = {}) => {
+    const searchParams = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+      const text = String(value || '').trim();
+      if (text) searchParams.set(key, text);
+    });
+    const search = searchParams.toString();
+    return `/categories${search ? `?${search}` : ''}`;
+  };
+
+  const navigateIfChanged = (target) => {
+    if (`${location.pathname}${location.search}` !== target) {
+      navigate(target);
+    }
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
     const query = searchQuery.trim();
     if (query) {
-      navigate(`/categories?q=${encodeURIComponent(query)}`);
+      navigateIfChanged(buildCatalogPath({ q: query }));
       setMenuOpen(false);
     }
   };
@@ -46,7 +70,7 @@ const Header = ({ onNavigate }) => {
 
   const handleCategoryClick = (categoryName) => {
     setSearchQuery('');
-    navigate(`/categories?cat=${encodeURIComponent(categoryName)}`);
+    navigateIfChanged(buildCatalogPath({ cat: categoryName }));
     setMenuOpen(false);
   };
 
@@ -120,14 +144,12 @@ const Header = ({ onNavigate }) => {
             className="group flex items-center gap-2 md:gap-3"
             aria-label="Ir al inicio"
           >
-            <div className="relative rounded-md border border-zinc-700 bg-zinc-900 p-1.5 shadow-inner shadow-black/70 transition-colors group-hover:border-amber-500/70">
+            <div className="relative p-1.5">
               <img
                 src={logo}
                 alt="Aceros Peru"
-                className="h-11 w-11 object-contain transition-transform duration-300 group-hover:scale-105 md:h-16 md:w-16"
+                className="h-14 w-14 object-contain transition-transform duration-300 group-hover:scale-105 md:h-20 md:w-20"
               />
-              <span className="absolute -left-1 -top-1 h-2 w-2 rounded-full bg-zinc-500" />
-              <span className="absolute -bottom-1 -right-1 h-2 w-2 rounded-full bg-zinc-500" />
             </div>
             <div className="leading-tight">
               <span className="block text-[10px] font-semibold uppercase tracking-[0.24em] text-zinc-400 md:text-xs">
@@ -252,11 +274,11 @@ const Header = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => {
-                  navigate('/categories');
+                  navigateIfChanged('/categories');
                   handleSearchClear();
                 }}
                 className={`rounded-md border px-4 py-1.5 font-semibold uppercase tracking-wide transition-all ${
-                  currentPage === 'categories' && !searchQuery
+                  isCatalogGeneralActive
                     ? 'border-amber-500 bg-amber-500 text-zinc-950'
                     : 'border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100'
                 }`}
@@ -269,7 +291,7 @@ const Header = ({ onNavigate }) => {
                 <button
                   onClick={() => handleCategoryClick(category.query)}
                   className={`whitespace-nowrap rounded-md border px-4 py-1.5 font-semibold uppercase tracking-wide transition-all ${
-                    searchQuery === category.query
+                    activeCategory === category.query
                       ? 'border-amber-500 bg-amber-500 text-zinc-950'
                       : 'border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100'
                   }`}
@@ -296,12 +318,12 @@ const Header = ({ onNavigate }) => {
 
             <button
               onClick={() => {
-                navigate('/categories');
+                navigateIfChanged('/categories');
                 handleSearchClear();
                 setMenuOpen(false);
               }}
               className={`rounded-md border px-4 py-2 text-left text-sm font-semibold uppercase tracking-wide transition-colors ${
-                currentPage === 'categories' && !searchQuery
+                isCatalogGeneralActive
                   ? 'border-amber-500/80 bg-amber-500/20 text-amber-300'
                   : 'border-zinc-700 bg-zinc-900/70 text-zinc-300 hover:border-zinc-600 hover:text-zinc-100'
               }`}
@@ -314,7 +336,7 @@ const Header = ({ onNavigate }) => {
                 key={category.query}
                 onClick={() => handleCategoryClick(category.query)}
                 className={`rounded-md border px-4 py-2 text-left text-sm font-semibold uppercase tracking-wide transition-colors ${
-                  searchQuery === category.query
+                  activeCategory === category.query
                     ? 'border-amber-500/80 bg-amber-500/20 text-amber-300'
                     : 'border-zinc-700 bg-zinc-900/70 text-zinc-300 hover:border-zinc-600 hover:text-zinc-100'
                 }`}

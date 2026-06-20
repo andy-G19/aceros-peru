@@ -216,9 +216,9 @@ function ActiveChip({ label, onRemove }) {
 /* ─── Desktop Sidebar ─────────────────────────────────────────── */
 function Sidebar({
   selectedCategory, selectedSubcategory, expandedCategories,
-  priceRange, searchQuery, sortBy,
+  searchQuery, sortBy,
   onCategoryClick, onSubcategoryClick, onToggleExpand,
-  onPriceChange, onSortChange, onClearAll,
+  onSortChange, onClearAll,
 }) {
   return (
     <aside className="lg:w-64 xl:w-72 flex-shrink-0">
@@ -319,22 +319,6 @@ function Sidebar({
                 )}
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Precio */}
-        <div>
-          <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-3">
-            Precio (S/ {priceRange[0]} – S/ {priceRange[1]})
-          </p>
-          <input
-            type="range" min="0" max="5000" value={priceRange[1]}
-            onChange={(e) => onPriceChange([priceRange[0], +e.target.value])}
-            className="w-full accent-amber-500"
-            aria-label="Precio maximo"
-          />
-          <div className="flex justify-between text-[10px] text-zinc-600 mt-1">
-            <span>S/ 0</span><span>S/ 5000</span>
           </div>
         </div>
       </div>
@@ -476,10 +460,9 @@ const Categories = () => {
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [expandedCategories, setExpandedCategories]   = useState({});
   const [sortBy, setSortBy]                           = useState('featured');
-  const [priceRange, setPriceRange]                   = useState([0, 5000]);
   const [drawerOpen, setDrawerOpen]                   = useState(false);
   const [shareCopied, setShareCopied]                 = useState(false);
-  const urlSyncReady = useRef(false);
+  const applyingUrlState = useRef(false);
 
   /* ── Leer state de navegación (desde SubcategoriesShowcase en Home) ── */
   useEffect(() => {
@@ -488,6 +471,7 @@ const Categories = () => {
       const params = new URLSearchParams();
       if (state.category !== 'all') params.set('cat', state.category);
       if (state.subcategory) params.set('sub', state.subcategory);
+      applyingUrlState.current = true;
       navigate(
         {
           pathname: '/categories',
@@ -503,8 +487,6 @@ const Categories = () => {
     const catParam = params.get('cat');
     const subParam = params.get('sub');
     const sortParam = params.get('sort');
-    const minParam = Number(params.get('min'));
-    const maxParam = Number(params.get('max'));
 
     const nextCategory = categories.some((cat) => cat.name === catParam) ? catParam : 'all';
     const categoryObj = categories.find((cat) => cat.name === nextCategory);
@@ -513,24 +495,21 @@ const Categories = () => {
         ? subParam
         : null;
     const nextSort = SORT_OPTIONS.some((option) => option.value === sortParam) ? sortParam : 'featured';
-    const nextMin = Number.isFinite(minParam) ? Math.max(0, Math.min(5000, minParam)) : 0;
-    const nextMax = Number.isFinite(maxParam) ? Math.max(nextMin, Math.min(5000, maxParam)) : 5000;
 
+    applyingUrlState.current = true;
     setSelectedCategory(nextCategory);
     setSelectedSubcategory(nextSubcategory);
     setSortBy(nextSort);
-    setPriceRange([nextMin, nextMax]);
     setSearchQuery(q);
     setExpandedCategories((prev) => ({
       ...prev,
       ...(nextCategory !== 'all' && categoryObj?.subcategories?.length ? { [nextCategory]: true } : {}),
     }));
-    urlSyncReady.current = true;
   }, [location.search, location.state, navigate, setSearchQuery]);
 
   useEffect(() => {
-    if (!urlSyncReady.current) {
-      urlSyncReady.current = true;
+    if (applyingUrlState.current) {
+      applyingUrlState.current = false;
       return;
     }
 
@@ -540,8 +519,6 @@ const Categories = () => {
     if (selectedCategory !== 'all') params.set('cat', selectedCategory);
     if (selectedSubcategory) params.set('sub', selectedSubcategory);
     if (sortBy !== 'featured') params.set('sort', sortBy);
-    if (priceRange[0] > 0) params.set('min', String(priceRange[0]));
-    if (priceRange[1] < 5000) params.set('max', String(priceRange[1]));
 
     const nextSearch = params.toString();
     if (nextSearch !== location.search.replace(/^\?/, '')) {
@@ -556,7 +533,6 @@ const Categories = () => {
   }, [
     location.search,
     navigate,
-    priceRange,
     searchQuery,
     selectedCategory,
     selectedSubcategory,
@@ -613,7 +589,6 @@ const Categories = () => {
   const handleClearAll = () => {
     setSelectedCategory('all');
     setSelectedSubcategory(null);
-    setPriceRange([0, 5000]);
     setSortBy('featured');
     setExpandedCategories({});
     setSearchQuery('');
@@ -623,10 +598,9 @@ const Categories = () => {
     navigate(`/product/${product.id}`, { state: { product } });
   };
 
-  const handleDrawerApply = ({ category, subcategory, priceRange: pr }) => {
+  const handleDrawerApply = ({ category, subcategory }) => {
     setSelectedCategory(category);
     setSelectedSubcategory(subcategory);
-    setPriceRange(pr);
     setSearchQuery('');
   };
 
@@ -645,7 +619,6 @@ const Categories = () => {
     if (selectedCategory !== 'all' && p.category !== selectedCategory) return false;
     // Filtra subcategoría SOLO dentro de la categoría ya seleccionada
     if (selectedSubcategory && p.subcategory !== selectedSubcategory) return false;
-    if (p.price < priceRange[0] || p.price > priceRange[1]) return false;
     return true;
   });
 
@@ -662,7 +635,6 @@ const Categories = () => {
   const activeFiltersCount =
     (selectedCategory !== 'all' ? 1 : 0) +
     (selectedSubcategory ? 1 : 0) +
-    (priceRange[0] > 0 || priceRange[1] < 5000 ? 1 : 0) +
     (searchQuery.trim() ? 1 : 0);
 
   const pageTitle = searchQuery
@@ -822,9 +794,6 @@ const Categories = () => {
               {selectedSubcategory && (
                 <ActiveChip label={selectedSubcategory} onRemove={() => setSelectedSubcategory(null)} />
               )}
-              {(priceRange[0] > 0 || priceRange[1] < 5000) && (
-                <ActiveChip label={`S/${priceRange[0]} – S/${priceRange[1]}`} onRemove={() => setPriceRange([0, 5000])} />
-              )}
               <button onClick={handleClearAll} className="text-[10px] text-zinc-600 hover:text-amber-500 uppercase tracking-wider shrink-0 transition-colors ml-1">
                 Limpiar todo
               </button>
@@ -843,13 +812,11 @@ const Categories = () => {
               selectedCategory={selectedCategory}
               selectedSubcategory={selectedSubcategory}
               expandedCategories={expandedCategories}
-              priceRange={priceRange}
               searchQuery={searchQuery}
               sortBy={sortBy}
               onCategoryClick={handleCategoryClick}
               onSubcategoryClick={handleSubcategoryClick}
               onToggleExpand={handleToggleExpand}
-              onPriceChange={setPriceRange}
               onSortChange={setSortBy}
               onClearAll={handleClearAll}
             />
@@ -909,7 +876,6 @@ const Categories = () => {
         categories={categories}
         selectedCat={selectedCategory}
         selectedSub={selectedSubcategory}
-        priceRange={priceRange}
         onApply={handleDrawerApply}
         onClear={handleClearAll}
       />
