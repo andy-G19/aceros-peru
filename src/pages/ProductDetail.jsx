@@ -95,7 +95,6 @@ export default function ProductDetail() {
     product.description ||
     `${product.name} para pedidos por volumen en la categoria ${product.category}. Cotiza con Industrias Aceros Peru.`;
   const specsParsed = (product.specifications || []).map(parseSpec);
-  const quickSpecs  = specsParsed.slice(0, 4);
   const vol = VOLUME_CONFIG[product.category] || DEFAULT_VOL;
 
   // 2. NUEVO: Lógica de precio dinámico basado en la variante seleccionada
@@ -366,18 +365,6 @@ export default function ProductDetail() {
                       <p className="text-[10px] text-zinc-500 mt-0.5 uppercase tracking-widest">{vol.minLabel}</p>
                     </div>
                   </div>
-                </div>
-              )}
-
-              {/* ── Quick specs 2×2 ── */}
-              {quickSpecs.length > 0 && (
-                <div className={`grid gap-2 mb-5 ${quickSpecs.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                  {quickSpecs.map((s, i) => (
-                    <div key={i} className="bg-[#111118] border border-white/5 rounded-xl px-3 py-2.5">
-                      <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">{s.label}</p>
-                      <p className="text-xs font-bold text-white truncate" title={s.value}>{s.value || '—'}</p>
-                    </div>
-                  ))}
                 </div>
               )}
 
