@@ -5,11 +5,11 @@ import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import Icon from '../components/Icon';
+import { SHOW_PRICES } from '../config';
 
 /* ══════════════════════════════════════════════════
    CONFIGURACIÓN
 ══════════════════════════════════════════════════ */
-const SHOW_PRICES  = false;   // false = modo catálogo B2B
 const FREE_SHIP    = 299; // En modo catálogo, el mensaje de "agrega X para envío gratis" no se muestra, pero el umbral sigue activo para calcular el total estimado.
 const SHIP_COST    = 15; // Costo fijo de envío (solo para cálculo del total estimado, no se muestra en el mensaje de WhatsApp)
 const WA_NUMBER    = '51983955913';

@@ -6,7 +6,7 @@ import { products, categories } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from '../components/OptimizedImage';
-import SEO, { DEFAULT_IMAGE } from '../components/SEO';
+import SEO, { DEFAULT_IMAGE, SITE_URL } from '../components/SEO';
 import Icon from '../components/Icon';
 
 /* ─── Mapa visual de categorías ──────────────────────────────── */
@@ -620,7 +620,7 @@ const Categories = () => {
           '@type': 'CollectionPage',
           name: seoTitle,
           description: seoDescription,
-          url: 'https://aceros-peru.vercel.app/categories',
+          url: `${SITE_URL}/categories`,
         }}
       />
 

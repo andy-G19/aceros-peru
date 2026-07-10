@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export const SITE_URL = 'https://aceros-peru.vercel.app';
+// Se define en .env / .env.example (VITE_SITE_URL) y en las Environment
+// Variables de Vercel. Así, al cambiar de dominio, se actualiza en un solo lugar.
+export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://aceros-peru.vercel.app').replace(/\/$/, '');
 export const SITE_NAME = 'Industrias Aceros Peru';
 export const DEFAULT_IMAGE =
   'https://res.cloudinary.com/daq3sbggo/image/upload/f_auto,q_auto:good,fl_progressive,c_limit,w_1200/v1772022472/port_dliyng.png';

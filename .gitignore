@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Variables de entorno (nunca subir el .env real, solo .env.example)
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,3 +27,5 @@ dist-ssr
 *.sw?
 
 .vercel
+
+/dist

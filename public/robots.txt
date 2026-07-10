@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aceros-peru.vercel.app/sitemap.xml
+Sitemap: https://www.industriasacerosperu.com/sitemap.xml

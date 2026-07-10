@@ -7,7 +7,18 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 export default defineConfig([
   globalIgnores(['dist', 'src/components/magicui/**']),
   {
+    // Scripts de build (Node), no código de browser
+    files: ['scripts/**/*.js'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: globals.node,
+    },
+  },
+  {
     files: ['**/*.{js,jsx}'],
+    ignores: ['scripts/**/*.js'],
     extends: [
       js.configs.recommended,
       reactHooks.configs.flat.recommended,

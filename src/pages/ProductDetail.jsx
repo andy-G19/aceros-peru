@@ -4,14 +4,9 @@ import { useCart } from '../context/CartContext';
 import { products } from '../data/products';
 import { BlurFade } from '../components/magicui/blur-fade';
 import OptimizedImage from '../components/OptimizedImage';
-import SEO from '../components/SEO';
+import SEO, { SITE_URL } from '../components/SEO';
 import Icon from '../components/Icon';
-
-/* ══════════════════════════════════════════════════════════
-   CONFIGURACIÓN GLOBAL — cambiar a false para ocultar precios
-   (modo catálogo B2B)
-══════════════════════════════════════════════════════════ */
-const SHOW_PRICES = false;
+import { SHOW_PRICES } from '../config';
 
 /* ── Volumen de venta por categoría ─────────────────────── */
 const VOLUME_CONFIG = {
@@ -150,7 +145,7 @@ export default function ProductDetail() {
             name: product.brand || 'Aceros Peru',
           },
           category: product.category,
-          url: `https://aceros-peru.vercel.app/product/${product.id}`,
+          url: `${SITE_URL}/product/${product.id}`,
         }}
       />
 
