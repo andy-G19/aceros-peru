@@ -2,7 +2,7 @@ export const herramientasGanzo = [
   /////////////////////////////////
   //Lampas Ganzo
   /////////////////////////////////
-  {
+  /*{
     id: "HER-LAMGA-001",
     name: "Lampa Ganzo Extra Grande",
     brand: "HERRAMIENTAS GANZO",
@@ -33,6 +33,7 @@ export const herramientasGanzo = [
       "Minería artesanal y formal"
     ]
   },
+  */
   {
     id: "HER-LAMGA-002",
     name: "Lampa Ganzo Grande",
