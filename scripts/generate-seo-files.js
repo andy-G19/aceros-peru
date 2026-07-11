@@ -44,6 +44,8 @@ const { products } = await viteServer.ssrLoadModule('/src/data/products.js');
 await viteServer.close();
 
 /* ── Construir el sitemap ── */
+const lastmod = new Date().toISOString().slice(0, 10);
+
 const staticUrls = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
   { loc: '/categories', priority: '0.9', changefreq: 'weekly' },
@@ -63,6 +65,7 @@ ${allUrls
   .map(
     (u) => `  <url>
     <loc>${SITE_URL}${u.loc}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`
@@ -76,6 +79,7 @@ writeFileSync(resolve(root, 'public/sitemap.xml'), xml);
 /* ── robots.txt (mismo dominio, referencia al sitemap) ── */
 const robots = `User-agent: *
 Allow: /
+Disallow: /cart
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;

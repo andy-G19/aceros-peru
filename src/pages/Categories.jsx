@@ -617,10 +617,21 @@ const Categories = () => {
         noindex={Boolean(searchQuery.trim())}
         structuredData={{
           '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: seoTitle,
-          description: seoDescription,
-          url: `${SITE_URL}/categories`,
+          '@graph': [
+            {
+              '@type': 'CollectionPage',
+              name: seoTitle,
+              description: seoDescription,
+              url: `${SITE_URL}/categories`,
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_URL },
+                { '@type': 'ListItem', position: 2, name: 'Catálogo', item: `${SITE_URL}/categories` },
+              ],
+            },
+          ],
         }}
       />
 

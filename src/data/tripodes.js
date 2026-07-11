@@ -1,6 +1,6 @@
 export const tripodes = [
   {
-    id: "TRÍ-TRIME-053",
+    id: "TRI-TRIME-053",
     name: "Tripode Metálico de Angular 1 ¾\" con pisadera",
     description: "Trípode de acero con conexión de 2\" HE (Hilo Exterior). Acabado industrial para sistemas de riego agrícola de alto caudal. Disponible en diferentes alturas.",
     price: 150.00,
@@ -22,7 +22,7 @@ export const tripodes = [
     ]
   },
   {
-    id: "TRÍ-TRIME-054",
+    id: "TRI-TRIME-054",
     name: "Tripode Metalico de Tubo Galvanizado 1 ¾\" con pisadera",
     description: "Trípode de acero reforzado con conexión de 1 1/2\" HE (Hilo Exterior). Acabado industrial para sistemas de riego agrícola.",
     price: 135.00,
@@ -44,7 +44,7 @@ export const tripodes = [
     ]
   },
   {
-    id: "TRÍ-TRIME-055",
+    id: "TRI-TRIME-055",
     name: "Tripode Metalico de Angular 1 ¾\" sin pisadera",
     description: "Trípode de acero estándar con conexión de 1\" HE (Hilo Exterior) para aspersores agrícolas comunes.",
     price: 100.00,
@@ -65,7 +65,7 @@ export const tripodes = [
     ]
   },
   {
-    id: "TRÍ-CUAME-056",
+    id: "TRI-CUAME-056",
     name: "Cuatripode Metalico de Angular 1 ½\" y 2\" con pisadera",
     description: "Trípode versátil de acero con conexión doble de 3/4\" y 1\" HE. Ideal para adaptar distintos aspersores de riego.",
     price: 95.00,
@@ -90,7 +90,7 @@ export const tripodes = [
     ]
   },
   {
-    id: "TRÍ-TRIME-057",
+    id: "TRI-TRIME-057",
     name: "Tripode Metalico de Tubo Galvanizado 1 ¾\" pesado con pisadera",
     description: "Trípode ligero y versátil con conexión doble de 1/2\" y 3/4\" HE para aspersores de caudal medio.",
     price: 85.00,
@@ -112,7 +112,7 @@ export const tripodes = [
     ]
   },
   {
-    id: "TRÍ-CUAME-058",
+    id: "TRI-CUAME-058",
     name: "Cuatripode Metalico de angular 1 ½\" y de 2\" con doble seguro con pisadera",
     description: "Trípode de acero con conexión de 1/2\" HI (Hilo Interior / Hembra) para aspersores de acople específico.",
     price: 85.00,
@@ -134,7 +134,7 @@ export const tripodes = [
     ]
   },
   {
-    id: "TRÍ-SOPME-059",
+    id: "TRI-SOPME-059",
     name: "Soporte metalico de fierro redondo liso de ⅝\" con pisadera",
     description: "Trípode de acero con conexión de 1/2\" HI (Hilo Interior / Hembra) para aspersores de acople específico.",
     price: 85.00,

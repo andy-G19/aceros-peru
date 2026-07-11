@@ -535,7 +535,7 @@ export const herramientasGanzo = [
     ]
   },
   {
-    id: 118,
+    id: "HER-REJGA-118",
     name: "Rejilla Ganzo Largo de 27 cm",
     brand: "HERRAMIENTAS GANZO",
     price: 54.50,

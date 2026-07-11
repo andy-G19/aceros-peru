@@ -64,6 +64,48 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/product/118",
+      "destination": "/product/HER-REJGA-118",
+      "permanent": true
+    },
+    {
+      "source": "/product/TR%C3%8D-TRIME-053",
+      "destination": "/product/TRI-TRIME-053",
+      "permanent": true
+    },
+    {
+      "source": "/product/TR%C3%8D-TRIME-054",
+      "destination": "/product/TRI-TRIME-054",
+      "permanent": true
+    },
+    {
+      "source": "/product/TR%C3%8D-TRIME-055",
+      "destination": "/product/TRI-TRIME-055",
+      "permanent": true
+    },
+    {
+      "source": "/product/TR%C3%8D-CUAME-056",
+      "destination": "/product/TRI-CUAME-056",
+      "permanent": true
+    },
+    {
+      "source": "/product/TR%C3%8D-TRIME-057",
+      "destination": "/product/TRI-TRIME-057",
+      "permanent": true
+    },
+    {
+      "source": "/product/TR%C3%8D-CUAME-058",
+      "destination": "/product/TRI-CUAME-058",
+      "permanent": true
+    },
+    {
+      "source": "/product/TR%C3%8D-SOPME-059",
+      "destination": "/product/TRI-SOPME-059",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

@@ -135,17 +135,38 @@ export default function ProductDetail() {
         type="product"
         structuredData={{
           '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: product.name,
-          description: productDescription,
-          image: rawImages,
-          sku: String(product.id),
-          brand: {
-            '@type': 'Brand',
-            name: product.brand || 'Aceros Peru',
-          },
-          category: product.category,
-          url: `${SITE_URL}/product/${product.id}`,
+          '@graph': [
+            {
+              '@type': 'Product',
+              name: product.name,
+              description: productDescription,
+              image: rawImages,
+              sku: String(product.id),
+              brand: {
+                '@type': 'Brand',
+                name: product.brand || 'Aceros Peru',
+              },
+              category: product.category,
+              url: `${SITE_URL}/product/${product.id}`,
+              ...(SHOW_PRICES && {
+                offers: {
+                  '@type': 'Offer',
+                  priceCurrency: 'PEN',
+                  price: displayPrice,
+                  availability: 'https://schema.org/InStock',
+                  url: `${SITE_URL}/product/${product.id}`,
+                },
+              }),
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_URL },
+                { '@type': 'ListItem', position: 2, name: 'Catálogo', item: `${SITE_URL}/categories` },
+                { '@type': 'ListItem', position: 3, name: product.name, item: `${SITE_URL}/product/${product.id}` },
+              ],
+            },
+          ],
         }}
       />
 
