@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "postinstall": "npx playwright install --with-deps chromium",
+    "postinstall": "npx playwright install chromium",
     "build": "node scripts/generate-seo-files.js && vite build && node scripts/prerender.js",
     "seo:generate": "node scripts/generate-seo-files.js",
     "seo:prerender": "node scripts/prerender.js",
