@@ -6,7 +6,7 @@ import DeferredSection from '../components/DeferredSection';
 import SEO, { SITE_URL } from '../components/SEO';
 import Icon from '../components/Icon';
 
-const HERO_IMAGE = 'https://res.cloudinary.com/daq3sbggo/image/upload/v1772022472/port_dliyng.png';
+const HERO_IMAGE = 'https://res.cloudinary.com/daq3sbggo/image/upload/v1783718902/Portada_d5q4pq.webp';
 const AboutUs = lazy(() => import('../components/AboutUs'));
 const SubcategoriesShowcase = lazy(() => import('../components/SubcategoriesShowcase'));
 const FeaturedProducts = lazy(() => import('../components/FeaturedProducts'));
