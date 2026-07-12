@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "postinstall": "npx playwright install chromium",
     "build": "node scripts/generate-seo-files.js && vite build && node scripts/prerender.js",
     "seo:generate": "node scripts/generate-seo-files.js",
     "seo:prerender": "node scripts/prerender.js",
@@ -19,6 +18,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@sparticuz/chromium": "^149.0.0",
     "@tailwindcss/forms": "^0.5.11",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
@@ -28,8 +28,8 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "playwright": "^1.49.1",
     "postcss": "^8.5.6",
+    "puppeteer-core": "^25.3.0",
     "tailwindcss": "^3.4.17",
     "vite": "^7.3.1"
   }

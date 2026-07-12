@@ -1,0 +1,1313 @@
+diff --git a/package-lock.json b/package-lock.json
+index 57419da..b799fcb 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -14,6 +14,7 @@
+       },
+       "devDependencies": {
+         "@eslint/js": "^9.39.1",
++        "@sparticuz/chromium": "^149.0.0",
+         "@tailwindcss/forms": "^0.5.11",
+         "@types/react": "^19.2.7",
+         "@types/react-dom": "^19.2.3",
+@@ -23,8 +24,8 @@
+         "eslint-plugin-react-hooks": "^7.0.1",
+         "eslint-plugin-react-refresh": "^0.4.24",
+         "globals": "^16.5.0",
+-        "playwright": "^1.49.1",
+         "postcss": "^8.5.6",
++        "puppeteer-core": "^25.3.0",
+         "tailwindcss": "^3.4.17",
+         "vite": "^7.3.1"
+       }
+@@ -1063,6 +1064,35 @@
+         "node": ">= 8"
+       }
+     },
++    "node_modules/@puppeteer/browsers": {
++      "version": "3.0.6",
++      "resolved": "https://registry.npmjs.org/@puppeteer/browsers/-/browsers-3.0.6.tgz",
++      "integrity": "sha512-B/gKoqlFkzhvzsI6jo9K1cZz9o5ypviVv/xu8CwA4grZzyVwN+XfkT+tu8T1zrauuEXv6VhS2oGX+6NL95WcKA==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "modern-tar": "^0.7.6",
++        "yargs": "^18.0.0"
++      },
++      "bin": {
++        "browsers": "lib/main-cli.js"
++      },
++      "engines": {
++        "node": ">=22.12.0"
++      },
++      "peerDependencies": {
++        "proxy-agent": ">=8.0.1",
++        "yauzl": "^2.10.0 || ^3.4.0"
++      },
++      "peerDependenciesMeta": {
++        "proxy-agent": {
++          "optional": true
++        },
++        "yauzl": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/@rolldown/pluginutils": {
+       "version": "1.0.0-rc.3",
+       "resolved": "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.0-rc.3.tgz",
+@@ -1420,6 +1450,19 @@
+         "win32"
+       ]
+     },
++    "node_modules/@sparticuz/chromium": {
++      "version": "149.0.0",
++      "resolved": "https://registry.npmjs.org/@sparticuz/chromium/-/chromium-149.0.0.tgz",
++      "integrity": "sha512-2NECBVKlUA9xIUXb4fT8OoGKdAJs+I2tNYscO8FwcxCKCWA7FmpPI0fdVxGJoIJglrFZYn+4YEJqChq4rdrxQg==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "tar-fs": "^3.1.2"
++      },
++      "engines": {
++        "node": "^22.17.0 || >=24.0.0"
++      }
++    },
+     "node_modules/@tailwindcss/forms": {
+       "version": "0.5.11",
+       "resolved": "https://registry.npmjs.org/@tailwindcss/forms/-/forms-0.5.11.tgz",
+@@ -1573,6 +1616,19 @@
+         "url": "https://github.com/sponsors/epoberezkin"
+       }
+     },
++    "node_modules/ansi-regex": {
++      "version": "6.2.2",
++      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.2.2.tgz",
++      "integrity": "sha512-Bq3SmSpyFHaWjPk8If9yc6svM8c56dB5BAtW4Qbw5jHTwwXXcTLoRMkpDJp6VL0XzlWaCHTXrkFURMYmD0sLqg==",
++      "dev": true,
++      "license": "MIT",
++      "engines": {
++        "node": ">=12"
++      },
++      "funding": {
++        "url": "https://github.com/chalk/ansi-regex?sponsor=1"
++      }
++    },
+     "node_modules/ansi-styles": {
+       "version": "4.3.0",
+       "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
+@@ -1674,6 +1730,21 @@
+         "postcss": "^8.1.0"
+       }
+     },
++    "node_modules/b4a": {
++      "version": "1.8.1",
++      "resolved": "https://registry.npmjs.org/b4a/-/b4a-1.8.1.tgz",
++      "integrity": "sha512-aiqre1Nr0B/6DgE2N5vwTc+2/oQZ4Wh1t4NznYY4E00y8LCt6NqdRv81so00oo27D8MVKTpUa/MwUUtBLXCoDw==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "peerDependencies": {
++        "react-native-b4a": "*"
++      },
++      "peerDependenciesMeta": {
++        "react-native-b4a": {
++          "optional": true
++        }
++      }
++    },
+     "node_modules/balanced-match": {
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz",
+@@ -1681,6 +1752,91 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/bare-events": {
++      "version": "2.9.1",
++      "resolved": "https://registry.npmjs.org/bare-events/-/bare-events-2.9.1.tgz",
++      "integrity": "sha512-Z0oHEHAFDZkffN8Qc39zNZjQlMDkPJRyyyZieU1VH7u8c5S+qHZ2S8ixdKIAxEjfHO7FJxXmJWgteOghVanIsg==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "peerDependencies": {
++        "bare-abort-controller": "*"
++      },
++      "peerDependenciesMeta": {
++        "bare-abort-controller": {
++          "optional": true
++        }
++      }
++    },
++    "node_modules/bare-fs": {
++      "version": "4.7.4",
++      "resolved": "https://registry.npmjs.org/bare-fs/-/bare-fs-4.7.4.tgz",
++      "integrity": "sha512-y1kC+ffIx/tPLdTE693uNjHfzTfr+ravR5tvWlMXe25nELbkqV400S71qHDwbkAQ1FVEZobB1NFRzFbCCcyBCQ==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "bare-events": "^2.5.4",
++        "bare-path": "^3.0.0",
++        "bare-stream": "^2.6.4",
++        "bare-url": "^2.2.2",
++        "fast-fifo": "^1.3.2"
++      },
++      "engines": {
++        "bare": ">=1.16.0"
++      },
++      "peerDependencies": {
++        "bare-buffer": "*"
++      },
++      "peerDependenciesMeta": {
++        "bare-buffer": {
++          "optional": true
++        }
++      }
++    },
++    "node_modules/bare-path": {
++      "version": "3.1.1",
++      "resolved": "https://registry.npmjs.org/bare-path/-/bare-path-3.1.1.tgz",
++      "integrity": "sha512-JprUlveX3QjApC1cTpsUOiscADftCGVWkzitbHsRqv84hzYwYHw2mbluddsq5TvI8mH/8Ov1f4BiMAdcB0oYnQ==",
++      "dev": true,
++      "license": "Apache-2.0"
++    },
++    "node_modules/bare-stream": {
++      "version": "2.13.3",
++      "resolved": "https://registry.npmjs.org/bare-stream/-/bare-stream-2.13.3.tgz",
++      "integrity": "sha512-Kc+brLqvEqGkjyfiwJmImAOqLZL7OsoLKuavx+hJjgVV3nLTOjloJyPMFxjUPerGGHrNH0fLU06jjykMLWrERQ==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "b4a": "^1.8.1",
++        "streamx": "^2.25.0",
++        "teex": "^1.0.1"
++      },
++      "peerDependencies": {
++        "bare-abort-controller": "*",
++        "bare-buffer": "*",
++        "bare-events": "*"
++      },
++      "peerDependenciesMeta": {
++        "bare-abort-controller": {
++          "optional": true
++        },
++        "bare-buffer": {
++          "optional": true
++        },
++        "bare-events": {
++          "optional": true
++        }
++      }
++    },
++    "node_modules/bare-url": {
++      "version": "2.4.5",
++      "resolved": "https://registry.npmjs.org/bare-url/-/bare-url-2.4.5.tgz",
++      "integrity": "sha512-K+y9xF1tN+CdPu4qWwr0QiK1Al07eFPGYK5M2pDXcmHdMdgC/tT/bpmMe1hrmRHaidKLkXrC+cRNYf3XVDUhSQ==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "bare-path": "^3.0.0"
++      }
++    },
+     "node_modules/baseline-browser-mapping": {
+       "version": "2.9.19",
+       "resolved": "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.9.19.tgz",
+@@ -1858,6 +2014,48 @@
+         "node": ">= 6"
+       }
+     },
++    "node_modules/chromium-bidi": {
++      "version": "16.0.1",
++      "resolved": "https://registry.npmjs.org/chromium-bidi/-/chromium-bidi-16.0.1.tgz",
++      "integrity": "sha512-J63PGu/9PpeCwLIcKYyzWP6yaVL5pxuBc0shlYCYM8BaAkmlwiQboXO1iNbOgSDbVklEyYFfNEcHD8oOAWacUA==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "mitt": "^3.0.1",
++        "zod": "^3.24.1"
++      },
++      "engines": {
++        "node": ">=20.19.0 <22.0.0 || >=22.12.0"
++      },
++      "peerDependencies": {
++        "devtools-protocol": "*"
++      }
++    },
++    "node_modules/chromium-bidi/node_modules/zod": {
++      "version": "3.25.76",
++      "resolved": "https://registry.npmjs.org/zod/-/zod-3.25.76.tgz",
++      "integrity": "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==",
++      "dev": true,
++      "license": "MIT",
++      "funding": {
++        "url": "https://github.com/sponsors/colinhacks"
++      }
++    },
++    "node_modules/cliui": {
++      "version": "9.0.1",
++      "resolved": "https://registry.npmjs.org/cliui/-/cliui-9.0.1.tgz",
++      "integrity": "sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==",
++      "dev": true,
++      "license": "ISC",
++      "dependencies": {
++        "string-width": "^7.2.0",
++        "strip-ansi": "^7.1.0",
++        "wrap-ansi": "^9.0.0"
++      },
++      "engines": {
++        "node": ">=20"
++      }
++    },
+     "node_modules/color-convert": {
+       "version": "2.0.1",
+       "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
+@@ -1975,6 +2173,13 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/devtools-protocol": {
++      "version": "0.0.1638949",
++      "resolved": "https://registry.npmjs.org/devtools-protocol/-/devtools-protocol-0.0.1638949.tgz",
++      "integrity": "sha512-mXwg4Fqnv0WR4iuAT/gYUmctNkjILwXFHyZ+m7Ty1dfr0ezZt2U3gnrrJTfRobJTHoXf+IbuFvFITzLrLFjwJA==",
++      "dev": true,
++      "license": "BSD-3-Clause"
++    },
+     "node_modules/didyoumean": {
+       "version": "1.2.2",
+       "resolved": "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz",
+@@ -1996,6 +2201,23 @@
+       "dev": true,
+       "license": "ISC"
+     },
++    "node_modules/emoji-regex": {
++      "version": "10.6.0",
++      "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-10.6.0.tgz",
++      "integrity": "sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==",
++      "dev": true,
++      "license": "MIT"
++    },
++    "node_modules/end-of-stream": {
++      "version": "1.4.5",
++      "resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.5.tgz",
++      "integrity": "sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "once": "^1.4.0"
++      }
++    },
+     "node_modules/esbuild": {
+       "version": "0.27.3",
+       "resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.27.3.tgz",
+@@ -2245,6 +2467,16 @@
+         "node": ">=0.10.0"
+       }
+     },
++    "node_modules/events-universal": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/events-universal/-/events-universal-1.0.1.tgz",
++      "integrity": "sha512-LUd5euvbMLpwOF8m6ivPCbhQeSiYVNb8Vs0fQ8QjXo0JTkEHpz8pxdQf0gStltaPpw0Cca8b39KxvK9cfKRiAw==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "bare-events": "^2.7.0"
++      }
++    },
+     "node_modules/fast-deep-equal": {
+       "version": "3.1.3",
+       "resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz",
+@@ -2252,6 +2484,13 @@
+       "dev": true,
+       "license": "MIT"
+     },
++    "node_modules/fast-fifo": {
++      "version": "1.3.2",
++      "resolved": "https://registry.npmjs.org/fast-fifo/-/fast-fifo-1.3.2.tgz",
++      "integrity": "sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==",
++      "dev": true,
++      "license": "MIT"
++    },
+     "node_modules/fast-glob": {
+       "version": "3.3.3",
+       "resolved": "https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.3.tgz",
+@@ -2437,6 +2676,29 @@
+         "node": ">=6.9.0"
+       }
+     },
++    "node_modules/get-caller-file": {
++      "version": "2.0.5",
++      "resolved": "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz",
++      "integrity": "sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==",
++      "dev": true,
++      "license": "ISC",
++      "engines": {
++        "node": "6.* || 8.* || >= 10.*"
++      }
++    },
++    "node_modules/get-east-asian-width": {
++      "version": "1.6.0",
++      "resolved": "https://registry.npmjs.org/get-east-asian-width/-/get-east-asian-width-1.6.0.tgz",
++      "integrity": "sha512-QRbvDIbx6YklUe6RxeTeleMR0yv3cYH6PsPZHcnVn7xv7zO1BHN8r0XETu8n6Ye3Q+ahtSarc3WgtNWmehIBfA==",
++      "dev": true,
++      "license": "MIT",
++      "engines": {
++        "node": ">=18"
++      },
++      "funding": {
++        "url": "https://github.com/sponsors/sindresorhus"
++      }
++    },
+     "node_modules/glob-parent": {
+       "version": "6.0.2",
+       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-6.0.2.tgz",
+@@ -2823,6 +3085,23 @@
+         "node": "*"
+       }
+     },
++    "node_modules/mitt": {
++      "version": "3.0.1",
++      "resolved": "https://registry.npmjs.org/mitt/-/mitt-3.0.1.tgz",
++      "integrity": "sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==",
++      "dev": true,
++      "license": "MIT"
++    },
++    "node_modules/modern-tar": {
++      "version": "0.7.6",
++      "resolved": "https://registry.npmjs.org/modern-tar/-/modern-tar-0.7.6.tgz",
++      "integrity": "sha512-sweCIVXzx1aIGTCdzcMlSZt1h8k5Tmk08VNAuRk3IU28XamGiOH5ypi11g6De2CH7PhYqSSnGy2A/EFhbWnVKg==",
++      "dev": true,
++      "license": "MIT",
++      "engines": {
++        "node": ">=18.0.0"
++      }
++    },
+     "node_modules/ms": {
+       "version": "2.1.3",
+       "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+@@ -2905,6 +3184,16 @@
+         "node": ">= 6"
+       }
+     },
++    "node_modules/once": {
++      "version": "1.4.0",
++      "resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
++      "integrity": "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==",
++      "dev": true,
++      "license": "ISC",
++      "dependencies": {
++        "wrappy": "1"
++      }
++    },
+     "node_modules/optionator": {
+       "version": "0.9.4",
+       "resolved": "https://registry.npmjs.org/optionator/-/optionator-0.9.4.tgz",
+@@ -3035,53 +3324,6 @@
+         "node": ">= 6"
+       }
+     },
+-    "node_modules/playwright": {
+-      "version": "1.61.1",
+-      "resolved": "https://registry.npmjs.org/playwright/-/playwright-1.61.1.tgz",
+-      "integrity": "sha512-DWnY5o3YbLWK4GovuAVwpqL+1VwGNdUGrRr++8j8PtQQzvAVZUIMjKQ90fY689sEJZJBbZVw1rXaOKSTitkzPQ==",
+-      "dev": true,
+-      "license": "Apache-2.0",
+-      "dependencies": {
+-        "playwright-core": "1.61.1"
+-      },
+-      "bin": {
+-        "playwright": "cli.js"
+-      },
+-      "engines": {
+-        "node": ">=18"
+-      },
+-      "optionalDependencies": {
+-        "fsevents": "2.3.2"
+-      }
+-    },
+-    "node_modules/playwright-core": {
+-      "version": "1.61.1",
+-      "resolved": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.61.1.tgz",
+-      "integrity": "sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg==",
+-      "dev": true,
+-      "license": "Apache-2.0",
+-      "bin": {
+-        "playwright-core": "cli.js"
+-      },
+-      "engines": {
+-        "node": ">=18"
+-      }
+-    },
+-    "node_modules/playwright/node_modules/fsevents": {
+-      "version": "2.3.2",
+-      "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz",
+-      "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==",
+-      "dev": true,
+-      "hasInstallScript": true,
+-      "license": "MIT",
+-      "optional": true,
+-      "os": [
+-        "darwin"
+-      ],
+-      "engines": {
+-        "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
+-      }
+-    },
+     "node_modules/postcss": {
+       "version": "8.5.6",
+       "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.6.tgz",
+@@ -3248,6 +3490,17 @@
+         "node": ">= 0.8.0"
+       }
+     },
++    "node_modules/pump": {
++      "version": "3.0.4",
++      "resolved": "https://registry.npmjs.org/pump/-/pump-3.0.4.tgz",
++      "integrity": "sha512-VS7sjc6KR7e1ukRFhQSY5LM2uBWAUPiOPa/A3mkKmiMwSmRFUITt0xuj+/lesgnCv+dPIEYlkzrcyXgquIHMcA==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "end-of-stream": "^1.1.0",
++        "once": "^1.3.1"
++      }
++    },
+     "node_modules/punycode": {
+       "version": "2.3.1",
+       "resolved": "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz",
+@@ -3258,6 +3511,24 @@
+         "node": ">=6"
+       }
+     },
++    "node_modules/puppeteer-core": {
++      "version": "25.3.0",
++      "resolved": "https://registry.npmjs.org/puppeteer-core/-/puppeteer-core-25.3.0.tgz",
++      "integrity": "sha512-fm+wpUr2oigH1PXZvwgATrM2tYWHMDG8ASzTEe9uukCye4X5Ldx1K5BTHPFKITrIWvQQAQ256d1NpbEveBcKjA==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "@puppeteer/browsers": "3.0.6",
++        "chromium-bidi": "16.0.1",
++        "devtools-protocol": "0.0.1638949",
++        "typed-query-selector": "^2.12.2",
++        "webdriver-bidi-protocol": "0.4.2",
++        "ws": "^8.21.0"
++      },
++      "engines": {
++        "node": ">=22.12.0"
++      }
++    },
+     "node_modules/queue-microtask": {
+       "version": "1.2.3",
+       "resolved": "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz",
+@@ -3550,6 +3821,52 @@
+         "node": ">=0.10.0"
+       }
+     },
++    "node_modules/streamx": {
++      "version": "2.28.0",
++      "resolved": "https://registry.npmjs.org/streamx/-/streamx-2.28.0.tgz",
++      "integrity": "sha512-1Yowhzjf0ivGMrTIkY9hav5TxobO9qIVqUE41fiCGMGgc3CLlf4MY+9AHmZqBWgDTue0fY9zWjYFVyf6Diuobw==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "events-universal": "^1.0.0",
++        "fast-fifo": "^1.3.2",
++        "text-decoder": "^1.1.0"
++      }
++    },
++    "node_modules/string-width": {
++      "version": "7.2.0",
++      "resolved": "https://registry.npmjs.org/string-width/-/string-width-7.2.0.tgz",
++      "integrity": "sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "emoji-regex": "^10.3.0",
++        "get-east-asian-width": "^1.0.0",
++        "strip-ansi": "^7.1.0"
++      },
++      "engines": {
++        "node": ">=18"
++      },
++      "funding": {
++        "url": "https://github.com/sponsors/sindresorhus"
++      }
++    },
++    "node_modules/strip-ansi": {
++      "version": "7.2.0",
++      "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.2.0.tgz",
++      "integrity": "sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "ansi-regex": "^6.2.2"
++      },
++      "engines": {
++        "node": ">=12"
++      },
++      "funding": {
++        "url": "https://github.com/chalk/strip-ansi?sponsor=1"
++      }
++    },
+     "node_modules/strip-json-comments": {
+       "version": "3.1.1",
+       "resolved": "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz",
+@@ -3650,6 +3967,54 @@
+         "node": ">=14.0.0"
+       }
+     },
++    "node_modules/tar-fs": {
++      "version": "3.1.3",
++      "resolved": "https://registry.npmjs.org/tar-fs/-/tar-fs-3.1.3.tgz",
++      "integrity": "sha512-/hU4AXnIdZu+Gvl1pk0oI5f5HxWsCJRtY2aFaJdk9VvyL48DWU6iU5WAIPG+wIi1YvWA6eTJvIviP/tMAZZNwQ==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "pump": "^3.0.0",
++        "tar-stream": "^3.1.5"
++      },
++      "optionalDependencies": {
++        "bare-fs": "^4.0.1",
++        "bare-path": "^3.0.0"
++      }
++    },
++    "node_modules/tar-stream": {
++      "version": "3.2.0",
++      "resolved": "https://registry.npmjs.org/tar-stream/-/tar-stream-3.2.0.tgz",
++      "integrity": "sha512-ojzvCvVaNp6aOTFmG7jaRD0meowIAuPc3cMMhSgKiVWws1GyHbGd/xvnyuRKcKlMpt3qvxx6r0hreCNITP9hIg==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "b4a": "^1.6.4",
++        "bare-fs": "^4.5.5",
++        "fast-fifo": "^1.2.0",
++        "streamx": "^2.15.0"
++      }
++    },
++    "node_modules/teex": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/teex/-/teex-1.0.1.tgz",
++      "integrity": "sha512-eYE6iEI62Ni1H8oIa7KlDU6uQBtqr4Eajni3wX7rpfXD8ysFx8z0+dri+KWEPWpBsxXfxu58x/0jvTVT1ekOSg==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "streamx": "^2.12.5"
++      }
++    },
++    "node_modules/text-decoder": {
++      "version": "1.2.7",
++      "resolved": "https://registry.npmjs.org/text-decoder/-/text-decoder-1.2.7.tgz",
++      "integrity": "sha512-vlLytXkeP4xvEq2otHeJfSQIRyWxo/oZGEbXrtEEF9Hnmrdly59sUbzZ/QgyWuLYHctCHxFF4tRQZNQ9k60ExQ==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "b4a": "^1.6.4"
++      }
++    },
+     "node_modules/thenify": {
+       "version": "3.3.1",
+       "resolved": "https://registry.npmjs.org/thenify/-/thenify-3.3.1.tgz",
+@@ -3723,6 +4088,13 @@
+         "node": ">= 0.8.0"
+       }
+     },
++    "node_modules/typed-query-selector": {
++      "version": "2.12.2",
++      "resolved": "https://registry.npmjs.org/typed-query-selector/-/typed-query-selector-2.12.2.tgz",
++      "integrity": "sha512-EOPFbyIub4ngnEdqi2yOcNeDLaX/0jcE1JoAXQDDMIthap7FoN795lc/SHfIq2d416VufXpM8z/lD+WRm2gfOQ==",
++      "dev": true,
++      "license": "MIT"
++    },
+     "node_modules/update-browserslist-db": {
+       "version": "1.2.3",
+       "resolved": "https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.2.3.tgz",
+@@ -3846,6 +4218,13 @@
+         }
+       }
+     },
++    "node_modules/webdriver-bidi-protocol": {
++      "version": "0.4.2",
++      "resolved": "https://registry.npmjs.org/webdriver-bidi-protocol/-/webdriver-bidi-protocol-0.4.2.tgz",
++      "integrity": "sha512-VSV+fzfChirL3e7jay2yUC7B4HQCGtEWEg/MSSQbK+qWbqeGlRLlXTzPpYr3XGUvbpDHumWZBJxgesg4N7dbtA==",
++      "dev": true,
++      "license": "Apache-2.0"
++    },
+     "node_modules/which": {
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
+@@ -3872,6 +4251,76 @@
+         "node": ">=0.10.0"
+       }
+     },
++    "node_modules/wrap-ansi": {
++      "version": "9.0.2",
++      "resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-9.0.2.tgz",
++      "integrity": "sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "ansi-styles": "^6.2.1",
++        "string-width": "^7.0.0",
++        "strip-ansi": "^7.1.0"
++      },
++      "engines": {
++        "node": ">=18"
++      },
++      "funding": {
++        "url": "https://github.com/chalk/wrap-ansi?sponsor=1"
++      }
++    },
++    "node_modules/wrap-ansi/node_modules/ansi-styles": {
++      "version": "6.2.3",
++      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-6.2.3.tgz",
++      "integrity": "sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==",
++      "dev": true,
++      "license": "MIT",
++      "engines": {
++        "node": ">=12"
++      },
++      "funding": {
++        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
++      }
++    },
++    "node_modules/wrappy": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
++      "integrity": "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==",
++      "dev": true,
++      "license": "ISC"
++    },
++    "node_modules/ws": {
++      "version": "8.21.0",
++      "resolved": "https://registry.npmjs.org/ws/-/ws-8.21.0.tgz",
++      "integrity": "sha512-Vsp28b7DRcimFQvrqu2Wek3z1iYxDCWqHYB8Qsnk/S4RfaCQzPGPyBNuVjJV3cd6UiKtUtp6sNM77gWvzcCH+g==",
++      "dev": true,
++      "license": "MIT",
++      "engines": {
++        "node": ">=10.0.0"
++      },
++      "peerDependencies": {
++        "bufferutil": "^4.0.1",
++        "utf-8-validate": ">=5.0.2"
++      },
++      "peerDependenciesMeta": {
++        "bufferutil": {
++          "optional": true
++        },
++        "utf-8-validate": {
++          "optional": true
++        }
++      }
++    },
++    "node_modules/y18n": {
++      "version": "5.0.8",
++      "resolved": "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz",
++      "integrity": "sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==",
++      "dev": true,
++      "license": "ISC",
++      "engines": {
++        "node": ">=10"
++      }
++    },
+     "node_modules/yallist": {
+       "version": "3.1.1",
+       "resolved": "https://registry.npmjs.org/yallist/-/yallist-3.1.1.tgz",
+@@ -3895,6 +4344,34 @@
+         "url": "https://github.com/sponsors/eemeli"
+       }
+     },
++    "node_modules/yargs": {
++      "version": "18.0.0",
++      "resolved": "https://registry.npmjs.org/yargs/-/yargs-18.0.0.tgz",
++      "integrity": "sha512-4UEqdc2RYGHZc7Doyqkrqiln3p9X2DZVxaGbwhn2pi7MrRagKaOcIKe8L3OxYcbhXLgLFUS3zAYuQjKBQgmuNg==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "cliui": "^9.0.1",
++        "escalade": "^3.1.1",
++        "get-caller-file": "^2.0.5",
++        "string-width": "^7.2.0",
++        "y18n": "^5.0.5",
++        "yargs-parser": "^22.0.0"
++      },
++      "engines": {
++        "node": "^20.19.0 || ^22.12.0 || >=23"
++      }
++    },
++    "node_modules/yargs-parser": {
++      "version": "22.0.0",
++      "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-22.0.0.tgz",
++      "integrity": "sha512-rwu/ClNdSMpkSrUb+d6BRsSkLUq1fmfsY6TOpYzTwvwkg1/NRG85KBy3kq++A8LKQwX6lsu+aWad+2khvuXrqw==",
++      "dev": true,
++      "license": "ISC",
++      "engines": {
++        "node": "^20.19.0 || ^22.12.0 || >=23"
++      }
++    },
+     "node_modules/yocto-queue": {
+       "version": "0.1.0",
+       "resolved": "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz",
+diff --git a/package.json b/package.json
+index de90b29..07ee612 100644
+--- a/package.json
++++ b/package.json
+@@ -5,7 +5,6 @@
+   "type": "module",
+   "scripts": {
+     "dev": "vite",
+-    "postinstall": "npx playwright install chromium",
+     "build": "node scripts/generate-seo-files.js && vite build && node scripts/prerender.js",
+     "seo:generate": "node scripts/generate-seo-files.js",
+     "seo:prerender": "node scripts/prerender.js",
+@@ -19,6 +18,7 @@
+   },
+   "devDependencies": {
+     "@eslint/js": "^9.39.1",
++    "@sparticuz/chromium": "^149.0.0",
+     "@tailwindcss/forms": "^0.5.11",
+     "@types/react": "^19.2.7",
+     "@types/react-dom": "^19.2.3",
+@@ -28,8 +28,8 @@
+     "eslint-plugin-react-hooks": "^7.0.1",
+     "eslint-plugin-react-refresh": "^0.4.24",
+     "globals": "^16.5.0",
+-    "playwright": "^1.49.1",
+     "postcss": "^8.5.6",
++    "puppeteer-core": "^25.3.0",
+     "tailwindcss": "^3.4.17",
+     "vite": "^7.3.1"
+   }
+diff --git a/public/sitemap.xml b/public/sitemap.xml
+index 2a7ed32..7234737 100644
+--- a/public/sitemap.xml
++++ b/public/sitemap.xml
+@@ -2,409 +2,409 @@
+ <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+     <loc>https://www.industriasacerosperu.com/</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>1.0</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/categories</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>0.9</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMAC-024</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMAC-025</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMAC-026</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMAC-027</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMAC-028</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMAC-029</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJAC-030</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJAC-031</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJAC-032</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJAC-033</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJAC-034</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJAC-035</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-002</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-003</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-004</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-005</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-006</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-007</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-008</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-009</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-010</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-011</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-012</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-013</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-014</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-015</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-LAMGA-016</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJGA-018</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJGA-118</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJGA-019</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJGA-020</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJGA-021</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJGA-022</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-REJGA-023</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/RAS-RASDE-036</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/RAS-RASDE-037</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/RAS-RASDE-038</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/RAS-RASDE-039</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/RAS-MANDE-040</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-CINTI-043</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-CINTI-045</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-CINTI-044</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-TORDE-042</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-TORDE-041</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-HACDE-073</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/TRI-TRIME-053</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/TRI-TRIME-054</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/TRI-TRIME-055</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/TRI-CUAME-056</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/TRI-TRIME-057</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/TRI-CUAME-058</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/TRI-SOPME-059</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PICPA-060</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-MANDE-061</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PICPA-062</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PICPA-063</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PICPA-064</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PICMI-065</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PICMI-066</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PALSE-067</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PALSE-068</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PALSE-069</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-PALSE-070</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-TRIPA-071</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-BATJA-072</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+   <url>
+     <loc>https://www.industriasacerosperu.com/product/HER-CACOZ-074</loc>
+-    <lastmod>2026-07-11</lastmod>
++    <lastmod>2026-07-12</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
+diff --git a/scripts/prerender.js b/scripts/prerender.js
+index 6101368..b6e3137 100644
+--- a/scripts/prerender.js
++++ b/scripts/prerender.js
+@@ -8,14 +8,21 @@
+  * (ya está enganchado en "npm run build", después de "vite build", ver package.json)
+  *
+  * Requiere que "vite build" ya haya corrido (usa dist/ + el sitemap generado
+- * por generate-seo-files.js) y que Playwright + Chromium estén instalados
+- * (npx playwright install chromium).
++ * por generate-seo-files.js).
++ *
++ * Usa puppeteer-core + @sparticuz/chromium en vez de Playwright: ese Chromium
++ * viene empaquetado dentro del propio paquete de npm (sin descargas externas
++ * ni "apt-get"), compilado específicamente para entornos de build restringidos
++ * como el de Vercel — Playwright con Chromium normal falla ahí por librerías
++ * del sistema faltantes (libnspr4.so y otras) que no se pueden instalar sin
++ * permisos de administrador.
+  */
+ import { writeFileSync, readFileSync, mkdirSync } from 'node:fs';
+ import { fileURLToPath } from 'node:url';
+ import { dirname, resolve } from 'node:path';
+ import { preview } from 'vite';
+-import { chromium } from 'playwright';
++import puppeteer from 'puppeteer-core';
++import chromium from '@sparticuz/chromium';
+ 
+ const __dirname = dirname(fileURLToPath(import.meta.url));
+ const root = resolve(__dirname, '..');
+@@ -48,17 +55,21 @@ const previewServer = await preview({
+   logLevel: 'silent',
+ });
+ 
+-const browser = await chromium.launch();
++const browser = await puppeteer.launch({
++  executablePath: await chromium.executablePath(),
++  args: chromium.args,
++  headless: chromium.headless,
++});
+ const page = await browser.newPage();
+ 
+ for (const route of routes) {
+   const expectedCanonical = `${SITE_URL}${route}`;
+-  await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle' });
++  await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle0' });
+   await page.waitForFunction(
+     // eslint-disable-next-line no-undef -- runs in the browser page, not Node
+     (expected) => document.querySelector('link[rel="canonical"]')?.href === expected,
+-    expectedCanonical,
+-    { timeout: 10000 }
++    { timeout: 10000 },
++    expectedCanonical
+   );
+ 
+   const html = await page.content();

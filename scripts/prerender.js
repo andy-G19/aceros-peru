@@ -8,14 +8,21 @@
  * (ya está enganchado en "npm run build", después de "vite build", ver package.json)
  *
  * Requiere que "vite build" ya haya corrido (usa dist/ + el sitemap generado
- * por generate-seo-files.js) y que Playwright + Chromium estén instalados
- * (npx playwright install chromium).
+ * por generate-seo-files.js).
+ *
+ * Usa puppeteer-core + @sparticuz/chromium en vez de Playwright: ese Chromium
+ * viene empaquetado dentro del propio paquete de npm (sin descargas externas
+ * ni "apt-get"), compilado específicamente para entornos de build restringidos
+ * como el de Vercel — Playwright con Chromium normal falla ahí por librerías
+ * del sistema faltantes (libnspr4.so y otras) que no se pueden instalar sin
+ * permisos de administrador.
  */
 import { writeFileSync, readFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { preview } from 'vite';
-import { chromium } from 'playwright';
+import puppeteer from 'puppeteer-core';
+import chromium from '@sparticuz/chromium';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -48,17 +55,21 @@ const previewServer = await preview({
   logLevel: 'silent',
 });
 
-const browser = await chromium.launch();
+const browser = await puppeteer.launch({
+  executablePath: await chromium.executablePath(),
+  args: chromium.args,
+  headless: chromium.headless,
+});
 const page = await browser.newPage();
 
 for (const route of routes) {
   const expectedCanonical = `${SITE_URL}${route}`;
-  await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle' });
+  await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle0' });
   await page.waitForFunction(
     // eslint-disable-next-line no-undef -- runs in the browser page, not Node
     (expected) => document.querySelector('link[rel="canonical"]')?.href === expected,
-    expectedCanonical,
-    { timeout: 10000 }
+    { timeout: 10000 },
+    expectedCanonical
   );
 
   const html = await page.content();
